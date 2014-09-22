@@ -1,5 +1,7 @@
 package store;
 
+import Controller.FormatConventor;
+
 /**
  * store.TimeTable
  * A time table used to mark the time slot is used or not
@@ -35,20 +37,12 @@ public class TimeTable {
 	}
 
 	public boolean set(String day,String starttime,String endtime){ // converting String item to the postion of array
-		int daypos;
-		switch(day){
-			case "Mon" : case "M" : daypos=0; break;
-			case "Tue" : case "T" : daypos=1; break;
-			case "Wed" : case "W" : daypos=2; break;
-			case "Thu" : case "R" : daypos=3; break;
-			case "Fri" : case "F" : daypos=4; break;
-			case "Sat" : case "S" : daypos=5; break;
-			case "Sun" :  daypos=6; break; // This may be unless, but keep it in the stage
-			default : daypos=0; break; // normally unreachable
-			
-		}
-		return set(daypos,Integer.parseInt(starttime)/100-1,Integer.parseInt(endtime)/100-1);
+		return set(FormatConventor.DayStr2Int(day),FormatConventor.TimeStr2Int(starttime),FormatConventor.TimeStr2Int(endtime));
 		
+	}
+	
+	public boolean check(String day, String startitme,String Endtime){
+		return this.check(FormatConventor.DayStr2Int(day), FormatConventor.TimeStr2Int(startitme), FormatConventor.TimeStr2Int(Endtime));
 	}
 	
 	public boolean check(int day,int starttime, int endtime){
