@@ -40,9 +40,9 @@ public class IO {
 	
 	public void out(ArrayList<Course> list){// test only
 		for(int i=0; i<list.size();i++){
-			System.out.println("Course : "+list.get(i).getCourseID()+" - " + list.get(i).getCourseName());
+			System.out.println("\tCourse : "+list.get(i).toString());
 			for(int j=0;j<list.get(i).getSec().size();j++){
-				System.out.println("\tSession : "+list.get(i).getSec().get(j).getCRN()+" - "+list.get(i).getSec().get(j).getSectionID());
+				System.out.println("\t\tSession : "+list.get(i).getSec().get(j).toString());
 			}
 		}
 	}
@@ -53,7 +53,16 @@ public class IO {
 
 }
 /*
+ Test Case 1:
+2
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 1
+C01 Fri 1200 1300 LT6 12347 3
+ */
+/*
 CSXXXX XXXXXXXX 2
-	C01 Fri 12:00 13:00 
-	C02 Mon 11:00 12:00
+	C01 Fri 12:00 13:00 Lt6 12345 3
+	C02 Mon 11:00 12:00 Lt8 12346 3
 */

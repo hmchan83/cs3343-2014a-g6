@@ -59,5 +59,8 @@ public class Course {
 	public void addSec(Section sec){
 		this.sec.add(sec);
 	}
-
+	@Override
+	public String toString(){
+		return courseID+","+courseName;
+	}
 }

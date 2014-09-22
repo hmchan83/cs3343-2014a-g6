@@ -11,14 +11,14 @@ import store.*;
  */
 public class ConflictDetector {
 	
-	public int run(ArrayList<Course> list,int coursepos, Section sec){
+	public static int run(ArrayList<Course> list,int coursepos, Section sec){
 		int conflictNums=0;
 		TimeTable tt = new TimeTable();
 		tt.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
-		for(int i = coursepos; i<list.size();i++){
+		for(int i = coursepos+1; i<list.size();i++){
 			Course tCourse = list.get(i);
 			for(int j=0; j<tCourse.getSec().size();j++){
-				Section tSection = tCourse.getSec().get(i);
+				Section tSection = tCourse.getSec().get(j);
 				if(tt.check(tSection.getDay(), tSection.getStartTime(), tSection.getEndTime())==false){
 					conflictNums++;
 					break; // to the next Course

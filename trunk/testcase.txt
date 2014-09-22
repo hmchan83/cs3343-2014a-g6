@@ -1,0 +1,51 @@
+Test Case A1 (Basic)
+
+Input:
+
+2
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 1
+C01 Fri 1200 1300 LT6 12347 3
+
+Expected Output:
+12346 : CS0001 - TEST1 (C02)
+12347 : CS0002 - TEST2 (C01)
+
+----------------------------------------------------------------------------
+
+Test Case A2 (Basic)
+
+Input:
+
+2
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 2
+C01 Fri 1200 1300 LT6 12347 3
+C02 Mon 1100 1200 LT8 12348 3 
+
+Expected Output:
+12346 : CS0001 - TEST1 (C01)
+12347 : CS0002 - TEST2 (C02)
+
+-----------------------------------------------------------------------------
+
+Test Case B1 (Lv 1 - High priorty first)
+
+Input:
+
+3
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 1
+C01 Fri 1200 1300 LT6 12347 3
+CS0003 TEST3 1
+C01 Mon 1100 1200 LT8 12348 3 
+
+Expected Output:
+12346 : CS0001 - TEST1 (C02)
+12347 : CS0002 - TEST2 (C01)

@@ -71,7 +71,10 @@ public class Section {
 	public void setCRN(int cRN) {
 		CRN = cRN;
 	}
-	
+	@Override
+	public String toString(){
+		return CRN+","+sectionID+","+day+","+startTime+","+endTime;
+	}
 	
 	
 
