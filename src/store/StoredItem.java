@@ -36,6 +36,11 @@ public class StoredItem {
 		this.courseName = courseName;
 		this.sec = sec;
 	}
-	
+	@Override
+	public String toString(){
+		
+		return sec.getCRN()+" : "+courseID + " - "+courseName+" ("+sec.getSectionID()+")";
+		
+	}
 	
 }
