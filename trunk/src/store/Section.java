@@ -8,6 +8,8 @@ public class Section {
 	private String location;
 	private int CRN;
 	private int credit;
+	private int priority;
+	private int courseConflict;
 	
 
 	
@@ -73,7 +75,19 @@ public class Section {
 	}
 	@Override
 	public String toString(){
-		return CRN+","+sectionID+","+day+","+startTime+","+endTime;
+		return CRN+","+sectionID+","+day+","+startTime+","+endTime+","+priority+","+courseConflict;
+	}
+	public int getPriority() {
+		return priority;
+	}
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+	public int getCourseConflict() {
+		return courseConflict;
+	}
+	public void setCourseConflict(int courseConflict) {
+		this.courseConflict = courseConflict;
 	}
 	
 	

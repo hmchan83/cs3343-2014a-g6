@@ -16,7 +16,7 @@ public class DebugMessager {
 		disable();
 	}
 	public static void debug(String str){
-		if(enable==true)
-		System.out.println("[debug] : "+str);
+		if(enable==false) return;
+		System.out.println("\t[debug] : "+str);
 	}
 }

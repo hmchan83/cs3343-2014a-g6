@@ -23,6 +23,8 @@ public class MainController {
 	public void run(ArrayList<Course> list){
 		boolean flag=false;
 		DebugMessager.debug("MainController Start");
+		
+		
 		for(int i=0;i<list.size();i++){
 			flag=false; // course is not added
 			Course currCourse=list.get(i);

@@ -3,6 +3,7 @@ import ioMoudle.*;
 import java.util.ArrayList;
 
 import Controller.MainController;
+import Controller.PriorityHandler;
 import store.Course;
 import store.StoredItem;
 /**
@@ -18,9 +19,16 @@ public class Main {
 		DebugMessager.debug("IO start");
 		ArrayList<Course> courselist = io.input(); //for testing just using simple input
 		courseNums = courselist.size();
+		
+		PriorityHandler PriorityHandler=new PriorityHandler();		
+		PriorityHandler.listformat(courselist);
+		
 		io.out("\nYour Input : \n");
 		io.out(courselist);
 		DebugMessager.debug("courseNums = "+courseNums);
+		
+		
+		
 		MainController MainController = new MainController();
 		MainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = MainController.result();

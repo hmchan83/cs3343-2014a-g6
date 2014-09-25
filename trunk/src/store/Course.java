@@ -15,15 +15,7 @@ public class Course {
 	private String courseName;
 	private int priority;
 	private ArrayList<Section> sec;
-	public ArrayList<Section> getSec() {
-		return sec;
-	}
-
-	public void setSec(ArrayList<Section> sec) {
-		this.sec = sec;
-	}
-
-	static int c=1;
+	private static int c=1;
 	
 	public Course(String courseID, String courseName){
 		this.courseID=courseID;
@@ -62,5 +54,14 @@ public class Course {
 	@Override
 	public String toString(){
 		return courseID+","+courseName;
+	}
+	public int SectionNum(){
+		return sec.size();
+	}
+	public ArrayList<Section> getSec() {
+		return sec;
+	}
+	public void setSec(ArrayList<Section> sec) {
+		this.sec = sec;
 	}
 }
