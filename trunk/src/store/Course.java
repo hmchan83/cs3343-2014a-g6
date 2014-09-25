@@ -3,7 +3,6 @@ package store;
 import java.util.ArrayList;
 
 /**
- * store.Course
  * used to store the course info with a ArrayList of Section
  * @author Marcus
  *
@@ -64,6 +63,10 @@ public class Course {
 	public void setSec(ArrayList<Section> sec) {
 		this.sec = sec;
 	}
+	/**
+	 * find the smaller conflict number for all section in this course
+	 * @return the smaller conflict number
+	 */
 	public int getMinConflictNum(){
 		int min=-1;
 		for(Section s : sec){

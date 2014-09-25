@@ -2,13 +2,16 @@ package Controller;
 
 /**
  * Converting String object to int with defined rule
- * 
  * @author Marcus
  *
  */
 
 public class FormatConventor {
-	
+	/**
+	 * given a day string and convert it to a int
+	 * @param str a string that describe the day of a week, accepted value : Mon - Fri and M,T,W (from Mastering Schedule)
+	 * @return 0 for Monday ... 6 for Sunday
+	 */
 	public static int DayStr2Int(String str){
 		int daypos;
 		switch(str){
@@ -18,12 +21,17 @@ public class FormatConventor {
 			case "Thu" : case "R" : daypos=3; break;
 			case "Fri" : case "F" : daypos=4; break;
 			case "Sat" : case "S" : daypos=5; break;
-			case "Sun" :  daypos=6; break; // This may be unless, but keep it in the stage
-			default : daypos=0; break; // normally unreachable		
+			case "Sun" :  daypos=6; break; // This may be unless, but keep it in this stage
+			default : daypos=-1; break; // normally unreachable		
 		}
 		return daypos;
 	}
 	
+	/**
+	 * convert a time string to int, eg 2300 become 23
+	 * @param str time string in 1100,1000,2200 etc format
+	 * @return 2300 return 23, the position in the timetable
+	 */
 	public static int TimeStr2Int(String str){
 		return (Integer.parseInt(str)/100 - 1);
 	}
