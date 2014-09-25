@@ -64,4 +64,13 @@ public class Course {
 	public void setSec(ArrayList<Section> sec) {
 		this.sec = sec;
 	}
+	public int getMinConflictNum(){
+		int min=-1;
+		for(Section s : sec){
+			if(min==-1) min = s.getCourseConflict();
+			else
+				if(s.getCourseConflict()<min)min=s.getCourseConflict();
+		}
+		return min;
+	}
 }

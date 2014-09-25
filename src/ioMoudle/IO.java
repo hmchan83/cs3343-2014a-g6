@@ -20,13 +20,13 @@ public class IO {
 			System.out.println("enter the number of course");
 			int courseNum = scanner.nextInt();
 			for(int i=0; i < courseNum;i++){
-				System.out.println("enter the id,name&no. of section of course "+(i+1));
+				System.out.println("enter the id, name, no. of section of course "+(i+1));
 				String courseID = scanner.next();
 				String courseName = scanner.next();
 				Course currCourse = new Course(courseID,courseName);
 				int sectionNum = scanner.nextInt();
 				for(int j=0; j < sectionNum;j++){
-					System.out.println("enter the section of course");
+					System.out.println("enter the section (ID,day,start,end,location,CRN,credit) of course");
 					//Section(String sectionID, String day, String startTime,String endTime, String location, int cRN, int credit
 					Section currSec = new Section(scanner.next(),scanner.next(),scanner.next(),scanner.next(),scanner.next(),scanner.nextInt(),scanner.nextInt());
 					currCourse.addSec(currSec);
