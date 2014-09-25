@@ -1,7 +1,6 @@
 package store;
 
 /**
- * store.StoredItem
  * simplified data format of courses used in storing the course and section selected
  * @author Marcus
  *

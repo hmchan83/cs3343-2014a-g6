@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import store.Course;
 import store.Section;
 import store.StoredItem;
-import store.TimeTable;
 /**
  * Controller.MainController
  * The part that contain the main logic
@@ -17,7 +16,7 @@ import store.TimeTable;
 
 public class MainController {
 	
-	private TimeTable table = new TimeTable();
+	private OverlapDetector table = new OverlapDetector();
 	private ArrayList<StoredItem> selected = new ArrayList<StoredItem>();
 	
 	public void run(ArrayList<Course> list){
