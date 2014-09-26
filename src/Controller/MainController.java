@@ -37,21 +37,25 @@ public class MainController {
 			 */
 			
 			
-			for(int j=0;j<currCourse.getSec().size();j++){
-				Section currSec = currCourse.getSec().get(j);
-				DebugMessager.debug("Handling Section "+ i+" {"+currSec.toString()+"}");
-				int conflictNums = ConflictDetector.run(list, i, currSec);
-				DebugMessager.debug("conflictNums = "+conflictNums);
-				if(conflictNums > list.size()/2 || (minConflict==0 && conflictNums!=minConflict)){
-					DebugMessager.debug("Course Dropped");
-					continue; //bad option
-				}
-				if(selectCourse(currSec)==true){
-					StoredItem tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSec);//Simple value
-					selected.add(tempVal);
-					DebugMessager.debug("Select Course "+currCourse.getCourseID()+" "+currSec.getSectionID());
-					flag=true; // course added
-					break; // don't need to handle other section this time
+			if( minConflict > 0 ){
+				
+			}else{
+				for(int j=0;j<currCourse.getSec().size();j++){
+					Section currSec = currCourse.getSec().get(j);
+					DebugMessager.debug("Handling Section "+ i+" {"+currSec.toString()+"}");
+					int conflictNums = ConflictDetector.run(list, i, currSec);
+					DebugMessager.debug("conflictNums = "+conflictNums);
+					if(conflictNums > list.size()/2 || (minConflict==0 && conflictNums!=minConflict)){
+						DebugMessager.debug("Course Dropped");
+						continue; //bad option
+					}
+					if(selectCourse(currSec)==true){
+						StoredItem tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSec);//Simple value
+						selected.add(tempVal);
+						DebugMessager.debug("Select Course "+currCourse.getCourseID()+" "+currSec.getSectionID());
+						flag=true; // course added
+						break; // don't need to handle other section this time
+					}
 				}
 			}
 			
