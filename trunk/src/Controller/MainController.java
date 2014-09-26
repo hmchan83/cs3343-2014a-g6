@@ -27,13 +27,15 @@ public class MainController {
 		for(int i=0;i<list.size();i++){
 			flag=false; // course is not added
 			Course currCourse=list.get(i);
+			int minConflict = currCourse.getMinConflict();
+			DebugMessager.debug("The min Conflict of this course = "+minConflict);
 			DebugMessager.debug("Handling Course "+ i+" {"+currCourse.toString()+"}");
 			for(int j=0;j<currCourse.getSec().size();j++){
 				Section currSec = currCourse.getSec().get(j);
 				DebugMessager.debug("Handling Section "+ i+" {"+currSec.toString()+"}");
 				int conflictNums = ConflictDetector.run(list, i, currSec);
 				DebugMessager.debug("conflictNums = "+conflictNums);
-				if(conflictNums > list.size()/2){
+				if(conflictNums > list.size()/2 || (minConflict==0 && conflictNums!=minConflict)){
 					DebugMessager.debug("Course Dropped");
 					continue; //bad option
 				}
