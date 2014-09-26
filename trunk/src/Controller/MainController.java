@@ -22,14 +22,21 @@ public class MainController {
 	public void run(ArrayList<Course> list){
 		boolean flag=false;
 		DebugMessager.debug("MainController Start");
-		
-		
+				
 		for(int i=0;i<list.size();i++){
 			flag=false; // course is not added
 			Course currCourse=list.get(i);
 			int minConflict = currCourse.getMinConflict();
+			int SecMinConflictNum = currCourse.getSecNumMinConflict();
 			DebugMessager.debug("The min Conflict of this course = "+minConflict);
 			DebugMessager.debug("Handling Course "+ i+" {"+currCourse.toString()+"}");
+			
+			/*
+			 * if the section of course are having the same conflict number
+			 * we may try selecting it and find the highest priory result
+			 */
+			
+			
 			for(int j=0;j<currCourse.getSec().size();j++){
 				Section currSec = currCourse.getSec().get(j);
 				DebugMessager.debug("Handling Section "+ i+" {"+currSec.toString()+"}");
@@ -47,6 +54,7 @@ public class MainController {
 					break; // don't need to handle other section this time
 				}
 			}
+			
 			if(flag==true) continue; // skip to next course
 		}
 	}
