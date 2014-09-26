@@ -1,0 +1,40 @@
+#test case of parse 1
+= Introduction =
+
+here are the test case of parse 1, which have the following attr.
+1. There are not more than two courses
+
+= Test Cases =
+
+==Test Case 1==
+Input
+{{{
+2
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 1
+C01 Fri 1200 1300 LT6 12347 3
+}}}
+Output
+{{{
+12346 : CS0001 - TEST1 (C02)
+12347 : CS0002 - TEST2 (C01)
+}}}
+
+==Test Case 2==
+Input
+{{{
+2
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 2
+C01 Fri 1200 1300 LT6 12347 3
+C02 Mon 1100 1200 LT8 12348 3 
+}}}
+Output
+{{{
+12345 : CS0001 - TEST1 (C01)
+12348 : CS0002 - TEST2 (C02)
+}}}
