@@ -15,6 +15,7 @@ public class Course {
 	private int priority;
 	private ArrayList<Section> sec;
 	private static int c=1;
+	private int minConflict=-1;
 	
 	public Course(String courseID, String courseName){
 		this.courseID=courseID;
@@ -67,13 +68,17 @@ public class Course {
 	 * find the smaller conflict number for all section in this course
 	 * @return the smaller conflict number
 	 */
-	public int getMinConflictNum(){
-		int min=-1;
-		for(Section s : sec){
-			if(min==-1) min = s.getCourseConflict();
-			else
-				if(s.getCourseConflict()<min)min=s.getCourseConflict();
+	public int getMinConflict(){
+		if(minConflict==-1){
+			int min=-1;
+			for(Section s : sec){
+				if(min==-1) min = s.getCourseConflict();
+				else
+					if(s.getCourseConflict()<min)min=s.getCourseConflict();
+			}
+			return min;
+		}else{
+			return minConflict;
 		}
-		return min;
 	}
 }

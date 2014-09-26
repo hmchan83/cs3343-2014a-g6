@@ -13,7 +13,7 @@ import store.StoredItem;
  */
 public class Main {
 	public static void main(String[] args) {
-		//DebugMessager.enable();//debug mode, may used to show debug message in runtime;
+		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		int courseNums;
 		IO io = new IO();
 		DebugMessager.debug("IO start");
