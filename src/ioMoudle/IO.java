@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import store.*;
 /**
- * IO.IO
  * temporary I/O handler
  * @author Marcus
  *

@@ -76,9 +76,24 @@ public class Course {
 				else
 					if(s.getCourseConflict()<min)min=s.getCourseConflict();
 			}
+			minConflict = min;
 			return min;
 		}else{
 			return minConflict;
 		}
+	}
+	/**
+	 * find the number of section that conflict number equals to the MIN. number of the course
+	 * @return The number of section that conflict number equals to the MIN. number of the course
+ 	 */
+	public int getSecNumMinConflict(){
+		if(minConflict==-1){
+			minConflict=getMinConflict();
+		}
+		int c=0;
+		for(Section s : sec){
+			if(s.getCourseConflict()==minConflict)c++;
+		}
+		return c;
 	}
 }

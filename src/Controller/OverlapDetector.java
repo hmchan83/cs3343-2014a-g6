@@ -3,7 +3,6 @@ package Controller;
 import Controller.FormatConventor;
 
 /**
- * store.TimeTable
  * A time table used to mark the time slot is used or not
  * @author Marcus
  *

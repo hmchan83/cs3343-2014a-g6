@@ -34,13 +34,13 @@ public class ListHandler {
 		int courseNum = list.size();
 		for(int i=0;i<courseNum;i++){ // init the Priority table
 			Course c = list.get(i);
-			int tempPriority=(courseNum-c.getPriority()+1)*((int)Math.pow(10, places));
 			DebugMessager.debug("PriorityHandler handling Course "+c.getCourseID());
 			ArrayList<Section> seclist=c.getSec();
+			int tempPriority=(courseNum-c.getPriority()+1)*((int)Math.pow(10, places)) + seclist.size();
 			for(int j=0;j<seclist.size();j++){
 				Section s = seclist.get(j);
 				DebugMessager.debug("\tPriorityHandler handling Section "+s.getSectionID());
-				s.setPriority(++tempPriority);
+				s.setPriority(tempPriority--);
 				s.setCourseConflict(ConflictDetector.run(list, i,s));
 				DebugMessager.debug("\tPriorityHandler Section "+s.getSectionID()+", priority = "+tempPriority);
 			}
