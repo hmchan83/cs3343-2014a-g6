@@ -1,17 +1,45 @@
 #summary Logic
 
-= Introduction =
+= Preparation =
+ ListController will be used to prepare a "usable" ArrayList with data that require in main logic.
+  # the Priority number
+    * used to determinate the priority with a integer
+    * Priority follow the input order of course and section
+    * Example : 
+{{{
+2
+CS0001 TEST1 2
+C01 Fri 1200 1300 LT6 12345 3
+C02 Mon 1100 1200 LT8 12346 3 
+CS0002 TEST2 1
+C01 Fri 1200 1300 LT6 12347 3
+}}}
+   The course CS0001 will be given a priority number 2, and CS0002 is 1;<br>
+   The section C01 of CS0001 will be given a priority number 2, and C02 is 1;<br>
+   Hence the priority number of CS0001 C01 is 22, C02 is 21 and CS0002 C01 is 11.
+  # Conflict Number
+    * This number representing the number of course that the section conflict with.
+    * For each section in course A, if it conflict with any section in Course B, it conflict number will add 1.(no matter how many sections it conflicted)
 
-Add your content here.
 
-
-= Details =
-Selecting Course
+= Main Logic =
+==Selecting Course==
   # follow the order of input
   # check if any section can be selected
 ----
-Selecting Section
+==Selecting Section==
+  # 2 set of rules, Simple & Complex
+  # if the input follow the following rule, Simple Handler will be use, otherwise the Complex Handler will be use
+     * only 2 courses
+     * only one section of the course has the min. conflict number
+
+===Simple Method===
   # consider the conflict number (the number that the course will conflict with this section)
   # and then consider the priory
-  # if every course follow the following rule, Simple Handler will be use,
+
+===Complex Handler(developing)===
+*ALL OF THE CONTENTS AT THIS PART MAY BE CHANGE*
+  # find out sections that have the smallest conflict number
+  # trying to select this section and continuous to handler the next course
+  # store the result list and find the result contains highest Priority
     
