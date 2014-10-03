@@ -12,7 +12,7 @@ import store.StoredItem;
  *
  */
 public class Main {
-	private static int simpleHandler;
+
 	public static void main(String[] args) {
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		int courseNums;
@@ -41,11 +41,5 @@ public class Main {
 		}
 		io.out("\nTotal Priority = "+totalpriority);
 			
-	}
-	public static int getSimpleHandler() {
-		return simpleHandler;
-	}
-	public static void setSimpleHandler(int asimpleHandler) {
-		simpleHandler = asimpleHandler;
 	}
 }

@@ -12,7 +12,7 @@ import store.Section;
  *
  */
 public class ComplexHandler {
-
+	static String title = "ComplexHandler : ";
 	public void run(ArrayList<Course> list){
 		
 		
