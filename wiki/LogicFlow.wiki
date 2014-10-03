@@ -1,0 +1,17 @@
+#summary Logic
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+Selecting Course
+  # follow the order of input
+  # check if any section can be selected
+----
+Selecting Section
+  # consider the conflict number (the number that the course will conflict with this section)
+  # and then consider the priory
+  # if every course follow the following rule, Simple Handler will be use,
+    
