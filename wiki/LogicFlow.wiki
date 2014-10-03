@@ -1,7 +1,7 @@
 #summary Logic
 
 = Preparation =
- ListController will be used to prepare a "usable" ArrayList with data that require in main logic.
+ Controller.!ListController will be used to prepare a "usable" !ArrayList with data that require in main logic.
   # the Priority number
     * used to determinate the priority with a integer
     * Priority follow the input order of course and section
