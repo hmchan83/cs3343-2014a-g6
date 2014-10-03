@@ -16,6 +16,7 @@ import store.StoredItem;
 
 public class MainController {
 	
+	static Boolean SimpleHandler;
 	private OverlapDetector table = new OverlapDetector();
 	private ArrayList<StoredItem> selected = new ArrayList<StoredItem>();
 	
@@ -27,7 +28,7 @@ public class MainController {
 			flag=false; // course is not added
 			Course currCourse=list.get(i);
 			int minConflict = currCourse.getMinConflict();
-			int SecMinConflictNum = currCourse.getSecNumMinConflict();
+			//int SecMinConflictNum = currCourse.getSecNumMinConflict();
 			DebugMessager.debug("The min Conflict of this course = "+minConflict);
 			DebugMessager.debug("Handling Course "+ i+" {"+currCourse.toString()+"}");
 			
@@ -37,7 +38,7 @@ public class MainController {
 			 */
 			
 			
-			if( minConflict > 0 ){
+			if( SimpleHandler == false ){/* priory handler */
 				
 			}else{
 				for(int j=0;j<currCourse.getSec().size();j++){
@@ -70,5 +71,13 @@ public class MainController {
 	
 	public ArrayList<StoredItem> result(){
 		return this.selected;
+	}
+
+	public static Boolean getSimpleHandler() {
+		return SimpleHandler;
+	}
+
+	public static void setSimpleHandler(Boolean simpleHandler) {
+		SimpleHandler = simpleHandler;
 	}
 }
