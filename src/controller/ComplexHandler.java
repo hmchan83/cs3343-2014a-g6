@@ -48,16 +48,19 @@ public class ComplexHandler {
 		}
 		
 		DebugMessager.debug(title+"tempList = "+tempList.toString());
-		//Step 2. For each list in tempList, select another course & section
+		//Step 2. For each list in tempList, select another course & section		
+		//TODO : use While loop instead of For loop
 		DebugMessager.debug(title+"Step 2 Start.");
+		int templistNum = tempList.size();
 		for(int i=1;i<list.size();i++){
 			currCourse = list.get(i);
-			//int minConflictSec = currCourse.getSecNumMinConflict();
-			for(int k=0;k<tempList.size();k++){
+			DebugMessager.debug(title+"Handling Course"+currCourse.toString());
+			for(int k=0;k<templistNum;k++){
 				stList = tempList.get(k);
 				table.setTable(stList.getTable());
 				for(int j=0;j<currCourse.getSec().size();j++){
 					currSection = currCourse.getSec().get(j);
+					DebugMessager.debug(title+"Handling Section"+currSection.toString());
 					if(currSection.getCourseConflict() == currCourse.getMinConflict()){//Select session with less conflict
 						if(selectCourse(currSection)==true){
 							newList = copyList(stList);
@@ -93,10 +96,12 @@ public class ComplexHandler {
 	public boolean selectCourse(Section sec){		
 		return table.set(sec.getDay(),sec.getStartTime(),sec.getEndTime());
 	}
+	@SuppressWarnings("unchecked")
 	public StoredList copyList(StoredList listA){
 		StoredList listB = new StoredList();
 		listB.setTable(listA.getTable().clone());
-		listB.setItems((ArrayList<StoredItem>) listA.getItems().clone());
+		Object clone = listA.getItems().clone();
+		listB.setItems((ArrayList<StoredItem>) clone);
 		return listB;
 	}
 }
