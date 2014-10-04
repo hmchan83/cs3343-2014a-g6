@@ -7,10 +7,7 @@ package controller;
  *
  */
 
-public class OverlapDetector {
-	static private Boolean USED = true;
-	static private Boolean AVAILABLE = false;
-	
+public class OverlapDetector {	
 	private Boolean[][] table;
 	
 	
@@ -23,7 +20,7 @@ public class OverlapDetector {
 		//Boolean [i][j] ; i=0 -> Mon, i=1 ->Tue... ; j=0 -> 00:00 ... j=23 -> 23:00
 		for(int i=0;i<7;i++){
 			for(int j=0;j<24;j++){
-				this.table[i][j]=OverlapDetector.AVAILABLE;// not used
+				this.table[i][j]=false;// not used
 			}
 		}
 	}
@@ -64,7 +61,7 @@ public class OverlapDetector {
 		if(endtime<0 && endtime>23) return false;
 		if(day<0 && day>6) return false;
 		for(int i=starttime;i<endtime;i++){
-			if(this.table[day][i]==OverlapDetector.USED) return false; // time slot overlap
+			if(this.table[day][i]==true) return false; // time slot overlap
 		}
 		return true;
 	}
@@ -74,7 +71,7 @@ public class OverlapDetector {
 		
 		//set the time slot to used
 		for(int i=starttime;i<endtime;i++){
-			this.table[day][i]=OverlapDetector.USED; // time slot used
+			this.table[day][i]=true; // time slot used
 		}
 		return true;
 	}

@@ -18,33 +18,67 @@ public class ComplexHandler {
 	private OverlapDetector table = new OverlapDetector();
 	private ArrayList<StoredList> tempList = new ArrayList<StoredList>();
 	
-	public void run(ArrayList<Course> list){
-		// Step 1
-		Course currCourse = list.get(0);
+	public ArrayList<StoredItem> run(ArrayList<Course> list){
+		Course currCourse;
+		Section currSection;
+		StoredList stList;
+		StoredItem tempVal;
+		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
+		currCourse = list.get(0);
 		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
 		DebugMessager.debug(title+"The min Conflict of this course = "+currCourse.getMinConflict());
-		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());	
-		if(currCourse.getSecNumMinConflict()>1){//require priority
-			DebugMessager.debug(title+"Sessions with min Conflict > 1, require priority");
-			
-		}else{
-			DebugMessager.debug(title+"Sessions with min Conflict = 1, pick the lowest conflict session");
-			for(Section sec : currCourse.getSec()){
-				DebugMessager.debug(title+"Handling Section {"+sec.toString()+"}");
-				if(sec.getCourseConflict() == currCourse.getMinConflict()){
-					DebugMessager.debug(title+"Section "+sec.getSectionID()+" is the less conflict session.");
-					StoredItem tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),sec);//Simple value
-					StoredList storeList = new StoredList();
-					storeList.add(tempVal);
-					tempList.add(storeList);
-					DebugMessager.debug(title+"Section "+sec.getSectionID()+" added to stored list");
-					DebugMessager.debug(title+"StoredList = "+tempList.toString());
-				}else{
-					DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
-				}
+		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());
+		DebugMessager.debug(title+"Start putting Sessions with min Conflict in to StoredList");	
+		for(Section sec : currCourse.getSec()){
+			table.reset();
+			DebugMessager.debug(title+"Handling Section {"+sec.toString()+"}");
+			if(sec.getCourseConflict() == currCourse.getMinConflict()){
+				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is the less conflict session.");
+				table.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
+				tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),sec);//Simple value
+				stList = new StoredList();
+				stList.add(tempVal);
+				stList.setTable(table.getTable());
+				tempList.add(stList);
+				DebugMessager.debug(title+"Section "+sec.getSectionID()+" added to stored list");
+				DebugMessager.debug(title+"StoredList = "+tempList.toString());
+			}else{
+				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
 			}
 		}
 		
+		
+		//Step 2. For each list in tempList, select another course & section
+		DebugMessager.debug(title+"Step 2 Start.");
+		for(int i=1;i<list.size();i++){
+			currCourse = list.get(i);
+			//int minConflictSec = currCourse.getSecNumMinConflict();
+			for(int k=0;k<tempList.size();k++){
+				stList = tempList.get(k);
+				table.setTable(stList.getTable());
+				for(int j=0;j<currCourse.getSec().size();j++){
+					currSection = currCourse.getSec().get(j);
+					if(currSection.getCourseConflict() == currCourse.getMinConflict()){//Select session with less conflict
+						//TODO: Overlap Check here
+					}
+				}
+				//tempList.remove(k); //may lowdown performance?
+			}
+		}
+		
+		
+		//Step 3. Find the Highest priority list
+		int maxPriority = 0;
+		StoredList result = new StoredList();
+		for(int k=0;k<tempList.size();k++){
+			stList = tempList.get(k);
+			int tempPriority = stList.getPriorityNums();
+			if(tempPriority>maxPriority){
+				maxPriority = tempPriority;
+				result = stList;
+			}
+		}
+		return result.getItems();
 	}
 	public boolean selectCourse(Section sec){		
 		//TODO : add Conflict detector here

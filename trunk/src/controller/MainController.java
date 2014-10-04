@@ -29,11 +29,12 @@ public class MainController {
 			selected = SimpleHandler.run(list);
 		}else{
 			DebugMessager.debug(title+"Using ComplexHandler");
-			//ComplexHandler ComplexHandler=new ComplexHandler();
-			//ComplexHandler.run(list);
+			ComplexHandler ComplexHandler=new ComplexHandler();
+			selected = ComplexHandler.run(list);
 			//SimpleHandler SimpleHandler = new SimpleHandler();
 			//selected = SimpleHandler.run(list);
 		}
+		DebugMessager.debug(title+"MainController End");
 	}
 	
 	public boolean selectCourse(Section sec){		
