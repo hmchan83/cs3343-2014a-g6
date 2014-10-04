@@ -24,6 +24,8 @@ public class Course {
 		this.sec = new ArrayList<>();
 	}
 	
+	public Course() {}
+
 	public String getCourseID() {
 		return courseID;
 	}
