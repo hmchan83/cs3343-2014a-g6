@@ -53,7 +53,7 @@ public class Course {
 	}
 	@Override
 	public String toString(){
-		return courseID+","+courseName;
+		return courseID+","+courseName+","+priority+","+minConflict;
 	}
 	public int SectionNum(){
 		return sec.size();

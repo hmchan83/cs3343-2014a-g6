@@ -2,8 +2,8 @@ import ioMoudle.*;
 
 import java.util.ArrayList;
 
-import Controller.MainController;
-import Controller.ListHandler;
+import controller.ListHandler;
+import controller.MainController;
 import store.Course;
 import store.StoredItem;
 /**

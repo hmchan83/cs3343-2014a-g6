@@ -1,10 +1,10 @@
-package Controller;
+package controller;
 
 import ioMoudle.DebugMessager;
-import Controller.MainController;
 
 import java.util.ArrayList;
 
+import controller.MainController;
 import store.Course;
 import store.Section;
 

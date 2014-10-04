@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import ioMoudle.DebugMessager;
 
@@ -23,16 +23,16 @@ public class MainController {
 	public void run(ArrayList<Course> list){
 		DebugMessager.debug(title+"MainController Start");
 		
-		if(SimpleHandler == true){ // No priory problem
+		if(SimpleHandler == true){ // No priority problem
 			DebugMessager.debug(title+"Using SimpleHandler");
 			SimpleHandler SimpleHandler = new SimpleHandler();
 			selected = SimpleHandler.run(list);
 		}else{
 			DebugMessager.debug(title+"Using ComplexHandler");
-			ComplexHandler ComplexHandler=new ComplexHandler();
-			ComplexHandler.run(list);
-			SimpleHandler SimpleHandler = new SimpleHandler();
-			selected = SimpleHandler.run(list);
+			//ComplexHandler ComplexHandler=new ComplexHandler();
+			//ComplexHandler.run(list);
+			//SimpleHandler SimpleHandler = new SimpleHandler();
+			//selected = SimpleHandler.run(list);
 		}
 	}
 	
