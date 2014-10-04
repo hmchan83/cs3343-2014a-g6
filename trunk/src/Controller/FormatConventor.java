@@ -28,12 +28,24 @@ public class FormatConventor {
 	}
 	
 	/**
-	 * convert a time string to int, eg 2300 become 23
+	 * convert a time string to int, eg 2300 become 23 / 23:00 become 23
 	 * @param str time string in 1100,1000,2200 etc format
-	 * @return 2300 return 23, the position in the timetable
+	 * @return 2300 return 23, the position in the timetable / return -1 if wrong input
 	 */
 	public static int TimeStr2Int(String str){
-		return (Integer.parseInt(str)/100 - 1);
+		if(str.length()==4){
+			if(Integer.parseInt(str)>2300 || Integer.parseInt(str)<0){
+				return -1;
+			}
+			return (Integer.parseInt(str)/100);
+		}else if(str.length()==5){
+			String first = str.substring(0,2);
+			if(Integer.parseInt(first)>23 || Integer.parseInt(first)<0){
+				return -1;
+			}
+			return(Integer.parseInt(first));
+		}			
+		return -1;
 	}
 	
 }
