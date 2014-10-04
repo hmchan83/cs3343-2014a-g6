@@ -21,7 +21,7 @@ public class ComplexHandler {
 	public ArrayList<StoredItem> run(ArrayList<Course> list){
 		Course currCourse;
 		Section currSection;
-		StoredList stList;
+		StoredList stList,newList;
 		StoredItem tempVal;
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		currCourse = list.get(0);
@@ -47,7 +47,7 @@ public class ComplexHandler {
 			}
 		}
 		
-		
+		DebugMessager.debug(title+"tempList = "+tempList.toString());
 		//Step 2. For each list in tempList, select another course & section
 		DebugMessager.debug(title+"Step 2 Start.");
 		for(int i=1;i<list.size();i++){
@@ -59,29 +59,44 @@ public class ComplexHandler {
 				for(int j=0;j<currCourse.getSec().size();j++){
 					currSection = currCourse.getSec().get(j);
 					if(currSection.getCourseConflict() == currCourse.getMinConflict()){//Select session with less conflict
-						//TODO: Overlap Check here
+						if(selectCourse(currSection)==true){
+							newList = copyList(stList);
+							tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
+							newList.add(tempVal);
+							tempList.add(newList);
+						}
 					}
 				}
 				//tempList.remove(k); //may lowdown performance?
 			}
 		}
-		
+		DebugMessager.debug(title+"tempList = "+tempList.toString());
 		
 		//Step 3. Find the Highest priority list
+		DebugMessager.debug(title+"Step 3 Start.");		
 		int maxPriority = 0;
 		StoredList result = new StoredList();
-		for(int k=0;k<tempList.size();k++){
+		for(int k=0;k<tempList.size();k++){			
 			stList = tempList.get(k);
 			int tempPriority = stList.getPriorityNums();
-			if(tempPriority>maxPriority){
+			DebugMessager.debug(title+"tempList["+k+"] = "+stList.toString() +", Priority = "+tempPriority);			
+			DebugMessager.debug(title+"maxPriority = "+maxPriority+", result = "+result.toString());	
+			if(tempPriority>maxPriority){				
 				maxPriority = tempPriority;
 				result = stList;
+				DebugMessager.debug(title+"Larger Found, New.maxPriority = "+maxPriority+", New.result = "+result.toString());
 			}
 		}
+		DebugMessager.debug(title+"result = "+result);
 		return result.getItems();
 	}
 	public boolean selectCourse(Section sec){		
-		//TODO : add Conflict detector here
 		return table.set(sec.getDay(),sec.getStartTime(),sec.getEndTime());
+	}
+	public StoredList copyList(StoredList listA){
+		StoredList listB = new StoredList();
+		listB.setTable(listA.getTable().clone());
+		listB.setItems((ArrayList<StoredItem>) listA.getItems().clone());
+		return listB;
 	}
 }
