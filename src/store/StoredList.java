@@ -29,6 +29,7 @@ public class StoredList {
 		this.items = items;
 	}
 	public int getPriorityNums() {
+		if(priorityNums==-1)calPriorityNums();
 		return priorityNums;
 	}
 	public void setPriorityNums(int priorityNums) {
@@ -51,10 +52,12 @@ public class StoredList {
 		this.table = table;
 	}
 	public String toString(){
-		String str="";
-		for(StoredItem item : items){
-			str+="{"+item.toString()+"},";
+		String str="{";
+		for(int i=0;i<items.size();i++){
+			if(i>0)str+=",";
+			str+="["+items.get(i).toString()+"]";
 		}
+		str+="}";
 		return str;
 	}
 	

@@ -45,8 +45,7 @@ public class SimpleHandler {
 		return selected;
 	}
 	
-	public boolean selectCourse(Section sec){		
-		//TODO : add Conflict detector here
+	public boolean selectCourse(Section sec){
 		return table.set(sec.getDay(),sec.getStartTime(),sec.getEndTime());
 	}
 

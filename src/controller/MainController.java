@@ -34,6 +34,7 @@ public class MainController {
 			//SimpleHandler SimpleHandler = new SimpleHandler();
 			//selected = SimpleHandler.run(list);
 		}
+		DebugMessager.debug(title+"selected = "+selected.toString());
 		DebugMessager.debug(title+"MainController End");
 	}
 	
