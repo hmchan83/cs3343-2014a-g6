@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.util.ArrayList;
 
@@ -18,10 +18,10 @@ public class SimpleHandler {
 			flag=false; // course is not added
 			Course currCourse=list.get(i);
 			int minConflict = currCourse.getMinConflict();
-			//int SecMinConflictNum = currCourse.getSecNumMinConflict();
-			DebugMessager.debug(title+"The min Conflict of this course = "+minConflict);
+			int SecMinConflictNum = currCourse.getSecNumMinConflict();
 			DebugMessager.debug(title+"Handling Course "+ i+" {"+currCourse.toString()+"}");
-			
+			DebugMessager.debug(title+"The min Conflict of this course = "+minConflict);
+			DebugMessager.debug(title+"Sessions with min Conflict = "+SecMinConflictNum);		
 
 			for(int j=0;j<currCourse.getSec().size();j++){
 				Section currSec = currCourse.getSec().get(j);

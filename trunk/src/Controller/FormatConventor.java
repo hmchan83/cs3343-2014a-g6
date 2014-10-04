@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 /**
  * Converting String object to int with defined rule
@@ -35,17 +35,17 @@ public class FormatConventor {
 	public static int TimeStr2Int(String str){
 		if(str.length()==4){
 			if(Integer.parseInt(str)>2300 || Integer.parseInt(str)<0){
-				return -1;
+				throw new IllegalArgumentException();
 			}
 			return (Integer.parseInt(str)/100);
 		}else if(str.length()==5){
 			String first = str.substring(0,2);
 			if(Integer.parseInt(first)>23 || Integer.parseInt(first)<0){
-				return -1;
+				throw new IllegalArgumentException();
 			}
 			return(Integer.parseInt(first));
 		}			
-		return -1;
+		throw new IllegalArgumentException();
 	}
 	
 }

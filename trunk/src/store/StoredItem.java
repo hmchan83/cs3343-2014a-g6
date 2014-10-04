@@ -36,10 +36,8 @@ public class StoredItem {
 		this.sec = sec;
 	}
 	@Override
-	public String toString(){
-		
-		return sec.getCRN()+" : "+courseID + " - "+courseName+" ("+sec.getSectionID()+")";
-		
+	public String toString(){		
+		return sec.getCRN()+" : "+courseID + " - "+courseName+" ("+sec.getSectionID()+")";		
 	}
 	
 }
