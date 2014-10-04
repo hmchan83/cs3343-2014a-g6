@@ -5,8 +5,9 @@ public class Section {
 	private String day;
 	private String startTime;
 	private String endTime;
-	private String location;
-	private int CRN;
+	private String building;
+	private String room;
+	private String crn;
 	private int credit;
 	private int priority;
 	private int courseConflict;
@@ -14,22 +15,24 @@ public class Section {
 
 	
 	public Section(String sectionID, String day, String startTime,
-			String endTime, String location, int cRN, int credit) {
+			String endTime, String building, String room,String cRN, int credit) {
 		this.sectionID = sectionID;
 		this.day = day;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.location = location;
-		CRN = cRN;
+		this.building = building;
+		this.room = room;
+		crn = cRN;
 		this.credit = credit;
 	}
 	public Section(String sectionID, String day, String startTime,
-			String endTime, String location) {
+			String endTime, String building, String room) {
 		this.sectionID = sectionID;
 		this.day = day;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.location = location;
+		this.building = building;
+		this.room = room;
 	}
 	public String getSectionID() {
 		return sectionID;
@@ -55,11 +58,17 @@ public class Section {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public String getLocation() {
-		return location;
+	public String getBuilding() {
+		return building;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setBuilding(String building) {
+		this.building = building;
+	}
+	public String getRoom() {
+		return room;
+	}
+	public void setRoom(String room) {
+		this.room = room;
 	}
 	public int getCredit() {
 		return credit;
@@ -67,15 +76,15 @@ public class Section {
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
-	public int getCRN() {
-		return CRN;
+	public String getCRN() {
+		return crn;
 	}
-	public void setCRN(int cRN) {
-		CRN = cRN;
+	public void setCRN(String cRN) {
+		crn = cRN;
 	}
 	@Override
 	public String toString(){
-		return CRN+","+sectionID+","+day+","+startTime+","+endTime+","+priority+","+courseConflict;
+		return crn+","+sectionID+","+day+","+startTime+","+endTime+","+priority+","+courseConflict;
 	}
 	public int getPriority() {
 		return priority;
