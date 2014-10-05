@@ -19,6 +19,7 @@ public class ComplexHandler {
 	private ArrayList<StoredList> tempList = new ArrayList<StoredList>();
 	
 	public ArrayList<StoredItem> run(ArrayList<Course> list){
+		//DebugMessager.disable();
 		Course currCourse;
 		Section currSection;
 		StoredList stList,newList;
@@ -57,7 +58,7 @@ public class ComplexHandler {
 		while(true){
 			try{				
 				stList = tempList.get(listpos);
-				DebugMessager.debug(title+"\n\n\tlistpos = "+listpos+", stList = "+stList.toString());
+				DebugMessager.debug(title+"listpos = "+listpos+", stList = "+stList.toString());
 				DebugMessager.debug(title+"stList.getTable = "+stList.printTable());
 			}catch(IndexOutOfBoundsException e){
 				break; //end of list
@@ -71,25 +72,28 @@ public class ComplexHandler {
 				for(int j=0;j<currCourse.getSec().size();j++){
 					currSection = currCourse.getSec().get(j);
 					DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
-					newList = copyList(stList);
-					table.setTable(stList.getTable().clone());					
-					if(selectCourse(currSection)==true){
-						DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
-						tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
-						newList.add(tempVal);						
-						newList.setTable(table.getTable().clone());					
-					}
-					newList.setHandledCourse(i);
-					DebugMessager.debug(title+"\n\n\tnewList = "+newList.toString());
-					DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
-					tempList.add(newList);
-					DebugMessager.debug(title+"tempList = "+tempList.toString());
+					//if(currSection.getCourseConflict() == currCourse.getMinConflict()){
+						newList = copyList(stList);
+						table.setTable(copyTable(stList.getTable()));
+						if(selectCourse(currSection)==true){
+							DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
+							tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
+							newList.add(tempVal);						
+							newList.setTable(copyTable(table.getTable()));					
+						}
+						newList.setHandledCourse(i);
+						DebugMessager.debug(title+"newList = "+newList.toString());
+						DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
+						tempList.add(newList);
+					//}
 				}
 			//}
+			DebugMessager.debug(title+"listpos++ \n\n");
 			listpos++;
+			DebugMessager.debug(title+"tempList = "+tempList.toString()+"\n\n");
 		}
 		
-		DebugMessager.debug(title+"tempList = "+tempList.toString());
+		
 		
 		//Step 3. Find the Highest priority list
 		DebugMessager.debug(title+"Step 3 Start.");		
@@ -106,6 +110,7 @@ public class ComplexHandler {
 				DebugMessager.debug(title+"Larger Found, New.maxPriority = "+maxPriority+", New.result = "+result.toString());
 			}
 		}
+		DebugMessager.enable();
 		DebugMessager.debug(title+"result = "+result);
 		return result.getItems();
 	}
@@ -116,10 +121,20 @@ public class ComplexHandler {
 	@SuppressWarnings("unchecked")
 	public StoredList copyList(StoredList listA){
 		StoredList listB = new StoredList();
-		listB.setTable(listA.getTable().clone());
+		listB.setTable(copyTable(listA.getTable()));
 		Object clone = listA.getItems().clone();
 		listB.setItems((ArrayList<StoredItem>) clone);
 		return listB;
+	}
+	public Boolean[][] copyTable(Boolean[][] table){
+		Boolean[][] newTable = new Boolean[7][24];
+		for(int i =0;i<7;i++){
+			for(int j=0;j<24;j++){
+				if(table[i][j]==true) newTable[i][j]=true;
+				else newTable[i][j]=false;
+			}
+		}
+		return newTable;
 	}
 	public String printTable(){
 		String str = "";
