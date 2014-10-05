@@ -1,5 +1,7 @@
 package controller;
 
+import ioModule.DebugMessager;
+
 
 /**
  * A time table used to mark the time slot is used or not
@@ -8,6 +10,7 @@ package controller;
  */
 
 public class OverlapDetector {	
+	static String title = "OverlapDetector : ";
 	private Boolean[][] table;
 	
 	
@@ -38,6 +41,7 @@ public class OverlapDetector {
 			int dayint = FormatConventor.DayStr2Int(day);
 			int start = FormatConventor.TimeStr2Int(starttime);
 			int end = FormatConventor.TimeStr2Int(endtime);
+			DebugMessager.debug(title+"set("+dayint+","+start+","+end+")");
 			return set(dayint,start,end);
 		}catch(Exception e){
 			return false;
@@ -49,6 +53,7 @@ public class OverlapDetector {
 			int dayint = FormatConventor.DayStr2Int(day);
 			int start = FormatConventor.TimeStr2Int(startitme);
 			int end = FormatConventor.TimeStr2Int(Endtime);
+			DebugMessager.debug(title+"check("+dayint+","+start+","+end+")");
 			return check(dayint,start,end);
 		}catch(Exception e){
 			return false;
@@ -61,7 +66,10 @@ public class OverlapDetector {
 		if(endtime<0 && endtime>23) return false;
 		if(day<0 && day>6) return false;
 		for(int i=starttime;i<endtime;i++){
-			if(this.table[day][i]==true) return false; // time slot overlap
+			if(this.table[day][i]==true){
+				DebugMessager.debug(title+"day = "+day+", time = "+i+" is used!!");
+				return false; // time slot overlap
+			}
 		}
 		return true;
 	}
