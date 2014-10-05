@@ -52,27 +52,43 @@ public class ComplexHandler {
 		//TODO : use While loop instead of For loop
 		DebugMessager.debug(title+"Step 2 Start.");
 		int templistNum = tempList.size();
-		for(int i=1;i<list.size();i++){
-			currCourse = list.get(i);
-			DebugMessager.debug(title+"Handling Course"+currCourse.toString());
-			for(int k=0;k<templistNum;k++){
-				stList = tempList.get(k);
-				table.setTable(stList.getTable());
+		int listpos=0;
+		int coursepos = 1;
+		while(true){
+			try{				
+				stList = tempList.get(listpos);
+				DebugMessager.debug(title+"\n\n\tlistpos = "+listpos+", stList = "+stList.toString());
+				DebugMessager.debug(title+"stList.getTable = "+stList.printTable());
+			}catch(IndexOutOfBoundsException e){
+				break; //end of list
+			}
+
+			//for(int i=stList.getHandledCourse()+1;i<list.size();i++){
+				int i=stList.getHandledCourse()+1;
+				if(i>=list.size()) break; // end of course
+				currCourse = list.get(i);
+				DebugMessager.debug(title+"Handling Course "+i+"{"+currCourse.toString()+"}");
 				for(int j=0;j<currCourse.getSec().size();j++){
 					currSection = currCourse.getSec().get(j);
-					DebugMessager.debug(title+"Handling Section"+currSection.toString());
-					if(currSection.getCourseConflict() == currCourse.getMinConflict()){//Select session with less conflict
-						if(selectCourse(currSection)==true){
-							newList = copyList(stList);
-							tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
-							newList.add(tempVal);
-							tempList.add(newList);
-						}
+					DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
+					newList = copyList(stList);
+					table.setTable(stList.getTable().clone());					
+					if(selectCourse(currSection)==true){
+						DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
+						tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
+						newList.add(tempVal);						
+						newList.setTable(table.getTable().clone());					
 					}
+					newList.setHandledCourse(i);
+					DebugMessager.debug(title+"\n\n\tnewList = "+newList.toString());
+					DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
+					tempList.add(newList);
+					DebugMessager.debug(title+"tempList = "+tempList.toString());
 				}
-				//tempList.remove(k); //may lowdown performance?
-			}
+			//}
+			listpos++;
 		}
+		
 		DebugMessager.debug(title+"tempList = "+tempList.toString());
 		
 		//Step 3. Find the Highest priority list
@@ -96,6 +112,7 @@ public class ComplexHandler {
 	public boolean selectCourse(Section sec){		
 		return table.set(sec.getDay(),sec.getStartTime(),sec.getEndTime());
 	}
+	
 	@SuppressWarnings("unchecked")
 	public StoredList copyList(StoredList listA){
 		StoredList listB = new StoredList();
@@ -103,5 +120,18 @@ public class ComplexHandler {
 		Object clone = listA.getItems().clone();
 		listB.setItems((ArrayList<StoredItem>) clone);
 		return listB;
+	}
+	public String printTable(){
+		String str = "";
+		for(int i=0;i<7;i++){
+			if(i>0)str+=",";
+			str += "\n\t\t\tday="+(i)+" : {";
+			for(int j=0;j<24;j++){
+				if(j>0)str+=",";
+				str +=table.getTable()[i][j];
+			}
+			str += "}";
+		}
+		return str;
 	}
 }

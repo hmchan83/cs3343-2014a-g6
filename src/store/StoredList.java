@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class StoredList {
 	private ArrayList<StoredItem> items;
 	private int priorityNums;
+	private int handledCourse;
 	private Boolean[][] table;
 	
 	public StoredList(){
@@ -17,6 +18,7 @@ public class StoredList {
 			}
 		}
 		this.priorityNums=-1;
+		this.setHandledCourse(0);
 	}
 	
 	public ArrayList<StoredItem> getItems() {
@@ -59,6 +61,27 @@ public class StoredList {
 		}
 		str+="}";
 		return str;
+	}
+	public String printTable(){
+		String str = "";
+		for(int i=0;i<7;i++){
+			if(i>0)str+=",";
+			str += "\n\t\t\tday="+(i)+" : {";
+			for(int j=0;j<24;j++){
+				if(j>0)str+=",";
+				str +=table[i][j];
+			}
+			str += "}";
+		}
+		return str;
+	}
+
+	public int getHandledCourse() {
+		return handledCourse;
+	}
+
+	public void setHandledCourse(int handledCourse) {
+		this.handledCourse = handledCourse;
 	}
 	
 }
