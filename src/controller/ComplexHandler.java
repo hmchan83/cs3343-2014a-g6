@@ -38,6 +38,7 @@ public class ComplexHandler {
 				table.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
 				tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),sec);//Simple value
 				stList = new StoredList();
+				stList.addCredits(sec.getCredit());
 				stList.add(tempVal);
 				stList.setTable(table.getTable());
 				tempList.add(stList);
@@ -50,11 +51,8 @@ public class ComplexHandler {
 		
 		DebugMessager.debug(title+"tempList = "+tempList.toString());
 		//Step 2. For each list in tempList, select another course & section		
-		//TODO : use While loop instead of For loop
 		DebugMessager.debug(title+"Step 2 Start.");
-		int templistNum = tempList.size();
 		int listpos=0;
-		int coursepos = 1;
 		while(true){
 			try{				
 				stList = tempList.get(listpos);
@@ -72,20 +70,21 @@ public class ComplexHandler {
 				for(int j=0;j<currCourse.getSec().size();j++){
 					currSection = currCourse.getSec().get(j);
 					DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
-					//if(currSection.getCourseConflict() == currCourse.getMinConflict()){
+					if(currSection.getCourseConflict() == currCourse.getMinConflict()){
 						newList = copyList(stList);
 						table.setTable(copyTable(stList.getTable()));
 						if(selectCourse(currSection)==true){
 							DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
 							tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
-							newList.add(tempVal);						
+							newList.add(tempVal);
+							newList.addCredits(currSection.getCredit());
 							newList.setTable(copyTable(table.getTable()));					
 						}
 						newList.setHandledCourse(i);
 						DebugMessager.debug(title+"newList = "+newList.toString());
 						DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
 						tempList.add(newList);
-					//}
+					}
 				}
 			//}
 			DebugMessager.debug(title+"listpos++ \n\n");
@@ -112,6 +111,9 @@ public class ComplexHandler {
 		}
 		DebugMessager.enable();
 		DebugMessager.debug(title+"result = "+result);
+		if(result.getTotalCredits()<MainController.getReqiureNums()){
+			result = new StoredList(); // No result fix the conditions.
+		}
 		return result.getItems();
 	}
 	public boolean selectCourse(Section sec){		
@@ -124,6 +126,7 @@ public class ComplexHandler {
 		listB.setTable(copyTable(listA.getTable()));
 		Object clone = listA.getItems().clone();
 		listB.setItems((ArrayList<StoredItem>) clone);
+		listB.setTotalCredits(listA.getTotalCredits());
 		return listB;
 	}
 	public Boolean[][] copyTable(Boolean[][] table){

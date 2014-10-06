@@ -19,6 +19,8 @@ public class MainController {
 	static Boolean SimpleHandler;
 	private OverlapDetector table = new OverlapDetector();
 	private ArrayList<StoredItem> selected = new ArrayList<StoredItem>();
+	private static int reqiureNums = 0;
+	
 	
 	public void run(ArrayList<Course> list){
 		DebugMessager.debug(title+"MainController Start");
@@ -53,5 +55,13 @@ public class MainController {
 
 	public static void setSimpleHandler(Boolean simpleHandler) {
 		SimpleHandler = simpleHandler;
+	}
+
+	public static int getReqiureNums() {
+		return reqiureNums;
+	}
+
+	public static void setReqiureNums(int areqiureNums) {
+		reqiureNums = areqiureNums;
 	}
 }

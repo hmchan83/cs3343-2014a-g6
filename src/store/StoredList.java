@@ -7,6 +7,7 @@ public class StoredList {
 	private int priorityNums;
 	private int handledCourse;
 	private Boolean[][] table;
+	private int totalCredits;
 	
 	public StoredList(){
 		this.items = new ArrayList<StoredItem>();
@@ -18,6 +19,7 @@ public class StoredList {
 			}
 		}
 		this.priorityNums=-1;
+		this.setTotalCredits(0);
 		this.setHandledCourse(0);
 	}
 	
@@ -82,6 +84,18 @@ public class StoredList {
 
 	public void setHandledCourse(int handledCourse) {
 		this.handledCourse = handledCourse;
+	}
+
+	public int getTotalCredits() {
+		return totalCredits;
+	}
+
+	public void setTotalCredits(int totalCredits) {
+		this.totalCredits = totalCredits;
+	}
+	
+	public void addCredits(int n){
+		this.totalCredits+=n;
 	}
 	
 }

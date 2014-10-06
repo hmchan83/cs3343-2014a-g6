@@ -35,9 +35,13 @@ public class Main {
 		ArrayList<StoredItem> result = MainController.result();
 		io.out("\nResult : \n");
 		int totalpriority=0;
-		for(StoredItem item : result){
-			io.out(item.toString());
-			totalpriority+=item.getSec().getPriority();
+		if(result.isEmpty()==true){
+			System.out.println("No such result.");
+		}else{
+			for(StoredItem item : result){
+				io.out(item.toString());
+				totalpriority+=item.getSec().getPriority();
+			}
 		}
 		io.out("\nTotal Priority = "+totalpriority);
 			
