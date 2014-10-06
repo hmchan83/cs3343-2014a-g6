@@ -3,6 +3,7 @@ package ioModule;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controller.MainController;
 import store.*;
 /**
  * temporary I/O handler
@@ -33,15 +34,20 @@ public class IO {
 				list.add(currCourse);
 			}
 			
-		
+		System.out.println("Enter the min. credits that you need to take ");
+		int requireNums = scanner.nextInt();
+		MainController.setReqiureNums(requireNums);
 		return list;
 	}
 	
 	public void out(ArrayList<Course> list){// test only
-		for(int i=0; i<list.size();i++){
-			System.out.println("\tCourse : "+list.get(i).toString());
-			for(int j=0;j<list.get(i).getSec().size();j++){
-				System.out.println("\t\tSession : "+list.get(i).getSec().get(j).toString());
+		if(list.isEmpty()==true) System.out.println("No such result.");
+		else{
+			for(int i=0; i<list.size();i++){
+				System.out.println("\tCourse : "+list.get(i).toString());
+				for(int j=0;j<list.get(i).getSec().size();j++){
+					System.out.println("\t\tSession : "+list.get(i).getSec().get(j).toString());
+				}
 			}
 		}
 	}
