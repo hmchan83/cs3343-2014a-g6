@@ -43,6 +43,12 @@ public class ListHandler {
 			for(int j=0;j<seclist.size();j++){
 				Section s = seclist.get(j);
 				DebugMessager.debug(title+"\thandling Section "+s.getSectionID());
+				
+				//For T01 / L01 cases, consider they are both Lab session that require a linked lecture session
+				if(c.getHasLab()==false && (s.getSectionID().charAt(0)=='T' || s.getSectionID().charAt(0)=='L')){
+					c.setHasLab(true);
+				}
+				
 				s.setPriority(tempPriority--);
 				int CourseConflict = ConflictDetector.run(list, i,s);
 				

@@ -10,18 +10,21 @@ import java.util.ArrayList;
 
 public class Course {
 	
+	private static int c=1;
+	
 	private String courseID;
 	private String courseName;
 	private int priority;
 	private ArrayList<Section> sec;
-	private static int c=1;
 	private int minConflict=-1;
+	private Boolean hasLab=false;
 	
 	public Course(String courseID, String courseName){
 		this.courseID=courseID;
 		this.courseName=courseName;
 		this.priority=c++;
 		this.sec = new ArrayList<>();
+		
 	}
 	
 	public Course() {}
@@ -97,5 +100,13 @@ public class Course {
 			if(s.getCourseConflict()==minConflict)c++;
 		}
 		return c;
+	}
+
+	public Boolean getHasLab() {
+		return hasLab;
+	}
+
+	public void setHasLab(Boolean hasLab) {
+		this.hasLab = hasLab;
 	}
 }
