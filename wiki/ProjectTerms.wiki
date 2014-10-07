@@ -37,8 +37,8 @@ C01 Mon 1500 1700 AC2 2550 50001 3
 CS0006 TEST6 1
 C01 Fri 1200 1400 AC2 2550 60001 3
 }}}
-For CS0001 - C01, it conflict Number = 3 (conflicted with CS0002 - C01, CS0003 - C01 & CS0006-C01)
-*if curr section conflict with any session of a single course, it Confilct number will +1*
-For CS0002 - C01, it conflict Number = 2 (conflicted with CS0003 - C01 & CS0006-C01)
+  * For CS0001 - C01, it conflict Number = 3 (conflicted with CS0002 - C01, CS0003 - C01 & CS0006-C01)
+*if current section conflict with any session of a single course, it Confilct number will +1*
+  * For CS0002 - C01, it conflict Number = 2 (conflicted with CS0003 - C01 & CS0006-C01)
 *the conflict number ONLY consider the course that having lower priority than the current course*
 = Priority =
