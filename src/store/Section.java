@@ -98,7 +98,10 @@ public class Section {
 	public void setCourseConflict(int courseConflict) {
 		this.courseConflict = courseConflict;
 	}
-	
+	public Boolean isLab(){
+		if(this.sectionID.charAt(0)=='T' || this.sectionID.charAt(0)=='L') return true;
+		return false;
+	}
 	
 
 }
