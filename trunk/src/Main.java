@@ -15,11 +15,18 @@ import store.StoredItem;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
+		final Boolean inputMethod = true; // true for simple input, false for XML
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		int courseNums;
 		IO io = new IO();
 		DebugMessager.debug("IO start");
-		ArrayList<Course> courselist = io.inputXML(); //for testing just using simple input
+		
+		ArrayList<Course> courselist;
+		if(inputMethod == true)
+			courselist = io.input();
+		else
+			courselist = io.inputXML(); //for testing just using simple input
+		
 		courseNums = courselist.size();
 		
 		ListHandler PriorityHandler=new ListHandler();		

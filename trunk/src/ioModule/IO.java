@@ -1,6 +1,5 @@
 package ioModule;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -47,7 +46,6 @@ public class IO {
 		System.out.print("Enter the path of course.xml: ");
 		String filePath = scanner.nextLine();
 		scanner.close();
-		File file = new File(filePath);
 		XMLparser xmlParser = new XMLparser();
 		return xmlParser.parseXML(filePath);
 	}
