@@ -1,4 +1,4 @@
-#Introduction of the Terms in this project
+#summary Introduction of the Terms in this project
 
 = Conflict Number =
 Conflict Number is a number that representing the effect of selecting a session of a course. This value is the number of course (if there are at least one session conflict with the current session, this value will +1) that *could not* be selected *LATER*.
@@ -42,3 +42,81 @@ C01 Fri 1200 1400 AC2 2550 60001 3
   * For CS0002 - C01, it conflict Number = 2 (conflicted with CS0003 - C01 & CS0006-C01)
 *the conflict number ONLY consider the course that having lower priority than the current course*
 = Priority =
+Priority is used to determine the satisfy result. For each Sessions, their priority will be calculate as follow : 
+
+  # Get the ordered course list and session list from the user input
+  # For the Courses, starting at the bottom given a number 1,2,3 ... to the top of the list.
+  # Find the largest number of the sessions of all the Courses, calculate the digit number needed to represent the priority sessions.
+  # starting at the top and given a number 1,2,3 ... to the bottom of the session list.
+  # combine the number of course and Session.
+
+== Example ==
+  # Get the course list
+{{{
+CS0001 TEST1 120
+C01 Fri 1200 1400 AC1 LT6 10001 3
+C02 Mon 1100 1300 AC1 LT8 10002 3 
+...
+C120 Sat 1100 1300 AC1 LT8 10102 3 
+
+CS0002 TEST1 2
+C01 Fri 1500 1700 AC1 LT6 20001 3
+C02 Mon 1600 1800 AC1 LT8 20002 3 
+}}}
+  # Numbering the Course list
+{{{
+CS0001 TEST1 120 (Priority Number = 2)
+C01 Fri 1200 1400 AC1 LT6 10001 3
+C02 Mon 1100 1300 AC1 LT8 10002 3 
+...
+C120 Sat 1100 1300 AC1 LT8 10102 3 
+
+CS0002 TEST1 2 (Priority Number = 1)
+C01 Fri 1500 1700 AC1 LT6 20001 3
+C02 Mon 1600 1800 AC1 LT8 20002 3 
+}}}
+  # Find largest Session Number of all the Course
+{{{
+CS0001 TEST1 120 (Priority Number = 2)
+C01 Fri 1200 1400 AC1 LT6 10001 3
+C02 Mon 1100 1300 AC1 LT8 10002 3 
+...
+C120 Sat 1100 1300 AC1 LT8 10102 3 
+
+CS0002 TEST1 2 (Priority Number = 1)
+C01 Fri 1500 1700 AC1 LT6 20001 3
+C02 Mon 1600 1800 AC1 LT8 20002 3 
+
+Max(Session Number) = 120
+Digit needed = 3
+}}}
+  # Numbering the Session
+{{{
+CS0001 TEST1 120 (Priority Number = 2)
+C01 Fri 1200 1400 AC1 LT6 10001 3 (Priority Number = 001)
+C02 Mon 1100 1300 AC1 LT8 10002 3 (Priority Number = 002)
+...
+C120 Sat 1100 1300 AC1 LT8 10102 3 (Priority Number = 120)
+
+CS0002 TEST1 2 (Priority Number = 1)
+C01 Fri 1500 1700 AC1 LT6 20001 3 (Priority Number = 001)
+C02 Mon 1600 1800 AC1 LT8 20002 3 (Priority Number = 002)
+
+Max(Session Number) = 120
+Digit needed = 3
+}}}
+  # Combine the number
+{{{
+CS0001 TEST1 120 (Priority Number = 2)
+C01 Fri 1200 1400 AC1 LT6 10001 3 (Priority Number = 001, Final Priority Number = 2001)
+C02 Mon 1100 1300 AC1 LT8 10002 3 (Priority Number = 002, Final Priority Number = 2002)
+...
+C120 Sat 1100 1300 AC1 LT8 10102 3 (Priority Number = 120, Final Priority Number = 2120)
+
+CS0002 TEST1 2 (Priority Number = 1)
+C01 Fri 1500 1700 AC1 LT6 20001 3 (Priority Number = 001, Final Priority Number = 1001)
+C02 Mon 1600 1800 AC1 LT8 20002 3 (Priority Number = 002, Final Priority Number = 1002)
+
+Max(Session Number) = 120
+Digit needed = 3
+}}}
