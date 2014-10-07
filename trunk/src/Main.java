@@ -1,5 +1,6 @@
 import ioModule.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import controller.ListHandler;
@@ -13,12 +14,12 @@ import store.StoredItem;
  */
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		int courseNums;
 		IO io = new IO();
 		DebugMessager.debug("IO start");
-		ArrayList<Course> courselist = io.input(); //for testing just using simple input
+		ArrayList<Course> courselist = io.inputXML(); //for testing just using simple input
 		courseNums = courselist.size();
 		
 		ListHandler PriorityHandler=new ListHandler();		

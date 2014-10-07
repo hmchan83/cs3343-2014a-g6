@@ -22,7 +22,7 @@ public class XMLparser {
 	
 	public XMLparser() {};
 	
-	public void parseXML(String filePath) {
+	public ArrayList<Course> parseXML(String filePath) {
 		
 		try {
 			File inXML = new File (filePath);
@@ -46,10 +46,8 @@ public class XMLparser {
 
 					String courseid = eElement.getElementsByTagName("courseid").item(0).getTextContent();
 					String coursename = eElement.getElementsByTagName("coursename").item(0).getTextContent();
-					Course newCourse = new Course();
+					Course newCourse = new Course(courseid,coursename);
 					CourseList.add(newCourse);
-					CourseList.get(temp).setCourseID(courseid);
-					CourseList.get(temp).setCourseName(coursename);
 
 					NodeList secList = eElement.getElementsByTagName("section");
 
@@ -77,21 +75,22 @@ public class XMLparser {
 					}
 				}
 			}
+			return CourseList;
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ArrayList<Course>();
 		} catch (DOMException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ArrayList<Course>();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ArrayList<Course>();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ArrayList<Course>();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ArrayList<Course>();
 		}
 	}
 	
