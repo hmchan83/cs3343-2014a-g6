@@ -1,5 +1,7 @@
 package ioModule;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,6 +40,16 @@ public class IO {
 		int requireNums = scanner.nextInt();
 		MainController.setReqiureNums(requireNums);
 		return list;
+	}
+	
+	public ArrayList<Course> inputXML() throws FileNotFoundException{
+		scanner = new Scanner(System.in);
+		System.out.print("Enter the path of course.xml: ");
+		String filePath = scanner.nextLine();
+		scanner.close();
+		File file = new File(filePath);
+		XMLparser xmlParser = new XMLparser();
+		return xmlParser.parseXML(filePath);
 	}
 	
 	public void out(ArrayList<Course> list){// test only

@@ -22,7 +22,7 @@ public class Section {
 		this.endTime = endTime;
 		this.building = building;
 		this.room = room;
-		crn = cRN;
+		this.crn = cRN;
 		this.credit = credit;
 	}
 	public Section(String sectionID, String day, String startTime,
