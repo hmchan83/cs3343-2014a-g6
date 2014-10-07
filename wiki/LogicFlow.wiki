@@ -34,7 +34,7 @@ C01 Fri 1200 1300 LT6 12347 3
      * only one section of the course has the min. conflict number
 
 ===Simple Method===
-  # consider the conflict number (the number that the course will conflict with this section)
+  # consider the conflict number (the number that the course will conflict with this section, See ProjectTerms)
   # and then consider the priory
 
 ===Complex Handler(developing)===
