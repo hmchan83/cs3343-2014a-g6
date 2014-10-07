@@ -97,5 +97,8 @@ public class StoredList {
 	public void addCredits(int n){
 		this.totalCredits+=n;
 	}
+	public int getItemNums(){
+		return items.size();
+	}
 	
 }
