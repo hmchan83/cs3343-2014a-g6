@@ -53,6 +53,7 @@ public class ComplexHandler {
 		//Step 2. For each list in tempList, select another course & section		
 		DebugMessager.debug(title+"Step 2 Start.");
 		int listpos=0;
+		int maxCourseNums=0;
 		while(true){
 			try{				
 				stList = tempList.get(listpos);
@@ -78,7 +79,8 @@ public class ComplexHandler {
 							tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
 							newList.add(tempVal);
 							newList.addCredits(currSection.getCredit());
-							newList.setTable(copyTable(table.getTable()));					
+							newList.setTable(copyTable(table.getTable()));
+							if(newList.getItemNums()>maxCourseNums)maxCourseNums=newList.getItemNums();
 						}
 						newList.setHandledCourse(i);
 						DebugMessager.debug(title+"newList = "+newList.toString());
@@ -98,8 +100,9 @@ public class ComplexHandler {
 		DebugMessager.debug(title+"Step 3 Start.");		
 		int maxPriority = 0;
 		StoredList result = new StoredList();
-		for(int k=0;k<tempList.size();k++){			
+		for(int k=tempList.size()-1;k>=0;k--){	
 			stList = tempList.get(k);
+			if(stList.getItemNums()<maxCourseNums)break;
 			int tempPriority = stList.getPriorityNums();
 			DebugMessager.debug(title+"tempList["+k+"] = "+stList.toString() +", Priority = "+tempPriority);			
 			DebugMessager.debug(title+"maxPriority = "+maxPriority+", result = "+result.toString());	
