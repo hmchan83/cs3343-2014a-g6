@@ -11,6 +11,7 @@ import ioModule.DebugMessager;
 
 public class OverlapDetector {	
 	static String title = "OverlapDetector : ";
+	static private Boolean[][] baseTable;
 	private Boolean[][] table;
 	
 	
@@ -19,7 +20,8 @@ public class OverlapDetector {
 	}
 	
 	public void reset(){
-		this.table = new Boolean[7][24];
+		this.table = new Boolean[7][24];		
+		//TODO : if baseTable contain something, copy it
 		//Boolean [i][j] ; i=0 -> Mon, i=1 ->Tue... ; j=0 -> 00:00 ... j=23 -> 23:00
 		for(int i=0;i<7;i++){
 			for(int j=0;j<24;j++){
@@ -84,6 +86,12 @@ public class OverlapDetector {
 		return true;
 	}
 	
+	static public void setBaseTable(Boolean[][] table){
+		baseTable=table;
+	}
+	static public Boolean[][] getBaseTable(){
+		return baseTable;
+	}
 	
 	
 }
