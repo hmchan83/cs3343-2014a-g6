@@ -18,6 +18,7 @@ public class Course {
 	private ArrayList<Section> sec;
 	private int minConflict=-1;
 	private Boolean hasLab=false;
+	private Boolean isCore=false;
 	
 	public Course(String courseID, String courseName){
 		this.courseID=courseID;
@@ -102,11 +103,19 @@ public class Course {
 		return c;
 	}
 
-	public Boolean getHasLab() {
+	public Boolean HasLab() {
 		return hasLab;
 	}
 
 	public void setHasLab(Boolean hasLab) {
 		this.hasLab = hasLab;
+	}
+
+	public Boolean IsCore() {
+		return isCore;
+	}
+
+	public void setIsCore(Boolean isCore) {
+		this.isCore = isCore;
 	}
 }

@@ -20,6 +20,8 @@ public class ListHandler {
 	 */
 	public void listformat(ArrayList<Course> list){
 		DebugMessager.debug(title+"\tStart setting priority");
+		
+		//OverlapDetector overlapDetector = new OverlapDetector(); // for compulsory course
 		int maxSecNum=0;
 		Boolean SimpleCase = true; 
 		for(Course c : list){ // get the largest Section nums => used to determine the priority
@@ -45,8 +47,12 @@ public class ListHandler {
 				DebugMessager.debug(title+"\thandling Section "+s.getSectionID());
 				
 				//For T01 / L01 cases, consider they are both Lab session that require a linked lecture session
-				if(c.getHasLab()==false && (s.getSectionID().charAt(0)=='T' || s.getSectionID().charAt(0)=='L')){
+				if(c.HasLab()==false && (s.getSectionID().charAt(0)=='T' || s.getSectionID().charAt(0)=='L')){
 					c.setHasLab(true);
+					/* Prepare the base table here*/
+				}
+				if(c.IsCore()){
+					//TODO : put the course in to overlapDetector
 				}
 				
 				s.setPriority(tempPriority--);
@@ -64,6 +70,8 @@ public class ListHandler {
 			DebugMessager.debug(title+"courseNums <=2, Using SimpleHandler");
 			SimpleCase=true;
 		}
+		//TODO : put the base table to class OverlapDetector
+		//OverlapDetector.setTable(overlapDetector.getTable());
 		MainController.setSimpleHandler(SimpleCase);
 		DebugMessager.debug(title+"\tListHandler End.");
 	}

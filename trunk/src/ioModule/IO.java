@@ -25,6 +25,9 @@ public class IO {
 				String courseID = scanner.next();
 				String courseName = scanner.next();
 				Course currCourse = new Course(courseID,courseName);
+				if(scanner.hasNextBoolean()){
+					currCourse.setIsCore(true);
+				}
 				int sectionNum = scanner.nextInt();
 				for(int j=0; j < sectionNum;j++){
 					System.out.println("enter the section (ID,day,start,end,location,CRN,credit) of course");
@@ -70,14 +73,9 @@ public class IO {
 /*
  Test Case 1:
 2
-CS0001 TEST1 2
+CS0001 TEST1 2 true
 C01 Fri 1200 1300 LT6 12345 3
 C02 Mon 1100 1200 LT8 12346 3 
 CS0002 TEST2 1
 C01 Fri 1200 1300 LT6 12347 3
  */
-/*
-CSXXXX XXXXXXXX 2
-	C01 Fri 12:00 13:00 Lt6 12345 3
-	C02 Mon 11:00 12:00 Lt8 12346 3
-*/
