@@ -92,8 +92,8 @@ public class testscript extends TestCase {
 		MainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = MainController.result();
 		
-		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C01)");//problem come here!
-		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C02)");
+		assertEquals(result.get(0).toString(),"12345 : CS0001 - TEST1 (C01)");//problem come here!
+		assertEquals(result.get(1).toString(),"12348 : CS0002 - TEST2 (C02)");
 		//
 	}
 }
