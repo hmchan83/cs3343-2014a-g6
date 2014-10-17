@@ -25,10 +25,12 @@ public class IO {
 				String courseID = scanner.next();
 				String courseName = scanner.next();
 				Course currCourse = new Course(courseID,courseName);
+				int sectionNum = scanner.nextInt();
 				if(scanner.hasNextBoolean()){
 					currCourse.setIsCore(true);
+					scanner.nextBoolean();
 				}
-				int sectionNum = scanner.nextInt();
+				
 				for(int j=0; j < sectionNum;j++){
 					System.out.println("enter the section (ID,day,start,end,location,CRN,credit) of course");
 					//Section(String sectionID, String day, String startTime,String endTime, String location, int cRN, int credit
@@ -71,11 +73,12 @@ public class IO {
 
 }
 /*
- Test Case 1:
+
+ Test Case 1.1:
 2
 CS0001 TEST1 2 true
-C01 Fri 1200 1300 LT6 12345 3
-C02 Mon 1100 1200 LT8 12346 3 
+C01 Fri 1200 1300 AC2 LT6 12345 3
+C02 Mon 1100 1200 AC2 LT8 12346 3 
 CS0002 TEST2 1
-C01 Fri 1200 1300 LT6 12347 3
+C01 Fri 1200 1300 AC3 LT6 12347 3
  */
