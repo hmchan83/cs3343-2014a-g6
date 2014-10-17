@@ -11,11 +11,12 @@ Input
 3
 CS0001 TEST1 2
 C01 Fri 1200 1300 AC1 LT6 12345 3
-C02 Mon 1100 1200 AC1 LT8 12346 3 
+C02 Mon 1100 1200 AC1 LT8 12346 3
 CS0002 TEST2 1
 C01 Fri 1200 1300 AC1 LT6 12347 3
 CS0003 TEST3 1
-C01 Mon 1100 1200 AC1 LT8 12348 3 
+C01 Mon 1100 1200 AC1 LT8 12348 3
+6
 }}}
 Output
 {{{
@@ -58,6 +59,7 @@ C01 Mon 1500 1700 AC2 2550 50001 3
 
 CS0006 TEST6 1
 C01 Fri 1200 1400 AC2 2550 60001 3
+6
 }}}
 Output
 {{{
@@ -67,4 +69,55 @@ Output
 40001 : CS0004 - TEST4 (C01)
 50001 : CS0005 - TEST5 (C01)
 60001 : CS0006 - TEST6 (C01)
+}}}
+==Test Case 3==
+Input
+{{{
+5
+CS3343 Software-Engineering-Practice 1
+CB1 F 1400 1500 AC1 LT-7 45542 3
+
+CS4480 Data-Intensive-Computing 1
+C61 W 1900 2100 MMW 2450 46406 3
+
+CS3483 Multimodal-Interface-Design 1
+C01 F 1500 1700 AC1 LT-8 31330 3
+
+CS3283 Distributed-Systems 1
+C61 W 1900 2100 AC2 1301 35361 3
+
+CS3346 Software-Testing-and-Maintenance 1
+C61 T 1900 2100 AC2 1301 18748 3
+15
+}}}
+Output
+{{{
+No such result.
+}}}
+==Test Case 4=
+Input
+{{{
+5
+CS3343 Software-Engineering-Practice 1
+CB1 F 1400 1500 AC1 LT-7 45542 3
+
+CS4480 Data-Intensive-Computing 1
+C61 W 1900 2100 MMW 2450 46406 3
+
+CS3483 Multimodal-Interface-Design 1
+C01 F 1500 1700 AC1 LT-8 31330 3
+
+CS3283 Distributed-Systems 1
+C61 W 1900 2100 AC2 1301 35361 3
+
+CS3346 Software-Testing-and-Maintenance 1
+C61 T 1900 2100 AC2 1301 18748 3
+12
+}}}
+Output
+{{{
+45542 : CS3343 - Software-Engineering-Practice (CB1)
+46406 : CS4480 - Data-Intensive-Computing (C61)
+31330 : CS3483 - Multimodal-Interface-Design (C01)
+18748 : CS3346 - Software-Testing-and-Maintenance (C61)
 }}}
