@@ -139,9 +139,7 @@ public class testscript extends TestCase {
 		
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
-		
-		System.out.println(courselist.size());
-		
+				
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
@@ -234,8 +232,6 @@ public class testscript extends TestCase {
 		
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
-		
-		System.out.println(courselist.size());
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
