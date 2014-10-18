@@ -101,6 +101,8 @@ public class testscript extends TestCase {
 
 	}
 	
+	
+	//It has problem on testCase B1 and testCase B2
 	@Test
 	public void testcaseB1() {
 		DebugMessager.enable();
@@ -143,11 +145,6 @@ public class testscript extends TestCase {
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
-		
-		/*System.out.println(result.get(0).toString());
-		System.out.println(result.get(1).toString());*/
-		
-		System.out.println(result.size());
 		
 		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02)");
 		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01)");
@@ -210,7 +207,25 @@ public class testscript extends TestCase {
 		courseID = "CS0004";
 		courseName = "TEST4";
 		currCourse = new Course(courseID,courseName);
-		currSec = new Section("C01","Tue","0900","1200","AC2","2250","40001",3);
+		currSec = new Section("C01","Tue","0900","1200","AC2","2550","40001",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS0005";
+		courseName = "TEST5";
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C01","Wed","0900","1300","AC2","2550","50001",3);
+		currCourse.addSec(currSec);
+		currSec = new Section("C02","Mon","1700","1900","AC2","2550","50002",3);
+		currCourse.addSec(currSec);
+		currSec = new Section("C03","Mon","1500","1700","AC2","2550","50003",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS0006";
+		courseName = "TEST6";
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C01","Fri","1200","1400","AC2","2550","60001",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
@@ -226,13 +241,13 @@ public class testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		/*System.out.println(result.get(0).toString());
-		System.out.println(result.get(1).toString());*/
+		assertEquals(result.get(0).toString(),"10003 : CS0001 - TEST1 (C03)");
+		assertEquals(result.get(1).toString(),"20002 : CS0002 - TEST2 (C02)");
+		assertEquals(result.get(2).toString(),"30003 : CS0003 - TEST3 (CA3)");
+		assertEquals(result.get(3).toString(),"40001 : CS0004 - TEST4 (C01)");
+		assertEquals(result.get(4).toString(),"50001 : CS0005 - TEST5 (C01)");
+		assertEquals(result.get(5).toString(),"60001 : CS0006 - TEST6 (C01)");
 		
-		System.out.println(result.size());
-		
-		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02)");
-		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01)");
 		
 	}
 }
