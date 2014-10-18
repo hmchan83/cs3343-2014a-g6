@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class Course {
 	
-	private static int c=1;
-	
+	private static int counter=1;
+
 	private String courseID;
 	private String courseName;
 	private int priority;
@@ -23,7 +23,7 @@ public class Course {
 	public Course(String courseID, String courseName){
 		this.courseID=courseID;
 		this.courseName=courseName;
-		this.priority=c++;
+		this.priority=counter++;
 		this.sec = new ArrayList<>();
 		
 	}
@@ -117,5 +117,13 @@ public class Course {
 
 	public void setIsCore(Boolean isCore) {
 		this.isCore = isCore;
+	}
+	
+	public static int getCounter() {
+		return counter;
+	}
+
+	public static void resetCounter() {
+		Course.counter = 1;
 	}
 }
