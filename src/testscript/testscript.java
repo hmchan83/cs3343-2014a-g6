@@ -22,6 +22,7 @@ public class testscript extends TestCase {
 
 	@Test
 	public void testcaseA1()  {
+		Course.resetCounter();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -61,6 +62,7 @@ public class testscript extends TestCase {
 
 	@Test
 	public void testcaseA2() {
+		Course.resetCounter();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -105,6 +107,7 @@ public class testscript extends TestCase {
 	//It has problem on testCase B1 and testCase B2
 	@Test
 	public void testcaseB1() {
+		Course.resetCounter();
 		DebugMessager.enable();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
@@ -151,6 +154,7 @@ public class testscript extends TestCase {
 	
 	@Test
 	public void testcaseB2() {
+		Course.resetCounter();
 		DebugMessager.enable();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
