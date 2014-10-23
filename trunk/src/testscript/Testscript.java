@@ -18,7 +18,7 @@ import store.Course;
 import store.Section;
 import store.StoredItem;
 
-public class testscript extends TestCase {
+public class Testscript extends TestCase {
 
 	@Test
 	public void testcaseA1()  {
