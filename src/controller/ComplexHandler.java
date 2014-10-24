@@ -124,6 +124,15 @@ public class ComplexHandler {
 		}
 		return result.getItems();
 	}
+	
+	public Section findlecture(Course c, int i,Boolean[][] table){
+		//TODO : return the i-th lecture that could be use selected for a table.
+		return null;
+	}
+	public Section findLab(Course c,int i,Boolean[][] table){
+		//TODO : return i-th lecture that could be use selected for a table.
+		return null;
+	}
 	public boolean selectCourse(Section sec){		
 		return table.set(sec.getDay(),sec.getStartTime(),sec.getEndTime());
 	}
