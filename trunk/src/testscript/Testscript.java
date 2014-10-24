@@ -153,7 +153,7 @@ public class Testscript extends TestCase {
 	}
 	
 	@Test
-	public void testcaseB2() {
+	public void testcaseB2() { //has problem
 		Course.resetCounter();
 		DebugMessager.enable();
 		ArrayList<Course> courselist = new ArrayList<>();
@@ -249,6 +249,63 @@ public class Testscript extends TestCase {
 		assertEquals(result.get(5).toString(),"60001 : CS0006 - TEST6 (C01)");
 		
 		
+	}
+	
+	public void testcaseR1(){
+		Course.resetCounter();
+		DebugMessager.enable();
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS3343";
+		String courseName;
+		courseName = "Software-Engineering-Practice";
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("CB1","Fri","1400","1500","AC1","LT7","45542",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS4480";
+		courseName = "Data-Intensive-Computing";
+		currCourse = new Course(courseID,courseName);
+	    currSec = new Section("C61","Wed","1900","2100","MMW","2450","46406",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS3483";
+		courseName = "Multimodal-Interface-Design";
+		currCourse = new Course(courseID,courseName);
+	    currSec = new Section("C01","Fri","1500","1700","AC1","LT8","31330",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS3283";
+		courseName = "Distributed-Systems";
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C61","Wed","1900","2100","AC2","1301","35361",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS3346";
+		courseName = "Software-Testing-and-Maintenance";
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C61","Tue","1900","2100","AC2","1301","18748",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 15;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(),"No such result.");
+			
 	}
 }
 
