@@ -23,7 +23,7 @@ public class Course {
 	public Course(String courseID, String courseName){
 		this.courseID=courseID;
 		this.courseName=courseName;
-		this.priority=counter++;
+		//this.priority=counter++;
 		this.sec = new ArrayList<>();
 		
 	}

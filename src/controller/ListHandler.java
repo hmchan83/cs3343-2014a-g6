@@ -20,7 +20,7 @@ public class ListHandler {
 	 */
 	public void listformat(ArrayList<Course> list){
 		DebugMessager.debug(title+"\tStart setting priority");
-		
+		int CourseCounter = 1;
 		//OverlapDetector overlapDetector = new OverlapDetector(); // for compulsory course
 		int maxSecNum=0;
 		Boolean SimpleCase = true; 
@@ -32,6 +32,7 @@ public class ListHandler {
 			if(maxSecNum<c.SectionNum()){
 				maxSecNum=c.SectionNum(); 
 			}
+			c.setPriority(CourseCounter++);
 		}
 		DebugMessager.debug(title+"Largest Section Num = "+maxSecNum);
 		int places = (int) (Math.floor(Math.log10(maxSecNum))+1);
