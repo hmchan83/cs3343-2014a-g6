@@ -18,7 +18,7 @@ public class Main {
 		final Boolean inputMethod = true; // true for simple input, false for XML
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		int courseNums;
-		Course.resetCounter();
+		//Course.resetCounter();
 		IO io = new IO();
 		DebugMessager.debug("IO start");
 		

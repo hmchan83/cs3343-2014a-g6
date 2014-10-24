@@ -68,6 +68,7 @@ CS0003 TEST3 1
 C01 Mon 1100 1200 AC1 LT8 12348 3
 CS0004 TEST4 1
 C01 Tue 0900 1300 AC2 2550 12350 3
+6
 
 Expected Output:
 12346 : CS0001 - TEST1 (C02)
@@ -109,6 +110,7 @@ C01 Mon 1500 1700 AC2 2550 50001 3
 
 CS0006 TEST6 1
 C01 Fri 1200 1400 AC2 2550 60001 3
+6
 
 Fake Expected Output:
 
@@ -145,6 +147,7 @@ C61 W 1900 2100 AC2 1301 35361 3
 
 CS3346 Software-Testing-and-Maintenance 1
 C61 T 1900 2100 AC2 1301 18748 3
+12
 
 Expected Output:
 Result : 
@@ -152,3 +155,26 @@ Result :
 46406 : CS4480 - Data-Intensive-Computing (C61)
 31330 : CS3483 - Multimodal-Interface-Design (C01)
 18748 : CS3346 - Software-Testing-and-Maintenance (C61)
+
+-----------------------------------------------------------------------------
+Input :
+5
+CS3343 Software-Engineering-Practice 1
+CB1 F 1400 1500 AC1 LT-7 45542 3
+
+CS4480 Data-Intensive-Computing 1
+C61 W 1900 2100 MMW 2450 46406 3
+
+CS3483 Multimodal-Interface-Design 1
+C01 F 1500 1700 AC1 LT-8 31330 3
+
+CS3283 Distributed-Systems 1
+C61 W 1900 2100 AC2 1301 35361 3
+
+CS3346 Software-Testing-and-Maintenance 1
+C61 T 1900 2100 AC2 1301 18748 3
+15
+
+Expected Output:
+Result : 
+No such result.

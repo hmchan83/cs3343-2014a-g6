@@ -3,8 +3,10 @@ package testscript;
 
 
 import ioModule.DebugMessager;
+import ioModule.IO;
 
 import java.util.ArrayList;
+
 
 
 
@@ -20,9 +22,11 @@ import store.StoredItem;
 
 public class Testscript extends TestCase {
 
+	 public Testscript(){
+		//DebugMessager.enable();
+	}
 	@Test
 	public void testcaseA1()  {
-		Course.resetCounter();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -62,7 +66,6 @@ public class Testscript extends TestCase {
 
 	@Test
 	public void testcaseA2() {
-		Course.resetCounter();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -107,8 +110,6 @@ public class Testscript extends TestCase {
 	//It has problem on testCase B1 and testCase B2
 	@Test
 	public void testcaseB1() {
-		Course.resetCounter();
-		DebugMessager.enable();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -154,8 +155,6 @@ public class Testscript extends TestCase {
 	
 	@Test
 	public void testcaseB2() { //has problem
-		Course.resetCounter();
-		DebugMessager.enable();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -231,19 +230,25 @@ public class Testscript extends TestCase {
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
+		
+		
 		int requireNums = 6;
 		MainController.setReqiureNums(requireNums);
 		
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
 		
+		IO io = new IO();
+		io.out("\nYour Input : \n");
+		io.out(courselist);
+		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
 		assertEquals(result.get(0).toString(),"10003 : CS0001 - TEST1 (C03)");
-		assertEquals(result.get(1).toString(),"20002 : CS0002 - TEST2 (C02)");
-		assertEquals(result.get(2).toString(),"30003 : CS0003 - TEST3 (CA3)");
+		assertEquals(result.get(1).toString(),"20003 : CS0002 - TEST2 (C03)");
+		assertEquals(result.get(2).toString(),"30002 : CS0003 - TEST3 (CA2)");
 		assertEquals(result.get(3).toString(),"40001 : CS0004 - TEST4 (C01)");
 		assertEquals(result.get(4).toString(),"50001 : CS0005 - TEST5 (C01)");
 		assertEquals(result.get(5).toString(),"60001 : CS0006 - TEST6 (C01)");
@@ -252,8 +257,6 @@ public class Testscript extends TestCase {
 	}
 	
 	public void testcaseR1(){
-		Course.resetCounter();
-		DebugMessager.enable();
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS3343";

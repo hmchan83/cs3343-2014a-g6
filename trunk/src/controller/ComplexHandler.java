@@ -24,8 +24,13 @@ public class ComplexHandler {
 		Section currSection;
 		StoredList stList,newList;
 		StoredItem tempVal;
+		Boolean labSelected = false, lecSelected = false;
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		currCourse = list.get(0);
+		if(currCourse.HasLab() == true){
+			labSelected = false;
+			lecSelected = false;
+		}
 		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
 		DebugMessager.debug(title+"The min Conflict of this course = "+currCourse.getMinConflict());
 		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());
@@ -33,7 +38,7 @@ public class ComplexHandler {
 		for(Section sec : currCourse.getSec()){
 			table.reset();
 			DebugMessager.debug(title+"Handling Section {"+sec.toString()+"}");
-			if(sec.getCourseConflict() == currCourse.getMinConflict()){
+//			if(sec.getCourseConflict() == currCourse.getMinConflict()){
 				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is the less conflict session.");
 				table.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
 				tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),sec);//Simple value
@@ -44,9 +49,9 @@ public class ComplexHandler {
 				tempList.add(stList);
 				DebugMessager.debug(title+"Section "+sec.getSectionID()+" added to stored list");
 				DebugMessager.debug(title+"StoredList = "+tempList.toString());
-			}else{
-				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
-			}
+	//		}else{
+		//		DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
+			//}
 		}
 		
 		DebugMessager.debug(title+"tempList = "+tempList.toString());
@@ -97,12 +102,12 @@ public class ComplexHandler {
 		
 		
 		//Step 3. Find the Highest priority list
-		DebugMessager.debug(title+"Step 3 Start.");		
+		DebugMessager.debug(title+"Step 3 Start. maxCourseNums = "+maxCourseNums);		
 		int maxPriority = 0;
 		StoredList result = new StoredList();
 		for(int k=tempList.size()-1;k>=0;k--){	
 			stList = tempList.get(k);
-			if(stList.getItemNums()<maxCourseNums)break;
+			if(stList.getItemNums()-2==maxCourseNums)break;
 			int tempPriority = stList.getPriorityNums();
 			DebugMessager.debug(title+"tempList["+k+"] = "+stList.toString() +", Priority = "+tempPriority);			
 			DebugMessager.debug(title+"maxPriority = "+maxPriority+", result = "+result.toString());	
@@ -112,7 +117,7 @@ public class ComplexHandler {
 				DebugMessager.debug(title+"Larger Found, New.maxPriority = "+maxPriority+", New.result = "+result.toString());
 			}
 		}
-		DebugMessager.enable();
+		//DebugMessager.enable();
 		DebugMessager.debug(title+"result = "+result);
 		if(result.getTotalCredits()<MainController.getReqiureNums()){
 			result = new StoredList(); // No result fix the conditions.
