@@ -2,7 +2,7 @@ package testscript;
 
 
 
-import ioModule.DebugMessager;
+
 import ioModule.IO;
 
 import java.util.ArrayList;
@@ -307,7 +307,10 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(),"No such result.");
+		System.out.println(result);
+		
+		assertEquals(result.isEmpty(),true);
+		
 			
 	}
 }
