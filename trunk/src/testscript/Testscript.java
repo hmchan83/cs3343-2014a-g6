@@ -1,3 +1,4 @@
+//Edit by Sam Cheuk, 26/10/2014
 package testscript;
 
 
@@ -10,12 +11,14 @@ import java.util.ArrayList;
 
 
 
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
 import controller.ListHandler;
 import controller.MainController;
+import exceptionPackage.CoreNotAddedExc;
 import store.Course;
 import store.Section;
 import store.StoredItem;
@@ -26,7 +29,7 @@ public class Testscript extends TestCase {
 		//DebugMessager.enable();
 	}
 	@Test
-	public void testcaseA1()  {
+	public void testcaseA1() throws CoreNotAddedExc  {
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -65,7 +68,7 @@ public class Testscript extends TestCase {
 	
 
 	@Test
-	public void testcaseA2() {
+	public void testcaseA2() throws CoreNotAddedExc {
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -101,15 +104,15 @@ public class Testscript extends TestCase {
 		ArrayList<StoredItem> result = MainController.result();
 		
 
-		assertEquals(result.get(0).toString(),"12345 : CS0001 - TEST1 (C01)");
-		assertEquals(result.get(1).toString(),"12348 : CS0002 - TEST2 (C02)");
+		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02)");
+		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01)");
 
 	}
 	
 	
 	//It has problem on testCase B1 and testCase B2
 	@Test
-	public void testcaseB1() {
+	public void testcaseB1() throws CoreNotAddedExc {
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -154,7 +157,7 @@ public class Testscript extends TestCase {
 	}
 	
 	@Test
-	public void testcaseB2() { //has problem
+	public void testcaseB2() throws CoreNotAddedExc { 
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS0001";
@@ -256,7 +259,7 @@ public class Testscript extends TestCase {
 		
 	}
 	
-	public void testcaseR1(){
+	public void testcaseR1() throws CoreNotAddedExc{
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS3343";
@@ -310,8 +313,65 @@ public class Testscript extends TestCase {
 		System.out.println(result);
 		
 		assertEquals(result.isEmpty(),true);
+	}
+	
+	public void testcaseR2() throws CoreNotAddedExc{
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS3343";
+		String courseName;
+		courseName = "Software-Engineering-Practice";
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("CB1","Fri","1400","1500","AC1","LT7","45542",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
 		
-			
+		courseID = "CS4480";
+		courseName = "Data-Intensive-Computing";
+		currCourse = new Course(courseID,courseName);
+	    currSec = new Section("C61","Wed","1900","2100","MMW","2450","46406",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS3483";
+		courseName = "Multimodal-Interface-Design";
+		currCourse = new Course(courseID,courseName);
+	    currSec = new Section("C01","Fri","1500","1700","AC1","LT8","31330",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS3283";
+		courseName = "Distributed-Systems";
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C61","Wed","1900","2100","AC2","1301","35361",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "CS3346";
+		courseName = "Software-Testing-and-Maintenance";
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C61","Tue","1900","2100","AC2","1301","18748",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 12;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		System.out.println(result);
+		
+		assertEquals(result.get(0).toString(), "45542 : CS3343 - Software-Engineering-Practice (CB1)");
+		assertEquals(result.get(1).toString(), "46406 : CS4480 - Data-Intensive-Computing (C61)");
+		assertEquals(result.get(2).toString(), "31330 : CS3483 - Multimodal-Interface-Design (C01)");
+		assertEquals(result.get(3).toString(), "18748 : CS3346 - Software-Testing-and-Maintenance (C61)");
 	}
 }
 
