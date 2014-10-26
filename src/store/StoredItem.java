@@ -11,6 +11,12 @@ public class StoredItem {
 	private String courseID;
 	private String courseName;
 	private Section sec;
+	
+	public StoredItem(Course c, Section s){
+		this.courseID=c.getCourseID();
+		this.courseName=c.getCourseName();
+		this.sec=s;
+	}
 	public String getCourseID() {
 		return courseID;
 	}
