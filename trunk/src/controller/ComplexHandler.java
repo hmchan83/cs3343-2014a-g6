@@ -26,7 +26,11 @@ public class ComplexHandler {
 		StoredItem tempVal;
 		Boolean labSelected = false, lecSelected = false;
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
-		currCourse = list.get(0);
+		int count = 0;
+		do{
+			currCourse = list.get(count);
+			count++;
+		}while(currCourse.IsCore()==true);
 		if(currCourse.HasLab() == true){
 			labSelected = false;
 			lecSelected = false;

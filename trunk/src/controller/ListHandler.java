@@ -8,6 +8,7 @@ import controller.MainController;
 import exceptionPackage.CoreNotAddedExc;
 import store.Course;
 import store.Section;
+import store.StoredItem;
 
 
 public class ListHandler {
@@ -60,6 +61,8 @@ public class ListHandler {
 						boolean success = overlapDetector.set(section.getDay(),section.getStartTime(),section.getEndTime());
 						if(!success){
 							throw new CoreNotAddedExc("The Core Course can not be added");
+						}else{
+							MainController.addBaseResult(new StoredItem(c,section));
 						}
 					}
 				}

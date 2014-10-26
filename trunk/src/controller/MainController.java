@@ -20,6 +20,7 @@ public class MainController {
 	private OverlapDetector table = new OverlapDetector();
 	private ArrayList<StoredItem> selected = new ArrayList<StoredItem>();
 	private static int reqiureNums = 0;
+	private static ArrayList<StoredItem> baseResult= new ArrayList<StoredItem>();
 	
 	
 	public void run(ArrayList<Course> list){
@@ -36,6 +37,10 @@ public class MainController {
 			//SimpleHandler SimpleHandler = new SimpleHandler();
 			//selected = SimpleHandler.run(list);
 		//}
+		if(baseResult.isEmpty()==false){
+			baseResult.addAll(selected);
+			selected=baseResult;
+		}
 		DebugMessager.debug(title+"selected = "+selected.toString());
 		DebugMessager.debug(title+"MainController End");
 	}
@@ -63,5 +68,16 @@ public class MainController {
 
 	public static void setReqiureNums(int areqiureNums) {
 		reqiureNums = areqiureNums;
+	}
+
+	public static ArrayList<StoredItem> getBaseResult() {
+		return baseResult;
+	}
+
+	public static void setBaseResult(ArrayList<StoredItem> baseResult) {
+		MainController.baseResult = baseResult;
+	}
+	public static void addBaseResult(StoredItem item) {
+		MainController.baseResult.add(item);
 	}
 }
