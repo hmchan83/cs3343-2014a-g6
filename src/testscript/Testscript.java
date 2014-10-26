@@ -1,11 +1,6 @@
 //Edit by Sam Cheuk, 26/10/2014
 package testscript;
 
-
-
-
-import ioModule.IO;
-
 import java.util.ArrayList;
 
 
@@ -109,8 +104,6 @@ public class Testscript extends TestCase {
 
 	}
 	
-	
-	//It has problem on testCase B1 and testCase B2
 	@Test
 	public void testcaseB1() throws CoreNotAddedExc {
 		ArrayList<Course> courselist = new ArrayList<>();
@@ -241,9 +234,9 @@ public class Testscript extends TestCase {
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
 		
-		IO io = new IO();
+		/*IO io = new IO();
 		io.out("\nYour Input : \n");
-		io.out(courselist);
+		io.out(courselist);*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -309,9 +302,7 @@ public class Testscript extends TestCase {
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
-		
-		System.out.println(result);
-		
+
 		assertEquals(result.isEmpty(),true);
 	}
 	
@@ -366,14 +357,85 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		System.out.println(result);
-		
 		assertEquals(result.get(0).toString(), "45542 : CS3343 - Software-Engineering-Practice (CB1)");
 		assertEquals(result.get(1).toString(), "46406 : CS4480 - Data-Intensive-Computing (C61)");
 		assertEquals(result.get(2).toString(), "31330 : CS3483 - Multimodal-Interface-Design (C01)");
 		assertEquals(result.get(3).toString(), "18748 : CS3346 - Software-Testing-and-Maintenance (C61)");
 	}
+	
+	public void testcaseR3() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "MBE3101";
+		String courseName;
+		courseName = "Micro and Nanotechnology for Bioengineering";//core
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("C01","Tue","1000","1200","AC1","Y5206","46127",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "AP3130";
+		courseName = "Biomaterials";//core
+		currCourse = new Course(courseID,courseName);
+	    currSec = new Section("C01","Thu","0900","1100","AC1","LT7","45764",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "EE3919";
+		courseName = "Medical Imaging and Signal Processing";//core
+		currCourse = new Course(courseID,courseName);
+	    currSec = new Section("C01","Thu","1700","1900","AC1","P4703","46245",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "AP2102";
+		courseName = "Introduction to Materials Engineering";//core
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("CB1","Tue","1300","1500","AC1","LT11","29795",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "EE2104";
+		courseName = "Introduction to Electromagnetics";//elective
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C01","Wed","1200","1400","AC1","LT9","34193",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "BCH3856";
+		courseName = "Cell Transport and Signalling";//elective
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C01","Thu","1500","1700","AC1","B5310","45521",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "SEEM3062";
+		courseName = "Quality Engineering I";//elective
+		currCourse = new Course(courseID,courseName);
+		currSec = new Section("C01","Fri","1400","1700","AC1","B5210","40435",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 15;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "46127 : MBE3101 - Micro and Nanotechnology for Bioengineering (C01)");
+		assertEquals(result.get(1).toString(), "45764 : AP3130 - Biomaterials (C01)");
+		assertEquals(result.get(2).toString(), "46245 : EE3919 - Medical Imaging and Signal Processing (C01)");
+		assertEquals(result.get(3).toString(), "29795 : AP2102 - Introduction to Materials Engineering (CB1)");
+		assertEquals(result.get(4).toString(), "34193 : EE2104 - Introduction to Electromagnetics (C01)");
+	}
 }
+
 
 
 
