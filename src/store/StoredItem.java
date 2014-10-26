@@ -11,7 +11,11 @@ public class StoredItem {
 	private String courseID;
 	private String courseName;
 	private Section sec;
-	
+	/**
+	 * to generate a simple object for output
+	 * @param c Course
+	 * @param s Section
+	 */
 	public StoredItem(Course c, Section s){
 		this.courseID=c.getCourseID();
 		this.courseName=c.getCourseName();
@@ -36,7 +40,6 @@ public class StoredItem {
 		this.sec = sec;
 	}
 	public StoredItem(String courseID, String courseName, Section sec) {
-		super();
 		this.courseID = courseID;
 		this.courseName = courseName;
 		this.sec = sec;

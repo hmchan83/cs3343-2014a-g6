@@ -56,12 +56,14 @@ public class ListHandler {
 					/* Prepare the base table here*/
 				}
 				if(c.IsCore()){
+					DebugMessager.debug(title+"Core Course found");
 					//TODO : put the course in to overlapDetector
 					for(Section section : c.getSec()){
 						boolean success = overlapDetector.set(section.getDay(),section.getStartTime(),section.getEndTime());
 						if(!success){
 							throw new CoreNotAddedExc("The Core Course can not be added");
 						}else{
+							DebugMessager.debug(title+"Core Course added to baseResult, BaseResult = "+MainController.getBaseResult().toString());
 							MainController.addBaseResult(new StoredItem(c,section));
 						}
 					}

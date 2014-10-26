@@ -38,8 +38,10 @@ public class MainController {
 			//selected = SimpleHandler.run(list);
 		//}
 		if(baseResult.isEmpty()==false){
+			DebugMessager.debug(title+"BaseResult contains something, BaseResult = "+baseResult.toString());
 			baseResult.addAll(selected);
 			selected=baseResult;
+			DebugMessager.debug(title+"Merge selected & BaseResult, result = "+selected.toString());
 		}
 		DebugMessager.debug(title+"selected = "+selected.toString());
 		DebugMessager.debug(title+"MainController End");
