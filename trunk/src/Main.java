@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import controller.ListHandler;
 import controller.MainController;
+import exceptionPackage.CoreNotAddedExc;
 import store.Course;
 import store.StoredItem;
 /**
@@ -15,6 +16,7 @@ import store.StoredItem;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
+		try {
 		final Boolean inputMethod = true; // true for simple input, false for XML
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		int courseNums;
@@ -53,6 +55,14 @@ public class Main {
 			}
 		}
 		io.out("\nTotal Priority = "+totalpriority);
+		
+		} catch (CoreNotAddedExc e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			//e.printStackTrace();
+			return ;
+			
+		}
 			
 	}
 }
