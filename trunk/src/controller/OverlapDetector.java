@@ -1,5 +1,6 @@
 package controller;
 
+import store.TimeTable;
 import ioModule.DebugMessager;
 
 
@@ -12,33 +13,32 @@ import ioModule.DebugMessager;
 public class OverlapDetector {	
 	static String title = "OverlapDetector : ";
 	static private Boolean[][] baseTable;
-	private Boolean[][] table;
+	//private Boolean[][] table;
+	private TimeTable table;
 	
 	
 	public OverlapDetector(){
+		table= new TimeTable();
 		reset();
 	}
 	
+	public OverlapDetector(TimeTable table){
+		this.table=table;
+	}
+	
 	public void reset(){
-		this.table = new Boolean[7][24];	
-		
-		//Boolean [i][j] ; i=0 -> Mon, i=1 ->Tue... ; j=0 -> 00:00 ... j=23 -> 23:00
-		for(int i=0;i<7;i++){
-			for(int j=0;j<24;j++){
-				this.table[i][j]=false;
-				if(baseTable != null){
-					this.table[i][j]= baseTable[i][j];
-				}
-			}
+		if(baseTable!=null){
+			table.setTable(baseTable);
 		}
+		table.reset();
 	}
 	
 	public Boolean[][] getTable() {
-		return table;
+		return table.getTable();
 	}
 
 	public void setTable(Boolean[][] table) {
-		this.table = table;
+		this.table.setTable(table);
 	}
 
 	public boolean set(String day,String starttime,String endtime){ // converting String item to the postion of array
@@ -71,7 +71,7 @@ public class OverlapDetector {
 		if(endtime<0 && endtime>23) return false;
 		if(day<0 && day>6) return false;
 		for(int i=starttime;i<endtime;i++){
-			if(this.table[day][i]==true){
+			if(this.table.get(day, i)==true){
 				DebugMessager.debug(title+"day = "+day+", time = "+i+" is used!!");
 				return false; // time slot overlap
 			}
@@ -84,7 +84,7 @@ public class OverlapDetector {
 		
 		//set the time slot to used
 		for(int i=starttime;i<endtime;i++){
-			this.table[day][i]=true; // time slot used
+			table.set(day, i); // time slot used
 		}
 		return true;
 	}

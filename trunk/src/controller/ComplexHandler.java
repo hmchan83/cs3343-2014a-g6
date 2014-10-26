@@ -45,7 +45,7 @@ public class ComplexHandler {
 //			if(sec.getCourseConflict() == currCourse.getMinConflict()){
 				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is the less conflict session.");
 				table.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
-				tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),sec);//Simple value
+				tempVal = new StoredItem(currCourse,sec);//Simple value
 				stList = new StoredList();
 				stList.addCredits(sec.getCredit());
 				stList.add(tempVal);
@@ -130,10 +130,24 @@ public class ComplexHandler {
 	}
 	
 	public Section findlecture(Course c, int i,Boolean[][] table){
+		int n=0;
+		for(int k=0;k<c.getSec().size();k++){
+			if(c.getSec().get(k).isLab()==false ){
+				if(n==i) return c.getSec().get(k);
+				else n++;
+			}
+		}
 		//TODO : return the i-th lecture that could be use selected for a table.
 		return null;
 	}
 	public Section findLab(Course c,int i,Boolean[][] table){
+		int n=0;
+		for(int k=0;k<c.getSec().size();k++){
+			if(c.getSec().get(k).isLab()==true){
+				if(n==i) return c.getSec().get(k);
+				else n++;
+			}
+		}
 		//TODO : return i-th lecture that could be use selected for a table.
 		return null;
 	}
