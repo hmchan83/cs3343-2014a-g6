@@ -24,18 +24,17 @@ public class ComplexHandler {
 		Section currSection;
 		StoredList stList,newList;
 		StoredItem tempVal;
-		//Boolean labSelected = false, lecSelected = false;
+		Boolean labSelected = false, lecSelected = false;
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		int count = 0;
-		currCourse = list.get(count);
-		//do{
-		//	currCourse = list.get(count);
-		//	count++;
-		//}while(currCourse.IsCore()==true);
-		//if(currCourse.HasLab() == true){
-		//	labSelected = false;
-		//	lecSelected = false;
-		//}
+		do{
+			currCourse = list.get(count);
+			count++;
+		}while(currCourse.IsCore()==true);
+		if(currCourse.HasLab() == true){
+			labSelected = false;
+			lecSelected = false;
+		}
 		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
 		DebugMessager.debug(title+"The min Conflict of this course = "+currCourse.getMinConflict());
 		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());
