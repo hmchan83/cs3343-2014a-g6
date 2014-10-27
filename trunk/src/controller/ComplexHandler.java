@@ -24,17 +24,18 @@ public class ComplexHandler {
 		Section currSection;
 		StoredList stList,newList;
 		StoredItem tempVal;
-		Boolean labSelected = false, lecSelected = false;
+		//Boolean labSelected = false, lecSelected = false;
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		int count = 0;
-		do{
-			currCourse = list.get(count);
-			count++;
-		}while(currCourse.IsCore()==true);
-		if(currCourse.HasLab() == true){
-			labSelected = false;
-			lecSelected = false;
-		}
+		currCourse = list.get(count);
+		//do{
+		//	currCourse = list.get(count);
+		//	count++;
+		//}while(currCourse.IsCore()==true);
+		//if(currCourse.HasLab() == true){
+		//	labSelected = false;
+		//	lecSelected = false;
+		//}
 		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
 		DebugMessager.debug(title+"The min Conflict of this course = "+currCourse.getMinConflict());
 		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());
@@ -59,6 +60,8 @@ public class ComplexHandler {
 		}
 		
 		DebugMessager.debug(title+"tempList = "+tempList.toString());
+		int maxPriority = 0;
+		StoredList result = new StoredList();
 		//Step 2. For each list in tempList, select another course & section		
 		DebugMessager.debug(title+"Step 2 Start.");
 		int listpos=0;
@@ -95,6 +98,10 @@ public class ComplexHandler {
 						DebugMessager.debug(title+"newList = "+newList.toString());
 						DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
 						tempList.add(newList);
+						if(newList.getPriorityNums()>maxPriority){
+							maxPriority=newList.getPriorityNums();
+							result=copyList(newList);
+						}
 					}
 				}
 			//}
@@ -103,7 +110,7 @@ public class ComplexHandler {
 			DebugMessager.debug(title+"tempList = "+tempList.toString()+"\n\n");
 		}
 		
-		
+		/*
 		
 		//Step 3. Find the Highest priority list
 		DebugMessager.debug(title+"Step 3 Start. maxCourseNums = "+maxCourseNums);		
@@ -121,6 +128,7 @@ public class ComplexHandler {
 				DebugMessager.debug(title+"Larger Found, New.maxPriority = "+maxPriority+", New.result = "+result.toString());
 			}
 		}
+		*/
 		//DebugMessager.enable();
 		DebugMessager.debug(title+"result = "+result);
 		if(result.getTotalCredits()<MainController.getReqiureNums()){
@@ -130,27 +138,27 @@ public class ComplexHandler {
 	}
 	
 	public Section findlecture(Course c, int i,Boolean[][] table){
-		int n=0;
-		for(int k=0;k<c.getSec().size();k++){
-			if(c.getSec().get(k).isLab()==false ){
-				if(n==i) return c.getSec().get(k);
-				else n++;
-			}
-		}
-		//TODO : return the i-th lecture that could be use selected for a table.
-		return null;
+		return find(c,i,table,false);
 	}
 	public Section findLab(Course c,int i,Boolean[][] table){
+		return find(c,i,table,true);
+	}
+	
+	public Section find(Course c,int i,Boolean[][] table,Boolean isLab){
+		OverlapDetector Old = new OverlapDetector(table);
 		int n=0;
 		for(int k=0;k<c.getSec().size();k++){
-			if(c.getSec().get(k).isLab()==true){
-				if(n==i) return c.getSec().get(k);
-				else n++;
+			Section currSection = c.getSec().get(k); 
+			if( (currSection.isLab() && isLab) || (!currSection.isLab() && !isLab) ){
+				if(Old.check(currSection.getDay(), currSection.getStartTime(), currSection.getEndTime())){
+					if(n==i) return c.getSec().get(k);
+					else n++;
+				}
 			}
 		}
-		//TODO : return i-th lecture that could be use selected for a table.
 		return null;
 	}
+	
 	public boolean selectCourse(Section sec){		
 		return table.set(sec.getDay(),sec.getStartTime(),sec.getEndTime());
 	}
