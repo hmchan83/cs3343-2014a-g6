@@ -1,0 +1,21 @@
+#summary Test Case for Lab and Lecture
+= Introduction =
+
+here are the test case for Lab and Lecture.
+
+= Test Cases =
+
+==Test Case 1==
+Input
+{{{
+1
+CS0001 TEST1 2
+C01 Fri 1200 1400 AC1 LT6 10001 3
+T01 Fri 1500 1600 AC2 1234 10002 3
+3
+}}}
+Output
+{{{
+10001 : CS0001 - TEST1 (C01)
+10002 : CS0001 - TEST1 (T01)
+}}}
