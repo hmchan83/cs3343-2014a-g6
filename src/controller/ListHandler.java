@@ -26,7 +26,6 @@ public class ListHandler {
 		int CourseCounter = 1;
 		OverlapDetector overlapDetector = new OverlapDetector(); // for compulsory course
 		int maxSecNum=0;
-		Boolean SimpleCase = true; 
 		for(Course c : list){ // get the largest Section nums => used to determine the priority
 			/* if the Max. Section of ALL course < 10 the priority will be 2 digit
 			 * if the number is >=10 and <100 the priority will be 2 digit
@@ -77,15 +76,12 @@ public class ListHandler {
 			}
 			if(c.getSecNumMinConflict()==seclist.size()){
 				DebugMessager.debug(title+"SecNums of Min Conflict = sessionNums, Using ComplexHandler");
-				SimpleCase = false;
 			}
 		}
 		if(courseNum<=2){
 			DebugMessager.debug(title+"courseNums <=2, Using SimpleHandler");
-			SimpleCase=true;
 		}
 		OverlapDetector.setBaseTable(overlapDetector.getTable());
-		MainController.setSimpleHandler(SimpleCase);
 		DebugMessager.debug(title+"\tListHandler End.");
 	}
 
