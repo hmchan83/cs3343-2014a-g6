@@ -23,7 +23,13 @@ public class OverlapDetector {
 	}
 	
 	public OverlapDetector(TimeTable table){
+		table= new TimeTable();
 		this.table=table;
+	}
+	
+	public OverlapDetector(Boolean[][] table){
+		this.table= new TimeTable();
+		this.table.setTable(table);
 	}
 	
 	public void reset(){

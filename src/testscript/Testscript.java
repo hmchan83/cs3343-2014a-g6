@@ -99,8 +99,8 @@ public class Testscript extends TestCase {
 		ArrayList<StoredItem> result = MainController.result();
 		
 
-		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02)");
-		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01)");
+		assertEquals(result.get(0).toString(),"12345 : CS0001 - TEST1 (C01)");
+		assertEquals(result.get(1).toString(),"12348 : CS0002 - TEST2 (C02)");
 
 	}
 	
@@ -242,9 +242,9 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(),"10003 : CS0001 - TEST1 (C03)");
+		assertEquals(result.get(0).toString(),"10002 : CS0001 - TEST1 (C02)");
 		assertEquals(result.get(1).toString(),"20003 : CS0002 - TEST2 (C03)");
-		assertEquals(result.get(2).toString(),"30002 : CS0003 - TEST3 (CA2)");
+		assertEquals(result.get(2).toString(),"30003 : CS0003 - TEST3 (CA3)");
 		assertEquals(result.get(3).toString(),"40001 : CS0004 - TEST4 (C01)");
 		assertEquals(result.get(4).toString(),"50001 : CS0005 - TEST5 (C01)");
 		assertEquals(result.get(5).toString(),"60001 : CS0006 - TEST6 (C01)");
