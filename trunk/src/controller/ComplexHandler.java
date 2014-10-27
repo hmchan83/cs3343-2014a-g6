@@ -13,9 +13,10 @@ import store.Section;
  * @author Marcus
  *
  */
+//TODO : change all Boolean[][] to TimeTable
 public class ComplexHandler {
 	static String title = "ComplexHandler : ";
-	private OverlapDetector table = new OverlapDetector();
+	private OverlapDetector table;
 	private ArrayList<StoredList> tempList = new ArrayList<StoredList>();
 	
 	public ArrayList<StoredItem> run(ArrayList<Course> list){
@@ -25,24 +26,78 @@ public class ComplexHandler {
 		StoredList stList,newList;
 		StoredItem tempVal;
 		Boolean labSelected = false, lecSelected = false;
+		int maxPriority = 0;
+		StoredList result = new StoredList();
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		int count = 0;
 		do{
 			currCourse = list.get(count);
 			count++;
 		}while(currCourse.IsCore()==true);
-		if(currCourse.HasLab() == true){
+		//if(currCourse.HasLab() == true){
 			labSelected = false;
 			lecSelected = false;
-		}
+		//}
 		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
 		DebugMessager.debug(title+"The min Conflict of this course = "+currCourse.getMinConflict());
 		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());
-		DebugMessager.debug(title+"Start putting Sessions with min Conflict in to StoredList");	
+		DebugMessager.debug(title+"Start putting Sessions with min Conflict in to StoredList");
+		Section LecSection,LabSection;
+		int  LecStepper=0;
+		do{
+			table=new OverlapDetector();
+			stList = new StoredList();
+			int LabStepper=0;
+			LecSection = this.findlecture(currCourse, LecStepper++, table.getTable());
+			if(LecSection==null)break;
+			if(table.set(LecSection.getDay(), LecSection.getStartTime(), LecSection.getEndTime())){
+				lecSelected=true;
+				/* TODO: put the following code into a new method : createNewPossibleResult(Course c, Section s, table)*/
+					tempVal = new StoredItem(currCourse,LecSection);//Simple value
+					stList = new StoredList();
+					stList.addCredits(LecSection.getCredit());
+					stList.add(tempVal);
+					stList.setTable(table.getTable());
+				/* End */
+				if(currCourse.HasLab()){
+					do{
+						OverlapDetector table2 = new OverlapDetector(stList.getTable());
+						LabSection = this.findLab(currCourse, LabStepper++, table2.getTable());
+						if(LabSection==null)break;
+						if(table2.set(LabSection.getDay(), LabSection.getStartTime(), LabSection.getEndTime())){
+							labSelected=true;
+							tempVal = new StoredItem(currCourse,LabSection);//Simple value
+							stList.addCredits(LabSection.getCredit());
+							stList.add(tempVal);
+							stList.setTable(table2.getTable());
+						}
+						if((currCourse.HasLab() && lecSelected==true && labSelected==true)){
+							DebugMessager.debug(title+"Add to tempList");
+							tempList.add(stList);
+							if(stList.getPriorityNums()>maxPriority){
+								maxPriority=stList.getPriorityNums();
+								result=copyList(stList);
+							}
+						}
+					}while(LabSection!=null);// find until there are no lab
+				}else{
+					DebugMessager.debug(title+"Add to tempList");
+					/* TODO: put the following code into a new method : addPossibleResult(StoredList stList)*/
+					tempList.add(stList);
+					if(stList.getPriorityNums()>maxPriority){
+						maxPriority=stList.getPriorityNums();
+						result=copyList(stList);
+					}
+					/* End */
+				}
+			}
+			//LecStepper++;
+		}while(LecSection!=null);//find until there are no lecture
+		/*
 		for(Section sec : currCourse.getSec()){
 			table.reset();
 			DebugMessager.debug(title+"Handling Section {"+sec.toString()+"}");
-//			if(sec.getCourseConflict() == currCourse.getMinConflict()){
+			//if(sec.getCourseConflict() == currCourse.getMinConflict()){
 				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is the less conflict session.");
 				table.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
 				tempVal = new StoredItem(currCourse,sec);//Simple value
@@ -53,14 +108,12 @@ public class ComplexHandler {
 				tempList.add(stList);
 				DebugMessager.debug(title+"Section "+sec.getSectionID()+" added to stored list");
 				DebugMessager.debug(title+"StoredList = "+tempList.toString());
-	//		}else{
-		//		DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
+			//}else{
+			//	DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
 			//}
-		}
+		}*/
 		
 		DebugMessager.debug(title+"tempList = "+tempList.toString());
-		int maxPriority = 0;
-		StoredList result = new StoredList();
 		//Step 2. For each list in tempList, select another course & section		
 		DebugMessager.debug(title+"Step 2 Start.");
 		int listpos=0;
@@ -108,27 +161,7 @@ public class ComplexHandler {
 			listpos++;
 			DebugMessager.debug(title+"tempList = "+tempList.toString()+"\n\n");
 		}
-		
-		/*
-		
-		//Step 3. Find the Highest priority list
-		DebugMessager.debug(title+"Step 3 Start. maxCourseNums = "+maxCourseNums);		
-		int maxPriority = 0;
-		StoredList result = new StoredList();
-		for(int k=tempList.size()-1;k>=0;k--){	
-			stList = tempList.get(k);
-			if(stList.getItemNums()-2==maxCourseNums)break;
-			int tempPriority = stList.getPriorityNums();
-			DebugMessager.debug(title+"tempList["+k+"] = "+stList.toString() +", Priority = "+tempPriority);			
-			DebugMessager.debug(title+"maxPriority = "+maxPriority+", result = "+result.toString());	
-			if(tempPriority>maxPriority){				
-				maxPriority = tempPriority;
-				result = stList;
-				DebugMessager.debug(title+"Larger Found, New.maxPriority = "+maxPriority+", New.result = "+result.toString());
-			}
-		}
-		*/
-		//DebugMessager.enable();
+
 		DebugMessager.debug(title+"result = "+result);
 		if(result.getTotalCredits()<MainController.getReqiureNums()){
 			result = new StoredList(); // No result fix the conditions.
@@ -137,18 +170,21 @@ public class ComplexHandler {
 	}
 	
 	public Section findlecture(Course c, int i,Boolean[][] table){
+		DebugMessager.debug(title+"findlecture, i = "+i);
 		return find(c,i,table,false);
 	}
 	public Section findLab(Course c,int i,Boolean[][] table){
+		DebugMessager.debug(title+"findlab, i = "+i);
 		return find(c,i,table,true);
 	}
 	
 	public Section find(Course c,int i,Boolean[][] table,Boolean isLab){
-		OverlapDetector Old = new OverlapDetector(table);
+		OverlapDetector Old = new OverlapDetector(table.clone());
 		int n=0;
+		if(i>c.getSec().size()) return null;
 		for(int k=0;k<c.getSec().size();k++){
 			Section currSection = c.getSec().get(k); 
-			if( (currSection.isLab() && isLab) || (!currSection.isLab() && !isLab) ){
+			if( currSection.isLab().equals(isLab)){
 				if(Old.check(currSection.getDay(), currSection.getStartTime(), currSection.getEndTime())){
 					if(n==i) return c.getSec().get(k);
 					else n++;
