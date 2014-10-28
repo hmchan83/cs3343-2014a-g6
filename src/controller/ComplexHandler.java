@@ -13,11 +13,13 @@ import store.Section;
  * @author Marcus
  *
  */
-//TODO : change all Boolean[][] to TimeTable
+//TODO : change all Boolean[][] to TimeTable, I will do it.
 public class ComplexHandler {
+	int maxPriority = 0;
+	StoredList result = new StoredList();
 	static String title = "ComplexHandler : ";
 	private OverlapDetector table;
-	private ArrayList<StoredList> tempList = new ArrayList<StoredList>();
+	private ArrayList<StoredList> possibleResult = new ArrayList<StoredList>();
 	
 	public ArrayList<StoredItem> run(ArrayList<Course> list){
 		//DebugMessager.disable();
@@ -25,9 +27,7 @@ public class ComplexHandler {
 		Section currSection;
 		StoredList stList,newList;
 		StoredItem tempVal;
-		Boolean labSelected = false, lecSelected = false;
-		int maxPriority = 0;
-		StoredList result = new StoredList();
+		Boolean labSelected = false, lecSelected = false;		
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		int count = 0;
 		do{
@@ -73,7 +73,7 @@ public class ComplexHandler {
 						}
 						if((currCourse.HasLab() && lecSelected==true && labSelected==true)){
 							DebugMessager.debug(title+"Add to tempList");
-							tempList.add(stList);
+							possibleResult.add(stList);
 							if(stList.getPriorityNums()>maxPriority){
 								maxPriority=stList.getPriorityNums();
 								result=copyList(stList);
@@ -83,7 +83,7 @@ public class ComplexHandler {
 				}else{
 					DebugMessager.debug(title+"Add to tempList");
 					/* TODO: put the following code into a new method : addPossibleResult(StoredList stList)*/
-					tempList.add(stList);
+					possibleResult.add(stList);
 					if(stList.getPriorityNums()>maxPriority){
 						maxPriority=stList.getPriorityNums();
 						result=copyList(stList);
@@ -113,14 +113,14 @@ public class ComplexHandler {
 			//}
 		}*/
 		
-		DebugMessager.debug(title+"tempList = "+tempList.toString());
+		DebugMessager.debug(title+"tempList = "+possibleResult.toString());
 		//Step 2. For each list in tempList, select another course & section		
 		DebugMessager.debug(title+"Step 2 Start.");
 		int listpos=0;
 		int maxCourseNums=0;
 		while(true){
 			try{				
-				stList = tempList.get(listpos);
+				stList = possibleResult.get(listpos);
 				DebugMessager.debug(title+"listpos = "+listpos+", stList = "+stList.toString());
 				DebugMessager.debug(title+"stList.getTable = "+stList.printTable());
 			}catch(IndexOutOfBoundsException e){
@@ -149,7 +149,7 @@ public class ComplexHandler {
 						newList.setHandledCourse(i);
 						DebugMessager.debug(title+"newList = "+newList.toString());
 						DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
-						tempList.add(newList);
+						possibleResult.add(newList);
 						if(newList.getPriorityNums()>maxPriority){
 							maxPriority=newList.getPriorityNums();
 							result=copyList(newList);
@@ -159,7 +159,7 @@ public class ComplexHandler {
 			//}
 			DebugMessager.debug(title+"listpos++ \n\n");
 			listpos++;
-			DebugMessager.debug(title+"tempList = "+tempList.toString()+"\n\n");
+			DebugMessager.debug(title+"tempList = "+possibleResult.toString()+"\n\n");
 		}
 
 		DebugMessager.debug(title+"result = "+result);
@@ -229,5 +229,20 @@ public class ComplexHandler {
 			str += "}";
 		}
 		return str;
+	}
+	public StoredList createPossibleResult(Course c, Section s){
+		StoredItem tempVal = new StoredItem(c,s);//Simple value
+		StoredList stList = new StoredList();
+		stList.addCredits(s.getCredit());
+		stList.add(tempVal);
+		stList.setTable(table.getTable());
+		return stList;
+	}
+	public void addPossibleResult(StoredList stList){
+		possibleResult.add(stList);
+		if(stList.getPriorityNums()>maxPriority){
+			maxPriority=stList.getPriorityNums();
+			result=copyList(stList);
+		}
 	}
 }
