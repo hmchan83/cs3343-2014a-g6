@@ -6,18 +6,13 @@ public class StoredList {
 	private ArrayList<StoredItem> items;
 	private int priorityNums;
 	private int handledCourse;
-	private Boolean[][] table;
+	private TimeTable table;
 	private int totalCredits;
 	
 	public StoredList(){
 		this.items = new ArrayList<StoredItem>();
-		this.table = new Boolean[7][24];
+		this.table = new TimeTable();
 		//Boolean [i][j] ; i=0 -> Mon, i=1 ->Tue... ; j=0 -> 00:00 ... j=23 -> 23:00
-		for(int i=0;i<7;i++){
-			for(int j=0;j<24;j++){
-				this.table[i][j]=false;// not used
-			}
-		}
 		this.priorityNums=-1;
 		this.setTotalCredits(0);
 		this.setHandledCourse(0);
@@ -26,8 +21,10 @@ public class StoredList {
 	public ArrayList<StoredItem> getItems() {
 		return items;
 	}
-	public void add(StoredItem item){
+	public void add(StoredItem item,TimeTable table){
 		items.add(item);
+		this.totalCredits+=item.getSec().getCredit();
+		this.table = table;
 	}
 	public void setItems(ArrayList<StoredItem> items) {
 		this.items = items;
@@ -49,10 +46,13 @@ public class StoredList {
 		}
 		this.priorityNums=totalPriority;
 	}
-	public Boolean[][] getTable() {
+	public TimeTable getTable() {
 		return table;
 	}
 	public void setTable(Boolean[][] table) {
+		this.table = new TimeTable(table);
+	}
+	public void setTable(TimeTable table) {
 		this.table = table;
 	}
 	public String toString(){
@@ -65,17 +65,7 @@ public class StoredList {
 		return str;
 	}
 	public String printTable(){
-		String str = "";
-		for(int i=0;i<7;i++){
-			if(i>0)str+=",";
-			str += "\n\t\t\tday="+(i)+" : {";
-			for(int j=0;j<24;j++){
-				if(j>0)str+=",";
-				str +=table[i][j];
-			}
-			str += "}";
-		}
-		return str;
+		return table.printTable();
 	}
 
 	public int getHandledCourse() {

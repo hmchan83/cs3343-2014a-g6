@@ -8,12 +8,12 @@ import store.Course;
 import store.StoredList;
 import store.StoredItem;
 import store.Section;
+import store.TimeTable;
 /**
  * Handler for course list that require priority handling
  * @author Marcus
  *
  */
-//TODO : change all Boolean[][] to TimeTable, I will do it.
 public class ComplexHandler {
 	int maxPriority = 0;
 	StoredList result = new StoredList();
@@ -48,28 +48,19 @@ public class ComplexHandler {
 			table=new OverlapDetector();
 			stList = new StoredList();
 			int LabStepper=0;
-			LecSection = this.findlecture(currCourse, LecStepper++, table.getTable());
+			LecSection = this.findlecture(currCourse, LecStepper++, table.getTableContents());
 			if(LecSection==null)break;
 			if(table.set(LecSection.getDay(), LecSection.getStartTime(), LecSection.getEndTime())){
 				lecSelected=true;
-				/* TODO: put the following code into a new method : createNewPossibleResult(Course c, Section s, table)*/
-					tempVal = new StoredItem(currCourse,LecSection);//Simple value
-					stList = new StoredList();
-					stList.addCredits(LecSection.getCredit());
-					stList.add(tempVal);
-					stList.setTable(table.getTable());
-				/* End */
+					stList = createPossibleResult(currCourse,LecSection,table.getTable());
 				if(currCourse.HasLab()){
 					do{
 						OverlapDetector table2 = new OverlapDetector(stList.getTable());
-						LabSection = this.findLab(currCourse, LabStepper++, table2.getTable());
+						LabSection = this.findLab(currCourse, LabStepper++, table2.getTableContents());
 						if(LabSection==null)break;
 						if(table2.set(LabSection.getDay(), LabSection.getStartTime(), LabSection.getEndTime())){
 							labSelected=true;
-							tempVal = new StoredItem(currCourse,LabSection);//Simple value
-							stList.addCredits(LabSection.getCredit());
-							stList.add(tempVal);
-							stList.setTable(table2.getTable());
+							stList.add(new StoredItem(currCourse,LabSection),table2.getTable());
 						}
 						if((currCourse.HasLab() && lecSelected==true && labSelected==true)){
 							DebugMessager.debug(title+"Add to tempList");
@@ -82,36 +73,11 @@ public class ComplexHandler {
 					}while(LabSection!=null);// find until there are no lab
 				}else{
 					DebugMessager.debug(title+"Add to tempList");
-					/* TODO: put the following code into a new method : addPossibleResult(StoredList stList)*/
-					possibleResult.add(stList);
-					if(stList.getPriorityNums()>maxPriority){
-						maxPriority=stList.getPriorityNums();
-						result=copyList(stList);
-					}
-					/* End */
+					addPossibleResult(stList);
 				}
 			}
 			//LecStepper++;
 		}while(LecSection!=null);//find until there are no lecture
-		/*
-		for(Section sec : currCourse.getSec()){
-			table.reset();
-			DebugMessager.debug(title+"Handling Section {"+sec.toString()+"}");
-			//if(sec.getCourseConflict() == currCourse.getMinConflict()){
-				DebugMessager.debug(title+"Section "+sec.getSectionID()+" is the less conflict session.");
-				table.set(sec.getDay(), sec.getStartTime(), sec.getEndTime());
-				tempVal = new StoredItem(currCourse,sec);//Simple value
-				stList = new StoredList();
-				stList.addCredits(sec.getCredit());
-				stList.add(tempVal);
-				stList.setTable(table.getTable());
-				tempList.add(stList);
-				DebugMessager.debug(title+"Section "+sec.getSectionID()+" added to stored list");
-				DebugMessager.debug(title+"StoredList = "+tempList.toString());
-			//}else{
-			//	DebugMessager.debug(title+"Section "+sec.getSectionID()+" is not the less conflict session.");
-			//}
-		}*/
 		
 		DebugMessager.debug(title+"tempList = "+possibleResult.toString());
 		//Step 2. For each list in tempList, select another course & section		
@@ -137,23 +103,16 @@ public class ComplexHandler {
 					DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
 					if(currSection.getCourseConflict() == currCourse.getMinConflict()){
 						newList = copyList(stList);
-						table.setTable(copyTable(stList.getTable()));
+						table.setTable(stList.getTable().clone());
 						if(selectCourse(currSection)==true){
 							DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
-							tempVal = new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection);//Simple value
-							newList.add(tempVal);
-							newList.addCredits(currSection.getCredit());
-							newList.setTable(copyTable(table.getTable()));
+							newList.add(new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection),table.getTable().clone());
 							if(newList.getItemNums()>maxCourseNums)maxCourseNums=newList.getItemNums();
 						}
 						newList.setHandledCourse(i);
 						DebugMessager.debug(title+"newList = "+newList.toString());
 						DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
-						possibleResult.add(newList);
-						if(newList.getPriorityNums()>maxPriority){
-							maxPriority=newList.getPriorityNums();
-							result=copyList(newList);
-						}
+						addPossibleResult(newList);
 					}
 				}
 			//}
@@ -201,21 +160,11 @@ public class ComplexHandler {
 	@SuppressWarnings("unchecked")
 	public StoredList copyList(StoredList listA){
 		StoredList listB = new StoredList();
-		listB.setTable(copyTable(listA.getTable()));
+		listB.setTable(listA.getTable().clone());
 		Object clone = listA.getItems().clone();
 		listB.setItems((ArrayList<StoredItem>) clone);
 		listB.setTotalCredits(listA.getTotalCredits());
 		return listB;
-	}
-	public Boolean[][] copyTable(Boolean[][] table){
-		Boolean[][] newTable = new Boolean[7][24];
-		for(int i =0;i<7;i++){
-			for(int j=0;j<24;j++){
-				if(table[i][j]==true) newTable[i][j]=true;
-				else newTable[i][j]=false;
-			}
-		}
-		return newTable;
 	}
 	public String printTable(){
 		String str = "";
@@ -224,18 +173,15 @@ public class ComplexHandler {
 			str += "\n\t\t\tday="+(i)+" : {";
 			for(int j=0;j<24;j++){
 				if(j>0)str+=",";
-				str +=table.getTable()[i][j];
+				str +=table.getTableContents()[i][j];
 			}
 			str += "}";
 		}
 		return str;
 	}
-	public StoredList createPossibleResult(Course c, Section s){
-		StoredItem tempVal = new StoredItem(c,s);//Simple value
+	public StoredList createPossibleResult(Course c, Section s,TimeTable table){
 		StoredList stList = new StoredList();
-		stList.addCredits(s.getCredit());
-		stList.add(tempVal);
-		stList.setTable(table.getTable());
+		stList.add(new StoredItem(c,s),table);
 		return stList;
 	}
 	public void addPossibleResult(StoredList stList){
