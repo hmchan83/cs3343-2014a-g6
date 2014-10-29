@@ -1,7 +1,10 @@
 //Edit by Sam Cheuk, 26/10/2014
 package testscript;
 
+import ioModule.DebugMessager;
+
 import java.util.ArrayList;
+
 
 
 
@@ -21,7 +24,7 @@ import store.StoredItem;
 public class Testscript extends TestCase {
 
 	 public Testscript(){
-		//DebugMessager.enable();
+		//DebugMessager.disable();
 	}
 	@Test
 	public void testcaseA1() throws CoreNotAddedExc  {

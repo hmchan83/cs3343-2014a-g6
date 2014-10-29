@@ -81,7 +81,7 @@ public class ListHandler {
 		if(courseNum<=2){
 			DebugMessager.debug(title+"courseNums <=2, Using SimpleHandler");
 		}
-		OverlapDetector.setBaseTable(overlapDetector.getTable());
+		OverlapDetector.setBaseTable(overlapDetector.getTable().getTableContents());
 		DebugMessager.debug(title+"\tListHandler End.");
 	}
 

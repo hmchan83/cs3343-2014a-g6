@@ -29,22 +29,30 @@ public class OverlapDetector {
 	
 	public OverlapDetector(Boolean[][] table){
 		this.table= new TimeTable();
-		this.table.setTable(table);
+		this.table.setTableContents(table);
 	}
 	
 	public void reset(){
 		if(baseTable!=null){
-			table.setTable(baseTable);
+			table.setTableContents(baseTable);
 		}
 		table.reset();
 	}
 	
-	public Boolean[][] getTable() {
-		return table.getTable();
+	public TimeTable getTable() {
+		return table;
+	}
+	
+	public Boolean[][] getTableContents() {
+		return table.getTableContents();
 	}
 
 	public void setTable(Boolean[][] table) {
-		this.table.setTable(table);
+		this.table.setTableContents(table);
+	}
+	
+	public void setTable(TimeTable table){
+		this.table=table;
 	}
 
 	public boolean set(String day,String starttime,String endtime){ // converting String item to the postion of array
@@ -77,7 +85,7 @@ public class OverlapDetector {
 		if(endtime<0 && endtime>23) return false;
 		if(day<0 && day>6) return false;
 		for(int i=starttime;i<endtime;i++){
-			if(this.table.get(day, i)==true){
+			if(this.table.getTableContents(day, i)==true){
 				DebugMessager.debug(title+"day = "+day+", time = "+i+" is used!!");
 				return false; // time slot overlap
 			}
@@ -90,7 +98,7 @@ public class OverlapDetector {
 		
 		//set the time slot to used
 		for(int i=starttime;i<endtime;i++){
-			table.set(day, i); // time slot used
+			table.setTableContents(day, i); // time slot used
 		}
 		return true;
 	}
