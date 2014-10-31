@@ -24,7 +24,7 @@ import store.StoredItem;
 public class Testscript extends TestCase {
 
 	 public Testscript(){
-		//DebugMessager.disable();
+		DebugMessager.disable();
 	}
 	@Test
 	public void testcaseA1() throws CoreNotAddedExc  {
@@ -436,6 +436,104 @@ public class Testscript extends TestCase {
 		assertEquals(result.get(2).toString(), "46245 : EE3919 - Medical Imaging and Signal Processing (C01)");
 		assertEquals(result.get(3).toString(), "29795 : AP2102 - Introduction to Materials Engineering (CB1)");
 		assertEquals(result.get(4).toString(), "34193 : EE2104 - Introduction to Electromagnetics (C01)");
+	}
+	
+
+	
+	public void testcaseL1() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS0001";
+		String courseName;
+		courseName = "TEST1";//core
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
+		currCourse.addSec(currSec);
+		currSec = new Section("T01","Fri","1500","1600","AC2","1234","10002",0);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 3;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
+		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (T01)");
+
+	}
+	public void testcaseL2() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS0001";
+		String courseName;
+		courseName = "TEST1";//core
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
+		currCourse.addSec(currSec);
+		currSec = new Section("L01","Fri","1500","1600","AC2","1234","10002",0);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 3;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
+		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (L01)");
+
+	}
+	public void testcaseC1() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS0001";
+		String courseName;
+		courseName = "TEST1";//core
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
+		currCourse.addSec(currSec);
+		currCourse.setIsCore(true);
+		courselist.add(currCourse);
+		
+		currCourse = new Course("CS0002","TEST2");
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT7","20001",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		currCourse = new Course("CS0003","TEST3");
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT8","30001",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 3;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
+
 	}
 }
 

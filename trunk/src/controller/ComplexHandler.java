@@ -166,19 +166,6 @@ public class ComplexHandler {
 		listB.setTotalCredits(listA.getTotalCredits());
 		return listB;
 	}
-	public String printTable(){
-		String str = "";
-		for(int i=0;i<7;i++){
-			if(i>0)str+=",";
-			str += "\n\t\t\tday="+(i)+" : {";
-			for(int j=0;j<24;j++){
-				if(j>0)str+=",";
-				str +=table.getTableContents()[i][j];
-			}
-			str += "}";
-		}
-		return str;
-	}
 	public StoredList createPossibleResult(Course c, Section s,TimeTable table){
 		StoredList stList = new StoredList();
 		stList.add(new StoredItem(c,s),table);

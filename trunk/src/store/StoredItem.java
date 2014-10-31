@@ -17,9 +17,9 @@ public class StoredItem {
 	 * @param s Section
 	 */
 	public StoredItem(Course c, Section s){
-		this.courseID=c.getCourseID();
-		this.courseName=c.getCourseName();
-		this.sec=s;
+		this.setCourseID(c.getCourseID());
+		this.setCourseName(c.getCourseName());
+		this.setSec(s);
 	}
 	public String getCourseID() {
 		return courseID;
@@ -40,13 +40,13 @@ public class StoredItem {
 		this.sec = sec;
 	}
 	public StoredItem(String courseID, String courseName, Section sec) {
-		this.courseID = courseID;
-		this.courseName = courseName;
-		this.sec = sec;
+		this.setCourseID(courseID);
+		this.setCourseName(courseName);
+		this.setSec(sec);
 	}
 	@Override
 	public String toString(){		
-		return sec.getCRN()+" : "+courseID + " - "+courseName+" ("+sec.getSectionID()+")";		
+		return sec.getCRN()+" : "+this.getCourseID() + " - "+this.getCourseName()+" ("+this.getSec().getSectionID()+")";		
 	}
 	
 }
