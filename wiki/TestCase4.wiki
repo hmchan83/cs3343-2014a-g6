@@ -1,7 +1,7 @@
 #summary Test Case for Core Course
 = Introduction =
 
-here are the test case for Lab and Lecture.
+here are the test case for Core Course.
 
 = Test Cases =
 
