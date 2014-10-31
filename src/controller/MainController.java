@@ -23,9 +23,13 @@ public class MainController {
 	
 	
 	public void run(ArrayList<Course> list){
+		
 		DebugMessager.debug(title+"MainController Start");
+		DebugMessager.debug(title+"base result = "+baseResult.toString());
 		DebugMessager.debug(title+"Using ComplexHandler");
 		ComplexHandler ComplexHandler=new ComplexHandler();
+		OverlapDetector.setBaseTable(null);
+		//this.baseResult=new ArrayList<StoredItem>();
 		selected = ComplexHandler.run(list);
 		if(baseResult.isEmpty()==false){
 			DebugMessager.debug(title+"BaseResult contains something, BaseResult = "+baseResult.toString());

@@ -34,9 +34,6 @@ public class StoredList {
 		return priorityNums;
 	}
 	public void setPriorityNums(int priorityNums) {
-		if(this.priorityNums==-1){
-			calPriorityNums();
-		}
 		this.priorityNums = priorityNums;
 	}
 	public void calPriorityNums(){

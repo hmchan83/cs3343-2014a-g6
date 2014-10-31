@@ -25,6 +25,8 @@ public class ListHandler {
 		DebugMessager.debug(title+"\tStart setting priority");
 		int CourseCounter = 1;
 		OverlapDetector overlapDetector = new OverlapDetector(); // for compulsory course
+		OverlapDetector.setBaseTable(null);
+		MainController.setBaseResult(new ArrayList<StoredItem>());
 		int maxSecNum=0;
 		for(Course c : list){ // get the largest Section nums => used to determine the priority
 			/* if the Max. Section of ALL course < 10 the priority will be 2 digit

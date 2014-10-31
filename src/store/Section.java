@@ -25,15 +25,6 @@ public class Section {
 		this.crn = cRN;
 		this.credit = credit;
 	}
-	public Section(String sectionID, String day, String startTime,
-			String endTime, String building, String room) {
-		this.sectionID = sectionID;
-		this.day = day;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.building = building;
-		this.room = room;
-	}
 	public String getSectionID() {
 		return sectionID;
 	}
