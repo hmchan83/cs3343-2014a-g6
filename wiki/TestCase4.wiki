@@ -1,0 +1,40 @@
+#summary Test Case for Core Course
+= Introduction =
+
+here are the test case for Lab and Lecture.
+
+= Test Cases =
+
+==Test Case 1==
+Input
+{{{
+3
+CS0001 TEST1 1 true
+C01 Fri 1200 1300 AC1 LT6 10001 3
+CS0002 TEST2 1
+C01 Fri 1200 1300 AC1 LT7 20001 3
+CS0003 TEST3 1
+C01 Fri 1200 1300 AC1 LT8 30001 3
+3
+}}}
+Output
+{{{
+10001 : CS0001 - TEST1 (C01)
+}}}
+
+==Test Case 2==
+Input
+{{{
+3
+CS0001 TEST1 1 true
+C01 Fri 1200 1300 AC1 LT6 10001 3
+CS0002 TEST2 1
+C01 Fri 1200 1300 AC1 LT7 20001 3
+CS0003 TEST3 1 true
+C01 Fri 1200 1300 AC1 LT8 30001 3
+3
+}}}
+Output
+{{{
+Core course could not be added, Please check.
+}}}
