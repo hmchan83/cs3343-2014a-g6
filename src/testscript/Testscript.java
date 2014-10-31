@@ -535,6 +535,45 @@ public class Testscript extends TestCase {
 		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
 
 	}
+
+	public void testcaseC2() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS0001";
+		String courseName;
+		courseName = "TEST1";//core
+		Course currCourse;
+		currCourse = new Course(courseID,courseName);
+		Section currSec;
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
+		currCourse.addSec(currSec);
+		currCourse.setIsCore(true);
+		courselist.add(currCourse);
+		
+		currCourse = new Course("CS0002","TEST2");
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT7","20001",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		currCourse = new Course("CS0003","TEST3");
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT8","30001",3);
+		currCourse.addSec(currSec);
+		currCourse.setIsCore(true);
+		courselist.add(currCourse);
+		
+		int requireNums = 3;
+		MainController.setReqiureNums(requireNums);
+		
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.isEmpty(),true);
+	
+	}
 }
 
 
