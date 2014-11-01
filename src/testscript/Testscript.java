@@ -478,7 +478,7 @@ public class Testscript extends TestCase {
 		Course currCourse;
 		currCourse = new Course(courseID,courseName);
 		Section currSec;
-	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
+	    currSec = new Section("S01","Fri","1200","1300","AC1","LT6","10001",3);
 		currCourse.addSec(currSec);
 		currSec = new Section("L01","Fri","1500","1600","AC2","1234","10002",0);
 		currCourse.addSec(currSec);
@@ -494,7 +494,7 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (S01)");
 		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (L01)");
 
 	}

@@ -26,7 +26,6 @@ public class ComplexHandler {
 		Course currCourse;
 		Section currSection;
 		StoredList stList,newList;
-		StoredItem tempVal;
 		Boolean labSelected = false, lecSelected = false;		
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		int count = 0;
@@ -48,7 +47,7 @@ public class ComplexHandler {
 			table=new OverlapDetector();
 			stList = new StoredList();
 			int LabStepper=0;
-			LecSection = this.findlecture(currCourse, LecStepper++, table.getTableContents());
+			LecSection = this.findLecture(currCourse, LecStepper++, table.getTableContents());
 			if(LecSection==null)break;
 			if(table.set(LecSection.getDay(), LecSection.getStartTime(), LecSection.getEndTime())){
 				lecSelected=true;
@@ -128,7 +127,7 @@ public class ComplexHandler {
 		return result.getItems();
 	}
 	
-	public Section findlecture(Course c, int i,Boolean[][] table){
+	public Section findLecture(Course c, int i,Boolean[][] table){
 		DebugMessager.debug(title+"findlecture, i = "+i);
 		return find(c,i,table,false);
 	}
