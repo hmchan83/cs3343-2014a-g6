@@ -34,7 +34,9 @@ public class FormatConverter {
 	 */
 	public static int TimeStr2Int(String str)throws IllegalArgumentException {
 		if(str.length()==4){
-			if(Integer.parseInt(str)>2300 || Integer.parseInt(str)<0){
+			if(Integer.parseInt(str)>2300){
+				throw new IllegalArgumentException();
+			}if(Integer.parseInt(str)<0){
 				throw new IllegalArgumentException();
 			}
 			return (Integer.parseInt(str)/100);
