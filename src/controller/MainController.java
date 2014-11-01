@@ -1,9 +1,12 @@
 package controller;
 
 import ioModule.DebugMessager;
+import ioModule.IO;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import exceptionPackage.CoreNotAddedExc;
 import store.Course;
 import store.Section;
 import store.StoredItem;
@@ -21,10 +24,34 @@ public class MainController {
 	private static int reqiureNums = 0;
 	private static ArrayList<StoredItem> baseResult= new ArrayList<StoredItem>();
 	
+	public ArrayList<Course> readInput(Boolean isSimpleOnput){
+		IO io = new IO();
+		DebugMessager.debug("IO start");		
+		ArrayList<Course> courselist;
+		if(isSimpleOnput == true)
+			courselist = io.input();
+		else
+			try{
+				courselist = io.inputXML(); //for testing just using simple input
+			}catch(FileNotFoundException e){
+				courselist = null;
+			}
+		return courselist;
+	}
 	
 	public void run(ArrayList<Course> list){
-		
+		IO io = new IO();
 		DebugMessager.debug(title+"MainController Start");
+		ListHandler PriorityHandler=new ListHandler();		
+		try {
+			PriorityHandler.listformat(list);
+		} catch (CoreNotAddedExc e) {			
+			io.out(e.getMessage());
+			return;
+		}
+		io.out("\nYour Input : \n");
+		io.out(list);
+		DebugMessager.debug("courseNums = "+list.size());
 		DebugMessager.debug(title+"base result = "+baseResult.toString());
 		DebugMessager.debug(title+"Using ComplexHandler");
 		ComplexHandler ComplexHandler=new ComplexHandler();
