@@ -51,10 +51,10 @@ public class Testscript extends TestCase {
 		
 		int requireNums = 6;
 		MainController.setReqiureNums(requireNums);
-		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
-		
+		*/
 		
 		MainController MainController = new MainController();
 		MainController.run(courselist); // calling controller
@@ -93,8 +93,10 @@ public class Testscript extends TestCase {
 		int requireNums = 6;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		
 		MainController MainController = new MainController();
@@ -140,8 +142,10 @@ public class Testscript extends TestCase {
 		int requireNums = 6;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 				
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -234,8 +238,10 @@ public class Testscript extends TestCase {
 		int requireNums = 6;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		/*IO io = new IO();
 		io.out("\nYour Input : \n");
@@ -299,8 +305,10 @@ public class Testscript extends TestCase {
 		int requireNums = 15;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -353,8 +361,10 @@ public class Testscript extends TestCase {
 		int requireNums = 12;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -424,8 +434,10 @@ public class Testscript extends TestCase {
 		int requireNums = 15;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -458,8 +470,10 @@ public class Testscript extends TestCase {
 		int requireNums = 3;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -487,8 +501,10 @@ public class Testscript extends TestCase {
 		int requireNums = 3;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -525,8 +541,10 @@ public class Testscript extends TestCase {
 		int requireNums = 3;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller
@@ -564,8 +582,10 @@ public class Testscript extends TestCase {
 		int requireNums = 3;
 		MainController.setReqiureNums(requireNums);
 		
+		/*
 		ListHandler PriorityHandler=new ListHandler();		
 		PriorityHandler.listformat(courselist);
+		*/
 		
 		MainController mainController = new MainController();
 		mainController.run(courselist); // calling controller

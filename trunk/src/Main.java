@@ -16,10 +16,8 @@ import store.StoredItem;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		try {
 		final Boolean inputMethod = true; // true for simple input, false for XML
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
-		int courseNums;
 		//Course.resetCounter();
 		IO io = new IO();
 		DebugMessager.debug("IO start");
@@ -29,7 +27,7 @@ public class Main {
 			courselist = io.input();
 		else
 			courselist = io.inputXML(); //for testing just using simple input
-		
+		/*
 		courseNums = courselist.size();
 		
 		ListHandler PriorityHandler=new ListHandler();		
@@ -38,7 +36,7 @@ public class Main {
 		io.out("\nYour Input : \n");
 		io.out(courselist);
 		DebugMessager.debug("courseNums = "+courseNums);
-		
+		*/
 		
 		
 		MainController MainController = new MainController();
@@ -54,15 +52,6 @@ public class Main {
 				totalpriority+=item.getSec().getPriority();
 			}
 		}
-		io.out("\nTotal Priority = "+totalpriority);
-		
-		} catch (CoreNotAddedExc e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-			//e.printStackTrace();
-			return ;
-			
-		}
-			
+		io.out("\nTotal Priority = "+totalpriority);			
 	}
 }
