@@ -32,7 +32,7 @@ public class FormatConventor {
 	 * @param str time string in 1100,1000,2200 etc format
 	 * @return 2300 return 23, the position in the timetable / return -1 if wrong input
 	 */
-	public static int TimeStr2Int(String str){
+	public static int TimeStr2Int(String str)throws IllegalArgumentException {
 		if(str.length()==4){
 			if(Integer.parseInt(str)>2300 || Integer.parseInt(str)<0){
 				throw new IllegalArgumentException();
