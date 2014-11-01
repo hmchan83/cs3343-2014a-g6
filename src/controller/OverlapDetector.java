@@ -57,9 +57,9 @@ public class OverlapDetector {
 
 	public boolean set(String day,String starttime,String endtime){ // converting String item to the postion of array
 		try{
-			int dayint = FormatConventor.DayStr2Int(day);
-			int start = FormatConventor.TimeStr2Int(starttime);
-			int end = FormatConventor.TimeStr2Int(endtime);
+			int dayint = FormatConverter.DayStr2Int(day);
+			int start = FormatConverter.TimeStr2Int(starttime);
+			int end = FormatConverter.TimeStr2Int(endtime);
 			DebugMessager.debug(title+"set("+dayint+","+start+","+end+")");
 			return set(dayint,start,end);
 		}catch(Exception e){
@@ -69,9 +69,9 @@ public class OverlapDetector {
 	
 	public boolean check(String day, String startitme,String Endtime){
 		try{
-			int dayint = FormatConventor.DayStr2Int(day);
-			int start = FormatConventor.TimeStr2Int(startitme);
-			int end = FormatConventor.TimeStr2Int(Endtime);
+			int dayint = FormatConverter.DayStr2Int(day);
+			int start = FormatConverter.TimeStr2Int(startitme);
+			int end = FormatConverter.TimeStr2Int(Endtime);
 			DebugMessager.debug(title+"check("+dayint+","+start+","+end+")");
 			return check(dayint,start,end);
 		}catch(Exception e){

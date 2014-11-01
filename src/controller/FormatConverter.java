@@ -6,13 +6,13 @@ package controller;
  *
  */
 
-public class FormatConventor {
+public class FormatConverter {
 	/**
 	 * given a day string and convert it to a int
 	 * @param str a string that describe the day of a week, accepted value : Mon - Fri and M,T,W (from Mastering Schedule)
 	 * @return 0 for Monday ... 6 for Sunday
 	 */
-	public static int DayStr2Int(String str){
+	public static int DayStr2Int(String str)throws IllegalArgumentException{
 		int daypos;
 		switch(str){
 			case "Mon" : case "M" : daypos=0; break;
@@ -22,7 +22,7 @@ public class FormatConventor {
 			case "Fri" : case "F" : daypos=4; break;
 			case "Sat" : case "S" : daypos=5; break;
 			case "Sun" :  daypos=6; break; // This may be unless, but keep it in this stage
-			default : daypos=-1; break; // normally unreachable		
+			default : throw new IllegalArgumentException(); // normally unreachable		
 		}
 		return daypos;
 	}
