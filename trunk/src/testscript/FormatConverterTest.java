@@ -108,6 +108,16 @@ public class FormatConverterTest  extends TestCase {
 		assertEquals(testBool,Boolean.TRUE);
 	}
 	@Test
+	public void test2500b(){
+		Boolean testBool = false;
+		try{
+			FormatConverter.TimeStr2Int("2500");
+		}catch(IllegalArgumentException iaex){
+			testBool = true;
+		}
+		assertEquals(testBool,Boolean.TRUE);
+	}
+	@Test
 	public void testStr(){
 		Boolean testBool = false;
 		try{
