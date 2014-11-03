@@ -24,7 +24,7 @@ import store.StoredItem;
 public class Testscript extends TestCase {
 
 	 public Testscript(){
-		DebugMessager.disable();
+		DebugMessager.enable();
 	}
 	@Test
 	public void testcaseA1() throws CoreNotAddedExc  {
@@ -353,7 +353,7 @@ public class Testscript extends TestCase {
 		assertEquals(result.isEmpty(),true);
 	}
 	
-	public void testcaseR2() throws CoreNotAddedExc{
+	public void testcaseR2() throws CoreNotAddedExc{// The last Course do not handled.
 		ArrayList<Course> courselist = new ArrayList<>();
 		String courseID;
 		courseID = "CS3343";
@@ -669,6 +669,49 @@ public class Testscript extends TestCase {
 		
 		assertEquals(result.isEmpty(),true);
 	
+	}
+	
+	public void testcaseL3() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "CS0001";
+		String courseName;
+		courseName = "TEST1";//core
+		Course currCourse;
+		
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		Section currSec;
+	    currSec = new Section("C01","Sat","1200","1300","AC1","LT6","10001",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		currCourse = new Course();
+		currCourse.setCourseID("CS0002");
+		currCourse.setCourseName("TEST2");
+	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","20001",3);
+		currCourse.addSec(currSec);
+		currSec = new Section("T01","Fri","1500","1600","AC2","1234","20002",0);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 3;
+		MainController.setReqiureNums(requireNums);
+		
+		/*
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		*/
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
+		assertEquals(result.get(1).toString(), "20001 : CS0002 - TEST2 (C01)");
+		assertEquals(result.get(2).toString(), "20002 : CS0002 - TEST2 (T01)");
+
 	}
 }
 
