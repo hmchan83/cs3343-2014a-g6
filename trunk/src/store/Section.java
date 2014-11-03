@@ -13,6 +13,9 @@ public class Section {
 	private int courseConflict;
 	
 
+	public Section(){
+		
+	}
 	
 	public Section(String sectionID, String day, String startTime,
 			String endTime, String building, String room,String cRN, int credit) {
@@ -93,6 +96,4 @@ public class Section {
 		if(this.sectionID.charAt(0)=='T' || this.sectionID.charAt(0)=='L') return true;
 		return false;
 	}
-	
-
 }
