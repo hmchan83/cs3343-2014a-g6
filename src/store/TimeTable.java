@@ -1,6 +1,5 @@
 package store;
 
-import ioModule.DebugMessager;
 
 public class TimeTable implements Cloneable{
 	private Boolean[][] tableContents;
