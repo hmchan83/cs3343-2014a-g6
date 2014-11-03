@@ -15,18 +15,10 @@ public class Course {
 	private String courseID;
 	private String courseName;
 	private int priority;
-	private ArrayList<Section> sec;
+	private ArrayList<Section> sec = new ArrayList<>();
 	private int minConflict=-1;
 	private Boolean hasLab=false;
 	private Boolean isCore=false;
-	
-	public Course(String courseID, String courseName){
-		this.courseID=courseID;
-		this.courseName=courseName;
-		//this.priority=counter++;
-		this.sec = new ArrayList<>();
-		
-	}
 	
 	public Course() {}
 
