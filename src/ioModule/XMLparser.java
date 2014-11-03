@@ -46,7 +46,11 @@ public class XMLparser {
 
 					String courseid = eElement.getElementsByTagName("courseid").item(0).getTextContent();
 					String coursename = eElement.getElementsByTagName("coursename").item(0).getTextContent();
-					Course newCourse = new Course(courseid,coursename);
+					Boolean isCore = Boolean.parseBoolean(eElement.getElementsByTagName("core").item(0).getTextContent());
+					Course newCourse = new Course();
+					newCourse.setCourseID(courseid);
+					newCourse.setCourseName(coursename);
+					newCourse.setIsCore(isCore);
 					CourseList.add(newCourse);
 
 					NodeList secList = eElement.getElementsByTagName("section");

@@ -24,7 +24,9 @@ public class IO {
 				System.out.println("enter the id, name, no. of section of course "+(i+1));
 				String courseID = scanner.next();
 				String courseName = scanner.next();
-				Course currCourse = new Course(courseID,courseName);
+				Course currCourse = new Course();
+				currCourse.setCourseID(courseID);
+				currCourse.setCourseName(courseName);
 				int sectionNum = scanner.nextInt();
 				if(scanner.hasNextBoolean()){
 					currCourse.setIsCore(true);

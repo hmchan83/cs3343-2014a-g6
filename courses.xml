@@ -3,6 +3,7 @@
 	<course>
 		<courseid>CS4182</courseid>
 		<coursename>Computer Vision for Interactivity</coursename>
+			<core>false</core>
 			<section>
 				<crn>43788</crn>
 				<sectionid>C01</sectionid>
@@ -37,6 +38,7 @@
 	<course>
 		<courseid>CS4280</courseid>
 		<coursename>Advanced Internet Application and Development</coursename>
+			<core>false</core>
 			<section>
 				<crn>29012</crn>
 				<sectionid>C01</sectionid>
@@ -81,6 +83,7 @@
 	<course>
 		<courseid>CS4284</courseid>
 		<coursename>Mobile Computing</coursename>
+			<core>false</core>
 			<section>
 				<crn>24897</crn>
 				<sectionid>C01</sectionid>
@@ -125,6 +128,7 @@
 	<course>
 		<courseid>CS4285</courseid>
 		<coursename>High Speed Multimedia Networks</coursename>
+			<core>false</core>
 			<section>
 				<crn>21963</crn>
 				<sectionid>C01</sectionid>
@@ -139,6 +143,7 @@
 	<course>
 		<courseid>CS4286</courseid>
 		<coursename>Internet Security and e-Commerce Protocols</coursename>
+			<core>false</core>
 			<section>
 				<crn>17157</crn>
 				<sectionid>C61</sectionid>

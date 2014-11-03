@@ -34,7 +34,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","12345",3);
 		currCourse.addSec(currSec);
@@ -44,7 +46,9 @@ public class Testscript extends TestCase {
 		
 	    courseID = "CS0002";
 	    courseName = "TEST2";
-	    currCourse = new Course(courseID,courseName);
+	    currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT5","12347",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -73,7 +77,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","12345",3);
 		currCourse.addSec(currSec);
@@ -83,7 +89,9 @@ public class Testscript extends TestCase {
 		
 	    courseID = "CS0002";
 	    courseName = "TEST2";
-	    currCourse = new Course(courseID,courseName);
+	    currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT5","12347",3);
 		currCourse.addSec(currSec);
 		currSec = new Section("C02","Mon","1100","1200","AC1","LT8","12348",3);
@@ -117,7 +125,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","12345",3);
 		currCourse.addSec(currSec);
@@ -127,14 +137,18 @@ public class Testscript extends TestCase {
 		
 	    courseID = "CS0002";
 	    courseName = "TEST2";
-	    currCourse = new Course(courseID,courseName);
+	    currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT5","12347",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS0003";
 		courseName = "TEST3";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Mon","1100","1200","AC1","LT8","12348",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -164,7 +178,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1400","AC1","LT6","10001",3);
 		currCourse.addSec(currSec);
@@ -180,7 +196,9 @@ public class Testscript extends TestCase {
 		
 	    courseID = "CS0002";
 	    courseName = "TEST2";
-	    currCourse = new Course(courseID,courseName);
+	    currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","20001",3);
 	    currCourse.addSec(currSec);
 	    currSec = new Section("C02","Mon","1200","1300","AC1","LT6","20002",3);
@@ -195,7 +213,9 @@ public class Testscript extends TestCase {
 		
 		courseID = "CS0003";
 		courseName = "TEST3";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("CA1","Fri","1200","1400","AC1","LT6","30001",3);
 		currCourse.addSec(currSec);
 		currSec = new Section("CA2","Mon","1100","1300","AC1","LT8","30002",3);
@@ -210,14 +230,18 @@ public class Testscript extends TestCase {
 		
 		courseID = "CS0004";
 		courseName = "TEST4";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Tue","0900","1200","AC2","2550","40001",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS0005";
 		courseName = "TEST5";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Wed","0900","1300","AC2","2550","50001",3);
 		currCourse.addSec(currSec);
 		currSec = new Section("C02","Mon","1700","1900","AC2","2550","50002",3);
@@ -228,7 +252,9 @@ public class Testscript extends TestCase {
 		
 		courseID = "CS0006";
 		courseName = "TEST6";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Fri","1200","1400","AC2","2550","60001",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -268,7 +294,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "Software-Engineering-Practice";
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("CB1","Fri","1400","1500","AC1","LT7","45542",3);
 		currCourse.addSec(currSec);
@@ -276,28 +304,36 @@ public class Testscript extends TestCase {
 		
 		courseID = "CS4480";
 		courseName = "Data-Intensive-Computing";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C61","Wed","1900","2100","MMW","2450","46406",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS3483";
 		courseName = "Multimodal-Interface-Design";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Fri","1500","1700","AC1","LT8","31330",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS3283";
 		courseName = "Distributed-Systems";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C61","Wed","1900","2100","AC2","1301","35361",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS3346";
 		courseName = "Software-Testing-and-Maintenance";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C61","Tue","1900","2100","AC2","1301","18748",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -324,7 +360,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "Software-Engineering-Practice";
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("CB1","Fri","1400","1500","AC1","LT7","45542",3);
 		currCourse.addSec(currSec);
@@ -332,28 +370,36 @@ public class Testscript extends TestCase {
 		
 		courseID = "CS4480";
 		courseName = "Data-Intensive-Computing";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C61","Wed","1900","2100","MMW","2450","46406",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS3483";
 		courseName = "Multimodal-Interface-Design";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Fri","1500","1700","AC1","LT8","31330",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS3283";
 		courseName = "Distributed-Systems";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C61","Wed","1900","2100","AC2","1301","35361",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "CS3346";
 		courseName = "Software-Testing-and-Maintenance";
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C61","Tue","1900","2100","AC2","1301","18748",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -383,7 +429,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "Micro and Nanotechnology for Bioengineering";//core
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Tue","1000","1200","AC1","Y5206","46127",3);
 		currCourse.addSec(currSec);
@@ -391,42 +439,54 @@ public class Testscript extends TestCase {
 		
 		courseID = "AP3130";
 		courseName = "Biomaterials";//core
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Thu","0900","1100","AC1","LT7","45764",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "EE3919";
 		courseName = "Medical Imaging and Signal Processing";//core
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 	    currSec = new Section("C01","Thu","1700","1900","AC1","P4703","46245",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "AP2102";
 		courseName = "Introduction to Materials Engineering";//core
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("CB1","Tue","1300","1500","AC1","LT11","29795",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "EE2104";
 		courseName = "Introduction to Electromagnetics";//elective
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Wed","1200","1400","AC1","LT9","34193",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "BCH3856";
 		courseName = "Cell Transport and Signalling";//elective
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Thu","1500","1700","AC1","B5310","45521",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
 		courseID = "SEEM3062";
 		courseName = "Quality Engineering I";//elective
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		currSec = new Section("C01","Fri","1400","1700","AC1","B5210","40435",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -459,7 +519,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";//core
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
 		currCourse.addSec(currSec);
@@ -490,7 +552,9 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";//core
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("S01","Fri","1200","1300","AC1","LT6","10001",3);
 		currCourse.addSec(currSec);
@@ -521,19 +585,25 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";//core
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
 		currCourse.addSec(currSec);
 		currCourse.setIsCore(true);
 		courselist.add(currCourse);
 		
-		currCourse = new Course("CS0002","TEST2");
+		currCourse = new Course();
+		currCourse.setCourseID("CS0002");
+		currCourse.setCourseName("TEST2");
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT7","20001",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
-		currCourse = new Course("CS0003","TEST3");
+		currCourse = new Course();
+		currCourse.setCourseID("CS0003");
+		currCourse.setCourseName("TEST3");
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT8","30001",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
@@ -561,19 +631,25 @@ public class Testscript extends TestCase {
 		String courseName;
 		courseName = "TEST1";//core
 		Course currCourse;
-		currCourse = new Course(courseID,courseName);
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
 		Section currSec;
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT6","10001",3);
 		currCourse.addSec(currSec);
 		currCourse.setIsCore(true);
 		courselist.add(currCourse);
 		
-		currCourse = new Course("CS0002","TEST2");
+		currCourse = new Course();
+		currCourse.setCourseID("CS0002");
+		currCourse.setCourseName("TEST2");
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT7","20001",3);
 		currCourse.addSec(currSec);
 		courselist.add(currCourse);
 		
-		currCourse = new Course("CS0003","TEST3");
+		currCourse = new Course();
+		currCourse.setCourseID("CS0003");
+		currCourse.setCourseName("TEST3");
 	    currSec = new Section("C01","Fri","1200","1300","AC1","LT8","30001",3);
 		currCourse.addSec(currSec);
 		currCourse.setIsCore(true);
