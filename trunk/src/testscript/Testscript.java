@@ -14,7 +14,6 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import controller.ListHandler;
 import controller.MainController;
 import exceptionPackage.CoreNotAddedExc;
 import store.Course;

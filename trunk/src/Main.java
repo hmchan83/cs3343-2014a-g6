@@ -3,9 +3,7 @@ import ioModule.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import controller.ListHandler;
 import controller.MainController;
-import exceptionPackage.CoreNotAddedExc;
 import store.Course;
 import store.StoredItem;
 /**
@@ -27,18 +25,7 @@ public class Main {
 			courselist = io.input();
 		else
 			courselist = io.inputXML(); //for testing just using simple input
-		/*
-		courseNums = courselist.size();
-		
-		ListHandler PriorityHandler=new ListHandler();		
-		PriorityHandler.listformat(courselist);
-		
-		io.out("\nYour Input : \n");
-		io.out(courselist);
-		DebugMessager.debug("courseNums = "+courseNums);
-		*/
-		
-		
+	
 		MainController MainController = new MainController();
 		MainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = MainController.result();
