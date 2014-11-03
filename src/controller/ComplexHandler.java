@@ -50,109 +50,116 @@ public class ComplexHandler {
 				stList = possibleResult.get(listpos);
 				DebugMessager.debug(title+"listpos = "+listpos+", stList = "+stList.toString());
 				DebugMessager.debug(title+"stList.getTable = "+stList.printTable());
+				DebugMessager.debug(title+"stList.HandledCourse = "+stList.getHandledCourse());
 			}catch(IndexOutOfBoundsException e){
 				break; //end of list
 			}
+
+            int i=stList.getHandledCourse()+1;
+            if(i>=list.size()) break; // end of course
+            currCourse = list.get(i);
+            DebugMessager.debug(title+"Handling Course "+i+"{"+currCourse.toString()+"}");
+            
+            while(findLecture(currCourse,LecStepper,stList.getTable().clone())!=null){
+            	currSection = findLecture(currCourse,LecStepper++,stList.getTable().clone());
+            	DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
+                if(currSection.getCourseConflict() == currCourse.getMinConflict()){
+                        newList = copyList(stList);
+                        table.setTable(stList.getTable().clone());
+                        if(selectCourse(currSection)==true){
+                                DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
+                                newList.add(new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection),table.getTable().clone());
+                                if(newList.getItemNums()>maxCourseNums)maxCourseNums=newList.getItemNums();
+                        }
+                        newList.setHandledCourse(i);
+                        DebugMessager.debug(title+"newList = "+newList.toString());
+                        DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
+                        addPossibleResult(newList);
+                }
+            }
+            
+            /* Original Code
+            for(int j=0;j<currCourse.getSec().size();j++){
+                    currSection = currCourse.getSec().get(j);
+                    DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
+                    if(currSection.getCourseConflict() == currCourse.getMinConflict()){
+                            newList = copyList(stList);
+                            table.setTable(stList.getTable().clone());
+                            if(selectCourse(currSection)==true){
+                                    DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
+                                    newList.add(new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection),table.getTable().clone());
+                                    if(newList.getItemNums()>maxCourseNums)maxCourseNums=newList.getItemNums();
+                            }
+                            newList.setHandledCourse(i);
+                            DebugMessager.debug(title+"newList = "+newList.toString());
+                            DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
+                            addPossibleResult(newList);
+                    }
+            }*/	
+			
 			/* change the following code to handle lab */
+			
+			/*
 			int i=stList.getHandledCourse()+1;
-			if(i>=list.size()) break; // end of course
+			if(i>=list.size()){
+				DebugMessager.debug("END OF COURSE");
+				break; // end of course
+			}
 			currCourse = list.get(i);
 			DebugMessager.debug(title+"Handling Course "+i+"{"+currCourse.toString()+"}");
-			/*
-			while(true){
-				lecSelected = false;
+			
+
+			
+			while(true){//Handling Section
+				boolean lecSelected = false;
 				table.setTable(stList.getTable().clone());
-				LecSection = findLecture(currCourse, LecStepper++, table.getTable().clone().getTableContents());
+				// find lecture 
+				Section LecSection = findLecture(currCourse, LecStepper++, table.getTable().clone().getTableContents());
 				if(LecSection==null) break;
+				DebugMessager.debug(title+"getCourseConflict = "+LecSection.getCourseConflict()+", getMinConflict = "+currCourse.getMinConflict());
 				if(LecSection.getCourseConflict() == currCourse.getMinConflict()){
-					if(selectCourse(LecSection)==true){
-						newList = copyList(stList);
-						newList.add(new StoredItem(currCourse,LecSection), table.getTable().clone());
+					DebugMessager.debug(title+"copying to newList");
+					newList = copyList(stList);
+					if(selectCourse(LecSection)==true){ // if lecture selected, find lab if there are any						
+						newList.add(new StoredItem(currCourse,LecSection), table.getTable().clone()); // newList contains the  list and timetable 
 						lecSelected = true;
 						if(currCourse.HasLab()){
 							int LabStepper = 0;
-							while(true){
+							while(true){//Handle Lab
 								StoredList newList2 = copyList(newList);
-								labSelected=false;
+								boolean labSelected = false;
 								OverlapDetector table2 = new OverlapDetector(table.getTable().clone().getTableContents());
-								LabSection = findLab(currCourse, LabStepper++, table2.getTableContents());
-								if(LabSection==null)break;
-								if(selectCourse(LabSection)==true){
+								Section LabSection = findLab(currCourse, LabStepper++, table2.getTableContents().clone());
+								if(LabSection==null)break; // no lab available
+								if(table2.set(LabSection.getDay(), LabSection.getStartTime(), LabSection.getEndTime())){
 									labSelected = true;
 									newList2.add(new StoredItem(currCourse,LabSection),table2.getTable().clone());
 								}
 								if(lecSelected==true && labSelected==true && currCourse.HasLab()){
 									DebugMessager.debug(title+"Add to tempList");
-									newList2.setHandledCourse(i);
-									addPossibleResult(newList2);
+									
+									DebugMessager.debug(title+"newList = "+newList2.toString());
+									DebugMessager.debug(title+"newList.getTable = "+newList2.printTable());
 								}
+								newList2.setHandledCourse(i);
+								addPossibleResult(newList2);
 							}
 						}else{
-							DebugMessager.debug(title+"Add to tempList");
+							DebugMessager.debug(title+"Add to tempList, setHandledCourse = "+i);
 							newList.setHandledCourse(i);
+							DebugMessager.debug(title+"setHandledCourse = "+newList.getHandledCourse());
+							DebugMessager.debug(title+"newList = "+newList.toString());
+							DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
 							addPossibleResult(newList);
-						}
+							DebugMessager.debug(title+"newList.id = "+(possibleResult.size()-1));
+						//}
 					}
-				}*/
-				
-				for(int j=0;j<currCourse.getSec().size();j++){
-					currSection = currCourse.getSec().get(j);
-					DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
-					while(true){
-						boolean lecSelected = false;
-						table.setTable(stList.getTable().clone());
-						Section LecSection = findLecture(currCourse, LecStepper++, table.getTable().clone().getTableContents());
-						if(LecSection==null) break;
-						if(LecSection.getCourseConflict() == currCourse.getMinConflict()){
-							if(selectCourse(LecSection)==true){
-								newList = copyList(stList);
-								newList.add(new StoredItem(currCourse,LecSection), table.getTable().clone());
-								lecSelected = true;
-								if(currCourse.HasLab()){
-									int LabStepper = 0;
-									while(true){
-										StoredList newList2 = copyList(newList);
-										boolean labSelected = false;
-										OverlapDetector table2 = new OverlapDetector(table.getTable().clone().getTableContents());
-										Section LabSection = findLab(currCourse, LabStepper++, table2.getTableContents());
-										if(LabSection==null)break;
-										if(selectCourse(LabSection)==true){
-											labSelected = true;
-											newList2.add(new StoredItem(currCourse,LabSection),table2.getTable().clone());
-										}
-										if(lecSelected==true && labSelected==true && currCourse.HasLab()){
-											DebugMessager.debug(title+"Add to tempList");
-											newList2.setHandledCourse(i);
-											DebugMessager.debug(title+"newList = "+newList2.toString());
-											DebugMessager.debug(title+"newList.getTable = "+newList2.printTable());
-											addPossibleResult(newList2);
-										}
-									}
-								}else{
-									DebugMessager.debug(title+"Add to tempList");
-									newList.setHandledCourse(i);
-									DebugMessager.debug(title+"newList = "+newList.toString());
-									DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
-									addPossibleResult(newList);
-								}
-							}
-						}
-					}
-					/*if(currSection.getCourseConflict() == currCourse.getMinConflict()){
-						newList = copyList(stList);
-						table.setTable(stList.getTable().clone());
-						if(selectCourse(currSection)==true){
-							DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
-							newList.add(new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection),table.getTable().clone());
-							if(newList.getItemNums()>maxCourseNums)maxCourseNums=newList.getItemNums();
-						}
-						newList.setHandledCourse(i);
-						DebugMessager.debug(title+"newList = "+newList.toString());
-						DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
-						addPossibleResult(newList);
-					}*/
 				}
-			//}
+					//}
+					
+				}
+			//}*/
+			
 			DebugMessager.debug(title+"listpos++ \n\n");
 			listpos++;
 			DebugMessager.debug(title+"tempList = "+possibleResult.toString()+"\n\n");
@@ -164,17 +171,30 @@ public class ComplexHandler {
 		}
 		return result.getItems();
 	}
-	
-	public Section findLecture(Course c, int i,Boolean[][] table){
+	/**
+	 * 
+	 * @param c Course
+	 * @param i Stepper
+	 * @param table TimeTable
+	 * @return a add-able lecture
+	 */
+	public Section findLecture(Course c, int i,TimeTable table){
 		DebugMessager.debug(title+"findlecture, i = "+i);
 		return find(c,i,table,false);
 	}
-	public Section findLab(Course c,int i,Boolean[][] table){
+	/**
+	 * 
+	 * @param c Course
+	 * @param i Stepper
+	 * @param table TimeTable
+	 * @return a add-able lab
+	 */
+	public Section findLab(Course c,int i,TimeTable table){
 		DebugMessager.debug(title+"findlab, i = "+i);
 		return find(c,i,table,true);
 	}
 	
-	public Section find(Course c,int i,Boolean[][] table,Boolean isLab){
+	public Section find(Course c,int i,TimeTable table,Boolean isLab){
 		OverlapDetector Old = new OverlapDetector(table.clone());
 		int n=0;
 		if(i>c.getSec().size()) return null;
@@ -225,7 +245,7 @@ public class ComplexHandler {
 			table=new OverlapDetector();
 			stList = new StoredList();
 			int LabStepper=0;
-			LecSection = this.findLecture(c, LecStepper++, table.getTableContents());
+			LecSection = this.findLecture(c, LecStepper++, table.getTable());
 			if(LecSection==null)break;// find until there are no lec
 			if(table.set(LecSection.getDay(), LecSection.getStartTime(), LecSection.getEndTime())){
 				lecSelected=true;
@@ -233,7 +253,7 @@ public class ComplexHandler {
 				if(c.HasLab()){
 					while(true){
 						OverlapDetector table2 = new OverlapDetector(stList.getTable());
-						LabSection = this.findLab(c, LabStepper++, table2.getTableContents());
+						LabSection = this.findLab(c, LabStepper++, table2.getTable());
 						if(LabSection==null)break;// find until there are no lab
 						if(table2.set(LabSection.getDay(), LabSection.getStartTime(), LabSection.getEndTime())){
 							labSelected=true;
