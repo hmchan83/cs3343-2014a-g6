@@ -19,18 +19,6 @@ public class DebugMessager {
 		enable = false;
 	}
 	/**
-	 * Turn on the showing of debug message
-	 */
-	public static void on(){
-		enable();
-	}
-	/**
-	 * Turn off the showing of debug message
-	 */
-	public static void off(){
-		disable();
-	}
-	/**
 	 * method to output the debug message
 	 * @param str debug message
 	 */

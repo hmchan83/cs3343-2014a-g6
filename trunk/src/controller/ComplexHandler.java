@@ -44,6 +44,8 @@ public class ComplexHandler {
 		DebugMessager.debug(title+"Step 2 Start.");
 		int listpos=0;
 		int maxCourseNums=0;
+		Boolean lecSelected = false;
+		StoredList newList2 = null;
 		while(true){
 			int LecStepper = 0;
 			try{				
@@ -56,25 +58,55 @@ public class ComplexHandler {
 			}
 
             int i=stList.getHandledCourse()+1;
-            if(i>=list.size()) break; // end of course
+            if(i>=list.size()){
+            	DebugMessager.debug(title+"END OF COURSE");
+            	break; // end of course
+            }
             currCourse = list.get(i);
             DebugMessager.debug(title+"Handling Course "+i+"{"+currCourse.toString()+"}");
             
             while(findLecture(currCourse,LecStepper,stList.getTable().clone())!=null){
             	currSection = findLecture(currCourse,LecStepper++,stList.getTable().clone());
-            	DebugMessager.debug(title+"Handling Section "+i+"{"+currSection.toString()+"}");
+            	DebugMessager.debug(title+"Handling Lec Section "+i+"{"+currSection.toString()+"}");
                 if(currSection.getCourseConflict() == currCourse.getMinConflict()){
                         newList = copyList(stList);
                         table.setTable(stList.getTable().clone());
                         if(selectCourse(currSection)==true){
+                        		lecSelected = true;
+                        		Boolean labSelected = false;
+                        		int LabStepper=0;
                                 DebugMessager.debug(title+"Select Section "+i+"{"+currSection.toString()+"}");
                                 newList.add(new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection),table.getTable().clone());
                                 if(newList.getItemNums()>maxCourseNums)maxCourseNums=newList.getItemNums();
+                                if(currCourse.HasLab()){
+                                	while(findLab(currCourse,LabStepper,newList.getTable().clone())!=null){
+                                		Section currSection2 = findLab(currCourse,LabStepper++,newList.getTable().clone());
+                                		DebugMessager.debug(title+"Handling Lab Section "+i+"{"+currSection2.toString()+"}");
+                                		newList2 = copyList(newList);
+                                        table.setTable(newList.getTable().clone());
+                                        if(selectCourse(currSection2)==true){
+                                        	newList2.add(new StoredItem(currCourse.getCourseID(),currCourse.getCourseName(),currSection2),table.getTable().clone());
+                                        	labSelected=true;
+                                        }
+                                        if(labSelected==true && lecSelected == true){
+                                    		newList2.setHandledCourse(i);
+                                            DebugMessager.debug(title+"newList2 = "+newList2.toString());
+                                            DebugMessager.debug(title+"newList2.getTable = "+newList2.printTable());
+                                            addPossibleResult(newList2);
+                                    	}
+                                	}                                	
+                                }else{
+                                	newList.setHandledCourse(i);
+                                    DebugMessager.debug(title+"newList = "+newList.toString());
+                                    DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
+                                    addPossibleResult(newList);
+                                }
+                        }else{
+	                        newList.setHandledCourse(i);
+	                        DebugMessager.debug(title+"newList = "+newList.toString());
+	                        DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
+	                        addPossibleResult(newList);
                         }
-                        newList.setHandledCourse(i);
-                        DebugMessager.debug(title+"newList = "+newList.toString());
-                        DebugMessager.debug(title+"newList.getTable = "+newList.printTable());
-                        addPossibleResult(newList);
                 }
             }
             
