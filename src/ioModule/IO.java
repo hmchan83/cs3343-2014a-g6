@@ -48,11 +48,11 @@ public class IO {
 		return list;
 	}
 	
-	public ArrayList<Course> inputXML() throws FileNotFoundException{
-		scanner = new Scanner(System.in);
-		System.out.print("Enter the path of course.xml: ");
-		String filePath = scanner.nextLine();
-		scanner.close();
+	public ArrayList<Course> inputXML(String filePath) throws FileNotFoundException{
+		//scanner = new Scanner(System.in);
+		//System.out.print("Enter the path of course.xml: ");
+		//String filePath = scanner.nextLine();
+		//scanner.close();
 		XMLparser xmlParser = new XMLparser();
 		return xmlParser.parseXML(filePath);
 	}

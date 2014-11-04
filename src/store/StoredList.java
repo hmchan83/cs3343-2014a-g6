@@ -10,10 +10,10 @@ public class StoredList {
 	private int totalCredits;
 	
 	public StoredList(){
-		this.items = new ArrayList<StoredItem>();
-		this.table = new TimeTable();
+		this.setItems(new ArrayList<StoredItem>());
+		this.setTable(new TimeTable());
 		//Boolean [i][j] ; i=0 -> Mon, i=1 ->Tue... ; j=0 -> 00:00 ... j=23 -> 23:00
-		this.priorityNums=-1;
+		this.setPriorityNums(-1);
 		this.setTotalCredits(0);
 		this.setHandledCourse(0);
 	}
@@ -45,9 +45,6 @@ public class StoredList {
 	}
 	public TimeTable getTable() {
 		return table;
-	}
-	public void setTable(Boolean[][] table) {
-		this.table = new TimeTable(table);
 	}
 	public void setTable(TimeTable table) {
 		this.table = table;
