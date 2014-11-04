@@ -5,68 +5,114 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-
 import controller.FormatConverter;
 public class FormatConverterTest  extends TestCase {
 	
 
 	@Test
-	public void testDayMonA() {
+	public void testDay_Mon_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Mon"),0);
 	}
 	@Test
-	public void testDayMonB() {
+	public void testDay_Mon_Letter() {
 		assertEquals(FormatConverter.DayStr2Int("M"),0);
 	}
 	@Test
-	public void testDayTueA() {
+	public void testDay_Mon_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Monday"),0);
+	}
+	@Test
+	public void testDay_Tue_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Tue"),1);
 	}
 	@Test
-	public void testDayTueB() {
+	public void testDay_Tue_Letter() {
 		assertEquals(FormatConverter.DayStr2Int("T"),1);
 	}
+	public void testDay_Tue_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Tuesday"),1);
+	}
 	@Test
-	public void testDayWedA() {
+	public void testDay_Wed_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Wed"),2);
 	}
 	@Test
-	public void testDayWedB() {
+	public void testDay_Wed_Letter() {
 		assertEquals(FormatConverter.DayStr2Int("W"),2);
 	}
 	@Test
-	public void testDayThuA() {
+	public void testDay_Wed_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Wednesday"),2);
+	}
+	@Test
+	public void testDay_Thu_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Thu"),3);
 	}
 	@Test
-	public void testDayThuB() {
+	public void testDay_Thu_Letter() {
 		assertEquals(FormatConverter.DayStr2Int("R"),3);
 	}
 	@Test
-	public void testDayFriA() {
+	public void testDay_Thu_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Thursday"),3);
+	}
+	@Test
+	public void testDay_Fri_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Fri"),4);
 	}
 	@Test
-	public void testDayFriB() {
+	public void testDay_Fri_Letter() {
 		assertEquals(FormatConverter.DayStr2Int("F"),4);
 	}
 	@Test
-	public void testDaySatA() {
+	public void testDay_Fri_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Friday"),4);
+	}
+	@Test
+	public void testDay_Sat_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Sat"),5);
 	}
 	@Test
-	public void testDaySatB() {
+	public void testDay_Sat_Letter() {
 		assertEquals(FormatConverter.DayStr2Int("S"),5);
 	}
 	@Test
-	public void testDaySunA() {
+	public void testDay_Sat_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Saturday"),5);
+	}
+	@Test
+	public void testDay_Sun_Simple() {
 		assertEquals(FormatConverter.DayStr2Int("Sun"),6);
 	}
 	@Test
-	public void testDayStr() {
+	public void testDay_Sun_Full() {
+		assertEquals(FormatConverter.DayStr2Int("Sunday"),6);
+	}
+	@Test
+	public void testDayStr_Full() {
 		Boolean testBool = false;
 		try{
 			FormatConverter.DayStr2Int("October");
+		}catch(IllegalArgumentException iaex){
+			testBool = true;
+		}
+		assertEquals(testBool,Boolean.TRUE);
+	}
+	@Test
+	public void testDayStr_Letter() {
+		Boolean testBool = false;
+		try{
+			FormatConverter.DayStr2Int("O");
+		}catch(IllegalArgumentException iaex){
+			testBool = true;
+		}
+		assertEquals(testBool,Boolean.TRUE);
+	}
+	@Test
+	public void testDayStr_Simple() {
+		Boolean testBool = false;
+		try{
+			FormatConverter.DayStr2Int("Sep");
 		}catch(IllegalArgumentException iaex){
 			testBool = true;
 		}
