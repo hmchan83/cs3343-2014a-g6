@@ -23,7 +23,7 @@ import store.StoredItem;
 public class Testscript extends TestCase {
 
 	 public Testscript(){
-		DebugMessager.enable();
+		DebugMessager.disable();
 	}
 	@Test
 	public void testcaseA1() throws CoreNotAddedExc  {
@@ -63,8 +63,8 @@ public class Testscript extends TestCase {
 		MainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = MainController.result();
 		
-		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02)");
-		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01)");
+		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02) , location = AC1 LT8");
+		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01) , location = AC1 LT5");
 		}
 	
 
@@ -111,8 +111,8 @@ public class Testscript extends TestCase {
 		ArrayList<StoredItem> result = MainController.result();
 		
 
-		assertEquals(result.get(0).toString(),"12345 : CS0001 - TEST1 (C01)");
-		assertEquals(result.get(1).toString(),"12348 : CS0002 - TEST2 (C02)");
+		assertEquals(result.get(0).toString(),"12345 : CS0001 - TEST1 (C01) , location = AC1 LT6");
+		assertEquals(result.get(1).toString(),"12348 : CS0002 - TEST2 (C02) , location = AC1 LT8");
 
 	}
 	
@@ -164,8 +164,8 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02)");
-		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01)");
+		assertEquals(result.get(0).toString(),"12346 : CS0001 - TEST1 (C02) , location = AC1 LT7");
+		assertEquals(result.get(1).toString(),"12347 : CS0002 - TEST2 (C01) , location = AC1 LT5");
 		
 	}
 	
@@ -276,12 +276,12 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(),"10002 : CS0001 - TEST1 (C02)");
-		assertEquals(result.get(1).toString(),"20003 : CS0002 - TEST2 (C03)");
-		assertEquals(result.get(2).toString(),"30003 : CS0003 - TEST3 (CA3)");
-		assertEquals(result.get(3).toString(),"40001 : CS0004 - TEST4 (C01)");
-		assertEquals(result.get(4).toString(),"50001 : CS0005 - TEST5 (C01)");
-		assertEquals(result.get(5).toString(),"60001 : CS0006 - TEST6 (C01)");
+		assertEquals(result.get(0).toString(),"10002 : CS0001 - TEST1 (C02) , location = AC1 LT8");
+		assertEquals(result.get(1).toString(),"20003 : CS0002 - TEST2 (C03) , location = AC1 LT6");
+		assertEquals(result.get(2).toString(),"30003 : CS0003 - TEST3 (CA3) , location = AC1 LT7");
+		assertEquals(result.get(3).toString(),"40001 : CS0004 - TEST4 (C01) , location = AC2 2550");
+		assertEquals(result.get(4).toString(),"50001 : CS0005 - TEST5 (C01) , location = AC2 2550");
+		assertEquals(result.get(5).toString(),"60001 : CS0006 - TEST6 (C01) , location = AC2 2550");
 		
 		
 	}
@@ -415,10 +415,10 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "45542 : CS3343 - Software-Engineering-Practice (CB1)");
-		assertEquals(result.get(1).toString(), "46406 : CS4480 - Data-Intensive-Computing (C61)");
-		assertEquals(result.get(2).toString(), "31330 : CS3483 - Multimodal-Interface-Design (C01)");
-		assertEquals(result.get(3).toString(), "18748 : CS3346 - Software-Testing-and-Maintenance (C61)");
+		assertEquals(result.get(0).toString(), "45542 : CS3343 - Software-Engineering-Practice (CB1) , location = AC1 LT7");
+		assertEquals(result.get(1).toString(), "46406 : CS4480 - Data-Intensive-Computing (C61) , location = MMW 2450");
+		assertEquals(result.get(2).toString(), "31330 : CS3483 - Multimodal-Interface-Design (C01) , location = AC1 LT8");
+		assertEquals(result.get(3).toString(), "18748 : CS3346 - Software-Testing-and-Maintenance (C61) , location = AC2 1301");
 	}
 	
 	public void testcaseR3() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
@@ -502,11 +502,11 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "46127 : MBE3101 - Micro and Nanotechnology for Bioengineering (C01)");
-		assertEquals(result.get(1).toString(), "45764 : AP3130 - Biomaterials (C01)");
-		assertEquals(result.get(2).toString(), "46245 : EE3919 - Medical Imaging and Signal Processing (C01)");
-		assertEquals(result.get(3).toString(), "29795 : AP2102 - Introduction to Materials Engineering (CB1)");
-		assertEquals(result.get(4).toString(), "34193 : EE2104 - Introduction to Electromagnetics (C01)");
+		assertEquals(result.get(0).toString(), "46127 : MBE3101 - Micro and Nanotechnology for Bioengineering (C01) , location = AC1 Y5206");
+		assertEquals(result.get(1).toString(), "45764 : AP3130 - Biomaterials (C01) , location = AC1 LT7");
+		assertEquals(result.get(2).toString(), "46245 : EE3919 - Medical Imaging and Signal Processing (C01) , location = AC1 P4703");
+		assertEquals(result.get(3).toString(), "29795 : AP2102 - Introduction to Materials Engineering (CB1) , location = AC1 LT11");
+		assertEquals(result.get(4).toString(), "34193 : EE2104 - Introduction to Electromagnetics (C01) , location = AC1 LT9");
 	}
 	
 
@@ -540,8 +540,8 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
-		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (T01)");
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01) , location = AC1 LT6");
+		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (T01) , location = AC2 1234");
 
 	}
 	public void testcaseL2() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
@@ -573,8 +573,8 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (S01)");
-		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (L01)");
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (S01) , location = AC1 LT6");
+		assertEquals(result.get(1).toString(), "10002 : CS0001 - TEST1 (L01) , location = AC2 1234");
 
 	}
 	public void testcaseC1() throws CoreNotAddedExc{// Taking From major BIE Year 3 Sem A Course
@@ -619,7 +619,7 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01) , location = AC1 LT6");
 
 	}
 
@@ -707,9 +707,9 @@ public class Testscript extends TestCase {
 		mainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = mainController.result();
 		
-		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01)");
-		assertEquals(result.get(1).toString(), "20001 : CS0002 - TEST2 (C01)");
-		assertEquals(result.get(2).toString(), "20002 : CS0002 - TEST2 (T01)");
+		assertEquals(result.get(0).toString(), "10001 : CS0001 - TEST1 (C01) , location = AC1 LT6");
+		assertEquals(result.get(1).toString(), "20001 : CS0002 - TEST2 (C01) , location = AC1 LT6");
+		assertEquals(result.get(2).toString(), "20002 : CS0002 - TEST2 (T01) , location = AC2 1234");
 
 	}
 }

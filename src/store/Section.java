@@ -13,20 +13,16 @@ public class Section {
 	private int courseConflict;
 	
 
-	public Section(){
-		
-	}
-	
 	public Section(String sectionID, String day, String startTime,
 			String endTime, String building, String room,String cRN, int credit) {
-		this.sectionID = sectionID;
-		this.day = day;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.building = building;
-		this.room = room;
-		this.crn = cRN;
-		this.credit = credit;
+		this.setSectionID(sectionID);
+		this.setDay(day);
+		this.setStartTime(startTime);
+		this.setEndTime(endTime);
+		this.setBuilding(building);
+		this.setRoom(room);
+		this.setCRN(cRN);
+		this.setCredit(credit);
 	}
 	public String getSectionID() {
 		return sectionID;

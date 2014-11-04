@@ -46,7 +46,7 @@ public class StoredItem {
 	}
 	@Override
 	public String toString(){		
-		return sec.getCRN()+" : "+this.getCourseID() + " - "+this.getCourseName()+" ("+this.getSec().getSectionID()+")";		
+		return sec.getCRN()+" : "+this.getCourseID() + " - "+this.getCourseName()+" ("+this.getSec().getSectionID()+") , location = "+this.getSec().getBuilding()+" "+this.getSec().getRoom()+"";		
 	}
 	
 }
