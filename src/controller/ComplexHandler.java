@@ -199,19 +199,20 @@ public class ComplexHandler {
 					stList = createPossibleResult(c,LecSection,table.getTable());
 				if(c.HasLab()){
 					while(true){
-						OverlapDetector table2 = new OverlapDetector(stList.getTable());
+						StoredList newList = copyList(stList);
+						OverlapDetector table2 = new OverlapDetector(newList.getTable());
 						LabSection = this.findLab(c, LabStepper++, table2.getTable());
 						if(LabSection==null)break;// find until there are no lab
 						if(table2.set(LabSection.getDay(), LabSection.getStartTime(), LabSection.getEndTime())){
 							labSelected=true;
-							stList.add(new StoredItem(c,LabSection),table2.getTable());
+							newList.add(new StoredItem(c,LabSection),table2.getTable());
 						}
 						if((c.HasLab() && lecSelected==true && labSelected==true)){
 							DebugMessager.debug(title+"Add to tempList");
-							possibleResult.add(stList);
-							if(stList.getPriorityNums()>maxPriority){
-								maxPriority=stList.getPriorityNums();
-								result=copyList(stList);
+							possibleResult.add(newList);
+							if(newList.getPriorityNums()>maxPriority){
+								maxPriority=newList.getPriorityNums();
+								result=copyList(newList);
 							}
 						}
 					}
