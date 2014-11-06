@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -507,6 +508,250 @@ public class Testscript extends TestCase {
 		assertEquals(result.get(2).toString(), "46245 : EE3919 - Medical Imaging and Signal Processing (C01) , location = AC1 P4703");
 		assertEquals(result.get(3).toString(), "29795 : AP2102 - Introduction to Materials Engineering (CB1) , location = AC1 LT11");
 		assertEquals(result.get(4).toString(), "34193 : EE2104 - Introduction to Electromagnetics (C01) , location = AC1 LT9");
+	}
+	
+	public void testcaseR4() throws CoreNotAddedExc{// Taking From major MFSE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "MBE3007";
+		String courseName;
+		courseName = "CAD/CAM";//core
+		Course currCourse;
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		Section currSec;
+	    currSec = new Section("C01","Fri","1700","1900","AC1","P4701","40181",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE3006";
+		courseName = "Plastics Engineering";//core
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Mon","1900","2100","AC1","LT11","40172",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "SEEM3032";
+		courseName = "Production and Operations Planning";//core
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Fri","1200","1400","AC3","6213","42005",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE2036";
+		courseName = "Engineering Computing";//core
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Wed","1700","1900","AC1","LT8","41984",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "SEEM3020";
+		courseName = "Engineering Economic Analysis";//elective
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Mon","1700","1900","AC1","LT14","40395",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "SEEM3027";
+		courseName = "Logistics and Materials Management";//elective
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Thu","1700","1900","AC1","LT9","40403",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "SEEM3053";
+		courseName = "Quality Improvement Methodologies";//elective
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Wed","1200","1400","AC1","B5210","43194",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+	
+		int requireNums = 15;
+		MainController.setReqiureNums(requireNums);
+		
+		/*
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		*/
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "40181 : MBE3007 - CAD/CAM (C01) , location = AC1 P4701");
+		assertEquals(result.get(1).toString(), "40172 : MBE3006 - Plastics Engineering (C01) , location = AC1 LT11");
+		assertEquals(result.get(2).toString(), "42005 : SEEM3032 - Production and Operations Planning (C01) , location = AC3 6213");
+		assertEquals(result.get(3).toString(), "41984 : MBE2036 - Engineering Computing (C01) , location = AC1 LT8");
+		assertEquals(result.get(4).toString(), "40403 : SEEM3027 - Logistics and Materials Management (C01) , location = AC1 LT9");
+	}
+	
+	public void testcaseR5() throws CoreNotAddedExc{// Taking From major MTE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "MBE4010";
+		String courseName;
+		courseName = "Dynamics and Modelling";//core
+		Course currCourse;
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		Section currSec;
+	    currSec = new Section("C01","Tue","1700","1900","AC1","B5211","43933",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE4110";
+		courseName = "Sensors";//core
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Fri","1000","1200","AC1","P4302","46142",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE3058";
+		courseName = "Embedded Control Systems";//core
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Thu","1500","1700","AC1","G5314","40210",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE3115";
+		courseName = "Microelectromechanical Systems";//core
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Thu","1700","1900","AC1","P4701","41996",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE2036";
+		courseName = "Engineering Computing";//elective,14
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Wed","1700","1900","AC1","LT8","41984",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE3006";
+		courseName = "Plastics Engineering";//elective,1
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Mon","1900","2100","AC1","LT11","40172",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "MBE3007";
+		courseName = "CAD/CAM";//elective,12
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Fri","1700","1900","AC1","P4701","40181",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "SEEM3040";
+		courseName = "Engineering Database and Systems";//elective,2
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("C01","Fri","1700","1900","AC2","1110","40422",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+	
+		int requireNums = 15;
+		MainController.setReqiureNums(requireNums);
+		
+		/*
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		*/
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "43933 : MBE4010 - Dynamics and Modelling (C01) , location = AC1 B5211");
+		assertEquals(result.get(1).toString(), "46142 : MBE4110 - Sensors (C01) , location = AC1 P4302");
+		assertEquals(result.get(2).toString(), "40210 : MBE3058 - Embedded Control Systems (C01) , location = AC1 G5314");
+		assertEquals(result.get(3).toString(), "41996 : MBE3115 - Microelectromechanical Systems (C01) , location = AC1 P4701");
+		assertEquals(result.get(4).toString(), "41984 : MBE2036 - Engineering Computing (C01) , location = AC1 LT8");
+	}
+
+	public void testcaseR6() throws CoreNotAddedExc{// Taking From major MAE Year 3 Sem A Course
+		ArrayList<Course> courselist = new ArrayList<>();
+		String courseID;
+		courseID = "AP3190";
+		String courseName;
+		courseName = "Thermodynamics of Materials";//core
+		Course currCourse;
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		Section currSec;
+	    currSec = new Section("CA1","Wed","1300","1500","AC2","3610","17780",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "AP3113";
+		courseName = "Polymer Engineering";//elective,19
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+		currSec = new Section("CA1","Fri","0900","1100","AC2","2200","12059",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "AP3130";
+		courseName = "Biomaterials";//elective,15
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Thu","0900","1100","AC1","LT7","45764",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		courseID = "AP4170";
+		courseName = "Environmental Degradation";//elective,15
+		currCourse = new Course();
+		currCourse.setCourseID(courseID);
+		currCourse.setCourseName(courseName);
+	    currSec = new Section("C01","Thu","1200","1500","AC1","P4701","44358",3);
+		currCourse.addSec(currSec);
+		courselist.add(currCourse);
+		
+		int requireNums = 9;
+		MainController.setReqiureNums(requireNums);
+		
+		/*
+		ListHandler PriorityHandler=new ListHandler();		
+		PriorityHandler.listformat(courselist);
+		*/
+		
+		MainController mainController = new MainController();
+		mainController.run(courselist); // calling controller
+		ArrayList<StoredItem> result = mainController.result();
+		
+		assertEquals(result.get(0).toString(), "17780 : AP3190 - Thermodynamics of Materials (CA1) , location = AC2 3610");
+		assertEquals(result.get(1).toString(), "12059 : AP3113 - Polymer Engineering (CA1) , location = AC2 2200");
+		assertEquals(result.get(2).toString(), "45764 : AP3130 - Biomaterials (C01) , location = AC1 LT7");
 	}
 	
 
