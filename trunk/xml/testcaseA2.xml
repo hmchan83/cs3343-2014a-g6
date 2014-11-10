@@ -1,1 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?><courses><course><courseid>CS0001</courseid><coursename>TEST1</coursename><section><crn>12345</crn><sectionid>C01</sectionid><credit>3</credit><day>Fri</day><startTime>1200</startTime><endTime>1300</endTime><building>AC1</building><room>LT6</room></section><section><crn>12346</crn><sectionid>C02</sectionid><credit>3</credit><day>Mon</day><startTime>1100</startTime><endTime>1200</endTime><building>AC1</building><room>LT7</room></section></course><course><courseid>CS0002</courseid><coursename>TEST2</coursename><section><crn>12347</crn><sectionid>C01</sectionid><credit>3</credit><day>Fri</day><startTime>1200</startTime><endTime>1300</endTime><building>AC1</building><room>LT5</room></section><section><crn>12348</crn><sectionid>C02</sectionid><credit>3</credit><day>Mon</day><startTime>1100</startTime><endTime>1200</endTime><building>AC1</building><room>LT8</room></section></course></courses>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<courses>
+	<course>
+		<courseid>CS0001</courseid>
+		<coursename>TEST1</coursename>
+		<core>false</core>
+		<section>
+			<crn>12345</crn>
+			<sectionid>C01</sectionid>
+			<credit>3</credit>
+			<day>Fri</day>
+			<startTime>1200</startTime>
+			<endTime>1300</endTime>
+			<building>AC1</building>
+			<room>LT6</room>
+		</section>
+		<section>
+			<crn>12346</crn>
+			<sectionid>C02</sectionid>
+			<credit>3</credit>
+			<day>Mon</day>
+			<startTime>1100</startTime>
+			<endTime>1200</endTime>
+			<building>AC1</building>
+			<room>LT7</room>
+		</section>
+	</course>
+	<course>
+		<courseid>CS0002</courseid>
+		<coursename>TEST2</coursename>
+		<core>false</core>
+		<section>
+			<crn>12347</crn>
+			<sectionid>C01</sectionid>
+			<credit>3</credit>
+			<day>Fri</day>
+			<startTime>1200</startTime>
+			<endTime>1300</endTime>
+			<building>AC1</building>
+			<room>LT5</room>
+		</section>
+		<section>
+			<crn>12348</crn>
+			<sectionid>C02</sectionid>
+			<credit>3</credit>
+			<day>Mon</day>
+			<startTime>1100</startTime>
+			<endTime>1200</endTime>
+			<building>AC1</building>
+			<room>LT8</room>
+		</section>
+	</course>
+</courses>
