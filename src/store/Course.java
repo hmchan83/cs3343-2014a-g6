@@ -10,14 +10,38 @@ import java.util.ArrayList;
 
 public class Course {
 	
+	/**
+	 * count the course number, use to set the priority
+	 */
 	private static int counter=1;
 
+	/**
+	 * Course ID, e.g CS3343
+	 */
 	private String courseID;
+	/**
+	 * Course Name
+	 */
 	private String courseName;
+	/**
+	 * Priority, use to determine the best result
+	 */
 	private int priority;
+	/**
+	 * the section of this course
+	 */
 	private ArrayList<Section> sec = new ArrayList<>();
+	/**
+	 * the conflict number, details please view the disn document
+	 */
 	private int minConflict=-1;
+	/**
+	 * boolean to specify does this course contain Lab/Tutorial Section
+	 */
 	private Boolean hasLab=false;
+	/**
+	 * boolean to specify that is this the Core
+	 */
 	private Boolean isCore=false;
 	
 	public Course() {}

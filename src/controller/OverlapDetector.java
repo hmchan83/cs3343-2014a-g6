@@ -85,7 +85,7 @@ public class OverlapDetector {
 		if(endtime<0 && endtime>23) return false;
 		if(day<0 && day>6) return false;
 		for(int i=starttime;i<endtime;i++){
-			if(this.table.getTableContents(day, i)==true){
+			if(this.table.getTableContents(day, i)==TimeTable.USED){
 				DebugMessager.debug(title+"day = "+day+", time = "+i+" is used!!");
 				return false; // time slot overlap
 			}
