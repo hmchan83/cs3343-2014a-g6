@@ -21,9 +21,9 @@ import store.Course;
 import store.Section;
 import store.StoredItem;
 
-public class Testscript extends TestCase {
+public class SystemTest extends TestCase {
 
-	 public Testscript(){
+	 public SystemTest(){
 		DebugMessager.disable();
 	}
 	@Test
@@ -595,7 +595,7 @@ public class Testscript extends TestCase {
 		assertEquals(result.get(1).toString(), "40172 : MBE3006 - Plastics Engineering (C01) , location = AC1 LT11");
 		assertEquals(result.get(2).toString(), "42005 : SEEM3032 - Production and Operations Planning (C01) , location = AC3 6213");
 		assertEquals(result.get(3).toString(), "41984 : MBE2036 - Engineering Computing (C01) , location = AC1 LT8");
-		assertEquals(result.get(4).toString(), "40403 : SEEM3027 - Logistics and Materials Management (C01) , location = AC1 LT9");
+		assertEquals(result.get(4).toString(), "40395 : SEEM3020 - Engineering Economic Analysis (C01) , location = AC1 LT14");
 	}
 	
 	public void testcaseR5() throws CoreNotAddedExc{// Taking From major MTE Year 3 Sem A Course
