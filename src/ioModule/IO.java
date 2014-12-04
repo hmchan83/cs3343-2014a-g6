@@ -2,9 +2,7 @@ package ioModule;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import controller.MainController;
 import store.*;
 /**
  * temporary I/O handler
@@ -12,41 +10,6 @@ import store.*;
  *
  */
 public class IO {
-	
-	private Scanner scanner;
-
-	public ArrayList<Course> input(){// test only
-		scanner = new Scanner(System.in);
-		ArrayList<Course> list = new ArrayList<>();
-			System.out.println("enter the number of course");
-			int courseNum = scanner.nextInt();
-			for(int i=0; i < courseNum;i++){
-				System.out.println("enter the id, name, no. of section of course "+(i+1));
-				String courseID = scanner.next();
-				String courseName = scanner.next();
-				Course currCourse = new Course();
-				currCourse.setCourseID(courseID);
-				currCourse.setCourseName(courseName);
-				int sectionNum = scanner.nextInt();
-				if(scanner.hasNextBoolean()){
-					currCourse.setIsCore(true);
-					scanner.nextBoolean();
-				}
-				
-				for(int j=0; j < sectionNum;j++){
-					System.out.println("enter the section (ID,day,start,end,location,CRN,credit) of course");
-					//Section(String sectionID, String day, String startTime,String endTime, String location, int cRN, int credit
-					Section currSec = new Section(scanner.next(),scanner.next(),scanner.next(),scanner.next(),scanner.next(),scanner.next(),scanner.next(),scanner.nextInt());
-					currCourse.addSec(currSec);
-				}
-				list.add(currCourse);
-			}
-			
-		System.out.println("Enter the min. credits that you need to take ");
-		int requireNums = scanner.nextInt();
-		MainController.setReqiureNums(requireNums);
-		return list;
-	}
 	
 	public ArrayList<Course> inputXML(String filePath) throws FileNotFoundException{
 		//scanner = new Scanner(System.in);

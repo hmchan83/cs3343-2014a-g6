@@ -15,22 +15,19 @@ import store.StoredItem;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		final Boolean inputMethod = false; // true for simple input, false for XML
 		DebugMessager.enable();//debug mode, may used to show debug message in runtime;
 		//Course.resetCounter();
 		IO io = new IO();
 		DebugMessager.debug("IO start");
 		
 		ArrayList<Course> courselist;
-		if(inputMethod == true)
-			courselist = io.input();
-		else{
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("Enter the path of course.xml: ");
-			String filePath = scanner.nextLine();
-			scanner.close();
-			courselist = io.inputXML(filePath); //for testing just using simple input
-		}
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter the path of course.xml: ");
+		String filePath = scanner.nextLine();
+		scanner.close();
+		courselist = io.inputXML(filePath); //for testing just using simple input
+
 		MainController MainController = new MainController();
 		MainController.run(courselist); // calling controller
 		ArrayList<StoredItem> result = MainController.result();
