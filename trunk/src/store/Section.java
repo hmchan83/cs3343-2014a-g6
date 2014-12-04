@@ -11,6 +11,7 @@ public class Section {
 	private int credit;
 	private int priority;
 	private int courseConflict;
+	private SectionType type;
 	
 
 	public Section(String sectionID, String day, String startTime,
@@ -23,6 +24,7 @@ public class Section {
 		this.setRoom(room);
 		this.setCRN(cRN);
 		this.setCredit(credit);
+		this.genType();
 	}
 	public String getSectionID() {
 		return sectionID;
@@ -74,7 +76,7 @@ public class Section {
 	}
 	@Override
 	public String toString(){
-		return crn+","+sectionID+","+day+","+startTime+","+endTime+","+priority+","+courseConflict;
+		return crn+","+sectionID+","+day+","+startTime+","+endTime+","+priority+","+courseConflict+","+this.getType().getTypeStr();
 	}
 	public int getPriority() {
 		return priority;
@@ -89,7 +91,22 @@ public class Section {
 		this.courseConflict = courseConflict;
 	}
 	public Boolean isLab(){
-		if(this.sectionID.charAt(0)=='T' || this.sectionID.charAt(0)=='L') return true;
+		if(this.getType().getTypeStr().equals("Lab")){
+			return true;
+		}
 		return false;
+	}
+	public SectionType getType() {
+		return type;
+	}
+	public void setType(SectionType type) {
+		this.type = type;
+	}
+	public void genType(){
+		if(this.sectionID.charAt(0)=='T' || this.sectionID.charAt(0)=='L'){
+			this.setType(Lab.getInstance());
+		}else{
+			this.setType(Lec.getInstance());
+		}	
 	}
 }
