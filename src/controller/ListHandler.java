@@ -60,10 +60,11 @@ public class ListHandler {
 					DebugMessager.debug(title+"Core Course found");
 					//TODO : put the course in to overlapDetector
 					for(Section section : c.getSec()){
-						boolean success = overlapDetector.set(section.getDay(),section.getStartTime(),section.getEndTime());
+						boolean success = overlapDetector.check(section.getDay(),section.getStartTime(),section.getEndTime());
 						if(!success){
 							throw new CoreNotAddedExc("The Core Course can not be added");
 						}else{
+							overlapDetector.set(section.getDay(),section.getStartTime(),section.getEndTime());
 							DebugMessager.debug(title+"Core Course added to baseResult, BaseResult = "+MainController.getBaseResult().toString());
 							MainController.addBaseResult(new StoredItem(c,section));
 						}
