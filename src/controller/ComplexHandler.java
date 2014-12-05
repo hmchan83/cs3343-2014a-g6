@@ -37,11 +37,11 @@ public class ComplexHandler {
 			}
 		}while(currCourse.IsCore()==true);
 
-		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
+		DebugMessager.debug(title+"Handling Course "+(count-1)+" {"+currCourse.toString()+"}");
 		DebugMessager.debug(title+"The min Conflict of this course = "+currCourse.getMinConflict());
 		DebugMessager.debug(title+"Sessions with min Conflict = "+currCourse.getSecNumMinConflict());
 		DebugMessager.debug(title+"Start putting Sessions with min Conflict in to StoredList");
-		HandleCourse(currCourse,new StoredList());
+		HandleCourse(currCourse,new StoredList(),count);
 		
 		DebugMessager.debug(title+"tempList = "+possibleResult.toString());
 		//Step 2. For each list in tempList, select another course & section		
@@ -168,8 +168,8 @@ public class ComplexHandler {
 		listB.setTotalCredits(listA.getTotalCredits());
 		return listB;
 	}
-	public StoredList createPossibleResult(Course c, Section s,TimeTable table){
-		StoredList stList = new StoredList();
+	public StoredList createPossibleResult(Course c, Section s,TimeTable table,int counter){
+		StoredList stList = new StoredList(counter);
 		stList.add(new StoredItem(c,s),table);
 		return stList;
 	}
@@ -177,7 +177,9 @@ public class ComplexHandler {
 		DebugMessager.debug(title+"newList = "+stList.toString());
         DebugMessager.debug(title+"newList.getTable = "+stList.printTable());
 		possibleResult.add(stList);
+		DebugMessager.debug(title+"maxPriority = "+maxPriority+", stList.getPriorityNums = "+stList.getPriorityNums());
 		if(stList.getPriorityNums()>maxPriority){
+			DebugMessager.debug(title+"UPDATE result");
 			maxPriority=stList.getPriorityNums();
 			result=copyList(stList);
 		}
@@ -186,7 +188,7 @@ public class ComplexHandler {
 		stList.setHandledCourse(i);
 		addPossibleResult(stList);
 	}
-	public void HandleCourse(Course c,StoredList st){
+	public void HandleCourse(Course c,StoredList st,int i){
 		Section LecSection,LabSection;
 		int  LecStepper=0;
 		StoredList stList;
@@ -194,22 +196,28 @@ public class ComplexHandler {
 		Boolean labSelected=false;
 		while(true){
 			table=new OverlapDetector();
+			DebugMessager.debug(title+"init table.Table = "+table.getTable().printTable());
 			stList = new StoredList();
 			int LabStepper=0;
 			LecSection = this.findLecture(c, LecStepper++, table.getTable());
 			if(LecSection==null)break;// find until there are no lec
 			if(table.set(LecSection.getDay(), LecSection.getStartTime(), LecSection.getEndTime())){
 				lecSelected=true;
-					stList = createPossibleResult(c,LecSection,table.getTable());
+					stList = createPossibleResult(c,LecSection,table.getTable(),i-1);
+					DebugMessager.debug(title+"stList.Table = "+stList.getTable().printTable());
 				if(c.HasLab()){
 					while(true){
 						StoredList newList = copyList(stList);
-						OverlapDetector table2 = new OverlapDetector(newList.getTable());
+						DebugMessager.debug(title+"newList.Table = "+newList.getTable().printTable());
+						OverlapDetector table2 = new OverlapDetector();
+						table2.setTable(newList.getTable().clone());
+						DebugMessager.debug(title+"table2.Table = "+table2.getTable().printTable());
 						LabSection = this.findLab(c, LabStepper++, table2.getTable());
 						if(LabSection==null)break;// find until there are no lab
 						if(table2.set(LabSection.getDay(), LabSection.getStartTime(), LabSection.getEndTime())){
 							labSelected=true;
 							newList.add(new StoredItem(c,LabSection),table2.getTable());
+							DebugMessager.debug(title+"table2.Table = "+table2.getTable().printTable());
 						}
 						if((c.HasLab() && lecSelected==true && labSelected==true)){
 							DebugMessager.debug(title+"Add to tempList");
@@ -220,6 +228,7 @@ public class ComplexHandler {
 							}
 						}
 					}
+					
 				}else{
 					DebugMessager.debug(title+"Add to tempList");
 					addPossibleResult(stList);
