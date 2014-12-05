@@ -12,7 +12,7 @@ import ioModule.DebugMessager;
 
 public class OverlapDetector {	
 	static String title = "OverlapDetector : ";
-	static private Boolean[][] baseTable;
+	static private Boolean[][] baseTable=null;
 	//private Boolean[][] table;
 	private TimeTable table;
 	
@@ -24,19 +24,20 @@ public class OverlapDetector {
 	
 	public OverlapDetector(TimeTable table){
 		table= new TimeTable();
-		this.table=table;
+		this.table=table.clone();
 	}
 	
 	public OverlapDetector(Boolean[][] table){
 		this.table= new TimeTable();
-		this.table.setTableContents(table);
+		this.table.setTableContents(table.clone());
 	}
 	
 	public void reset(){
+		table.reset();
 		if(baseTable!=null){
 			table.setTableContents(baseTable);
 		}
-		table.reset();
+		
 	}
 	
 	public TimeTable getTable() {
@@ -109,6 +110,19 @@ public class OverlapDetector {
 	static public Boolean[][] getBaseTable(){
 		return baseTable;
 	}
-	
+	static public String printBaseTable(){
+		if(baseTable==null) return "null";
+		String str = "";
+		for(int i=0;i<7;i++){
+			if(i>0)str+=",";
+			str += "\n\t\t\tday="+(i)+" : {";
+			for(int j=0;j<24;j++){
+				if(j>0)str+=",";
+				str +=baseTable[i][j];
+			}
+			str += "}";
+		}
+		return str;
+	}
 	
 }

@@ -18,6 +18,15 @@ public class StoredList {
 		this.setHandledCourse(0);
 	}
 	
+	public StoredList(int ahandledCourse){
+		this.setItems(new ArrayList<StoredItem>());
+		this.setTable(new TimeTable());
+		//Boolean [i][j] ; i=0 -> Mon, i=1 ->Tue... ; j=0 -> 00:00 ... j=23 -> 23:00
+		this.setPriorityNums(-1);
+		this.setTotalCredits(0);
+		this.setHandledCourse(ahandledCourse);
+	}
+	
 	public ArrayList<StoredItem> getItems() {
 		return items;
 	}

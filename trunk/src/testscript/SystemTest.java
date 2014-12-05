@@ -24,7 +24,7 @@ import store.StoredItem;
 public class SystemTest extends TestCase {
 
 	 public SystemTest(){
-		DebugMessager.disable();
+		DebugMessager.enable();
 	}
 	@Test
 	public void testcaseA1() throws CoreNotAddedExc  {

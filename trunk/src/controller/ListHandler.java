@@ -27,6 +27,7 @@ public class ListHandler {
 		OverlapDetector overlapDetector = new OverlapDetector(); // for compulsory course
 		OverlapDetector.setBaseTable(null);
 		MainController.setBaseResult(new ArrayList<StoredItem>());
+		Boolean hasCore = false;
 		int maxSecNum=0;
 		for(Course c : list){ // get the largest Section nums => used to determine the priority
 			/* if the Max. Section of ALL course < 10 the priority will be 2 digit
@@ -57,6 +58,7 @@ public class ListHandler {
 					/* Prepare the base table here*/
 				}
 				if(c.IsCore()){
+					hasCore = true;
 					DebugMessager.debug(title+"Core Course found");
 					//TODO : put the course in to overlapDetector
 					//for(Section section : c.getSec()){
@@ -84,7 +86,8 @@ public class ListHandler {
 		if(courseNum<=2){
 			DebugMessager.debug(title+"courseNums <=2, Using SimpleHandler");
 		}
-		OverlapDetector.setBaseTable(overlapDetector.getTable().getTableContents());
+		if(hasCore==true)OverlapDetector.setBaseTable(overlapDetector.getTable().getTableContents());
+		DebugMessager.debug(title+"\tBaseTable = "+OverlapDetector.printBaseTable());
 		DebugMessager.debug(title+"\tListHandler End.");
 	}
 

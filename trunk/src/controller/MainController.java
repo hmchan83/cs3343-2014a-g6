@@ -27,6 +27,7 @@ public class MainController {
 	public void run(ArrayList<Course> list){
 		IO io = new IO();
 		DebugMessager.debug(title+"MainController Start");
+		OverlapDetector.setBaseTable(null);
 		ListHandler PriorityHandler=new ListHandler();		
 		try {
 			PriorityHandler.listformat(list);
@@ -40,7 +41,7 @@ public class MainController {
 		DebugMessager.debug(title+"base result = "+baseResult.toString());
 		DebugMessager.debug(title+"Using ComplexHandler");
 		ComplexHandler ComplexHandler=new ComplexHandler();
-		OverlapDetector.setBaseTable(null);
+		
 		//this.baseResult=new ArrayList<StoredItem>();
 		selected = ComplexHandler.run(list);
 		if(baseResult.isEmpty()==false){
