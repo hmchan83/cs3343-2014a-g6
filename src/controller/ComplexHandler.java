@@ -29,8 +29,12 @@ public class ComplexHandler {
 		// Step 1. For Course 0, find the section with the minimum conflict number and put it in to result list
 		int count = 0;
 		do{
-			currCourse = list.get(count);
-			count++;
+			try{
+				currCourse = list.get(count);
+				count++;
+			}catch(IndexOutOfBoundsException e){
+				return new ArrayList<StoredItem>();
+			}
 		}while(currCourse.IsCore()==true);
 
 		DebugMessager.debug(title+"Handling Course "+ 0+" {"+currCourse.toString()+"}");
